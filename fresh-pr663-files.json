@@ -1,0 +1,50 @@
+[
+  {
+    "sha": "63112b073614b83fff6bbf3282af82f8808940a6",
+    "filename": "index.js",
+    "status": "modified",
+    "additions": 5,
+    "deletions": 0,
+    "changes": 5,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/a9e33f6871a8e8d30bcb0690921138a63b78f274/index.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/a9e33f6871a8e8d30bcb0690921138a63b78f274/index.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/index.js?ref=a9e33f6871a8e8d30bcb0690921138a63b78f274",
+    "patch": "@@ -61,6 +61,10 @@ const pretty = require('./lib/pretty')\n  * @property {boolean} [singleLine=false] When `true` any objects, except error\n  * objects, in the log data will be printed as a single line instead as multiple\n  * lines.\n+ * @property {boolean|string|function} [sortKeys=false] When `true`, sorts\n+ * object keys in alphabetical (ascending) order. When set to `'desc'`, sorts\n+ * in descending order. When a function, it is used as the comparator for\n+ * `Array.prototype.sort()`.\n  * @property {string} [timestampKey='time'] Defines the key in incoming logs\n  * that contains the timestamp of the log, if present.\n  * @property {boolean|string} [translateTime=true] When true, will translate a\n@@ -94,6 +98,7 @@ const defaultOptions = {\n   messageKey: MESSAGE_KEY,\n   minimumLevel: undefined,\n   singleLine: false,\n+  sortKeys: false,\n   timestampKey: TIMESTAMP_KEY,\n   translateTime: true,\n   useOnlyCustomProps: true"
+  },
+  {
+    "sha": "d64db6b47b71b2d71ff38216def0b12607b14b35",
+    "filename": "lib/utils/parse-factory-options.js",
+    "status": "modified",
+    "additions": 2,
+    "deletions": 0,
+    "changes": 2,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/a9e33f6871a8e8d30bcb0690921138a63b78f274/lib%2Futils%2Fparse-factory-options.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/a9e33f6871a8e8d30bcb0690921138a63b78f274/lib%2Futils%2Fparse-factory-options.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fparse-factory-options.js?ref=a9e33f6871a8e8d30bcb0690921138a63b78f274",
+    "patch": "@@ -77,6 +77,7 @@ function parseFactoryOptions (options) {\n     messageKey,\n     minimumLevel,\n     singleLine,\n+    sortKeys,\n     timestampKey,\n     translateTime\n   } = options\n@@ -164,6 +165,7 @@ function parseFactoryOptions (options) {\n     minimumLevel,\n     objectColorizer,\n     singleLine,\n+    sortKeys,\n     timestampKey,\n     translateTime,\n     useOnlyCustomProps"
+  },
+  {
+    "sha": "c05698e6d65c0d0123d8c1726c8985fcf1305a5f",
+    "filename": "lib/utils/prettify-object.js",
+    "status": "modified",
+    "additions": 14,
+    "deletions": 1,
+    "changes": 15,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/a9e33f6871a8e8d30bcb0690921138a63b78f274/lib%2Futils%2Fprettify-object.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/a9e33f6871a8e8d30bcb0690921138a63b78f274/lib%2Futils%2Fprettify-object.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fprettify-object.js?ref=a9e33f6871a8e8d30bcb0690921138a63b78f274",
+    "patch": "@@ -44,6 +44,7 @@ function prettifyObject ({\n     errorLikeObjectKeys: errorLikeKeys,\n     objectColorizer,\n     singleLine,\n+    sortKeys,\n     colorizer\n   } = context\n   const keysToIgnore = [].concat(skipKeys)\n@@ -53,8 +54,20 @@ function prettifyObject ({\n \n   let result = ''\n \n+  let sortComparator\n+  if (sortKeys === true) {\n+    sortComparator = ([a], [b]) => a.localeCompare(b)\n+  } else if (sortKeys === 'desc') {\n+    sortComparator = ([a], [b]) => b.localeCompare(a)\n+  } else if (typeof sortKeys === 'function') {\n+    sortComparator = ([a], [b]) => sortKeys(a, b)\n+  }\n+\n+  const entries = Object.entries(log)\n+  if (sortComparator) entries.sort(sortComparator)\n+\n   // Split object keys into two categories: error and non-error\n-  const { plain, errors } = Object.entries(log).reduce(({ plain, errors }, [k, v]) => {\n+  const { plain, errors } = entries.reduce(({ plain, errors }, [k, v]) => {\n     if (keysToIgnore.includes(k) === false) {\n       // Pre-apply custom prettifiers, because all 3 cases below will need this\n       const pretty = typeof customPrettifiers[k] === 'function'"
+  },
+  {
+    "sha": "3c68f92cc9f71e99fb1f49ff77c98d1f89a4c12a",
+    "filename": "test/basic.test.js",
+    "status": "modified",
+    "additions": 25,
+    "deletions": 0,
+    "changes": 25,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/a9e33f6871a8e8d30bcb0690921138a63b78f274/test%2Fbasic.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/a9e33f6871a8e8d30bcb0690921138a63b78f274/test%2Fbasic.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/test%2Fbasic.test.js?ref=a9e33f6871a8e8d30bcb0690921138a63b78f274",
+    "patch": "@@ -1080,6 +1080,31 @@ describe('basic prettifier tests', () => {\n     log.info({ msg: 'message' })\n   })\n \n+  test('sorts object keys alphabetically with sortKeys=true', (t) => {\n+    t.plan(1)\n+    const pretty = prettyFactory({ sortKeys: true, colorize: false })\n+    const formatted = pretty(`{\"level\":30,\"time\":${epoch},\"pid\":${pid},\"hostname\":\"myhost\",\"msg\":\"hello\",\"zebra\":\"z\",\"apple\":\"a\",\"mango\":\"m\"}`)\n+    t.assert.ok(formatted.indexOf('apple') < formatted.indexOf('mango'))\n+    // zebra should come after mango\n+  })\n+\n+  test('sorts object keys in descending order with sortKeys=\"desc\"', (t) => {\n+    t.plan(1)\n+    const pretty = prettyFactory({ sortKeys: 'desc', colorize: false })\n+    const formatted = pretty(`{\"level\":30,\"time\":${epoch},\"pid\":${pid},\"hostname\":\"myhost\",\"msg\":\"hello\",\"apple\":\"a\",\"zebra\":\"z\",\"mango\":\"m\"}`)\n+    t.assert.ok(formatted.indexOf('zebra') < formatted.indexOf('apple'))\n+  })\n+\n+  test('sorts object keys with custom comparator function', (t) => {\n+    t.plan(1)\n+    const pretty = prettyFactory({\n+      sortKeys: (a, b) => b.localeCompare(a),\n+      colorize: false\n+    })\n+    const formatted = pretty(`{\"level\":30,\"time\":${epoch},\"pid\":${pid},\"hostname\":\"myhost\",\"msg\":\"hello\",\"apple\":\"a\",\"zebra\":\"z\",\"mango\":\"m\"}`)\n+    t.assert.ok(formatted.indexOf('zebra') < formatted.indexOf('apple'))\n+  })\n+\n   test('default options', (t) => {\n     t.plan(1)\n     t.assert.doesNotThrow(pinoPretty)"
+  }
+]

@@ -1,0 +1,66 @@
+{
+  "node": "v24.14.0",
+  "pino": "10.4.0",
+  "source": "/ram/base",
+  "sourceSha256": "2d946610a9ff25f7ee38f9b798d0399ed8508629d2e167c509cdcd542e9496a9",
+  "inputSha256": "cb584727ee03bdea82aa29b0f6577a252b92a49d4525035a1eccd4efd941517e",
+  "passed": 2,
+  "failed": 3,
+  "cases": [
+    {
+      "name": "factory-default-error-key",
+      "input": "{\"level\":50,\"ordinary\":{\"marker\":\"HIDDEN_ORDINARY_PAYLOAD\"},\"err\":{\"type\":\"Error\",\"message\":\"VISIBLE_ERROR_STACK\",\"stack\":\"Error: VISIBLE_ERROR_STACK\\n    at makeRecord (/evidence/pino-minimal.cjs:13:35)\\n    at Object.<anonymous> (/evidence/pino-minimal.cjs:17:13)\\n    at Module._compile (node:internal/modules/cjs/loader:1812:14)\\n    at Object..js (node:internal/modules/cjs/loader:1943:10)\\n    at Module.load (node:internal/modules/cjs/loader:1533:32)\\n    at Module._load (node:internal/modules/cjs/loader:1335:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\\n    at node:internal/main/run_main_module:33:47\"},\"msg\":\"request failed\"}\n",
+      "options": {
+        "hideObject": true
+      },
+      "formatted": "ERROR: request failed\n",
+      "stack": false,
+      "ordinary": false,
+      "pass": false
+    },
+    {
+      "name": "factory-custom-error-key",
+      "input": "{\"level\":50,\"ordinary\":{\"marker\":\"HIDDEN_ORDINARY_PAYLOAD\"},\"fault\":{\"type\":\"Error\",\"message\":\"VISIBLE_ERROR_STACK\",\"stack\":\"Error: VISIBLE_ERROR_STACK\\n    at makeRecord (/evidence/pino-minimal.cjs:13:35)\\n    at Object.<anonymous> (/evidence/pino-minimal.cjs:22:32)\\n    at Module._compile (node:internal/modules/cjs/loader:1812:14)\\n    at Object..js (node:internal/modules/cjs/loader:1943:10)\\n    at Module.load (node:internal/modules/cjs/loader:1533:32)\\n    at Module._load (node:internal/modules/cjs/loader:1335:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\\n    at node:internal/main/run_main_module:33:47\"},\"msg\":\"request failed\"}\n",
+      "options": {
+        "hideObject": true,
+        "errorLikeObjectKeys": [
+          "fault"
+        ]
+      },
+      "formatted": "ERROR: request failed\n",
+      "stack": false,
+      "ordinary": false,
+      "pass": false
+    },
+    {
+      "name": "hide-false-control",
+      "input": "{\"level\":50,\"ordinary\":{\"marker\":\"HIDDEN_ORDINARY_PAYLOAD\"},\"err\":{\"type\":\"Error\",\"message\":\"VISIBLE_ERROR_STACK\",\"stack\":\"Error: VISIBLE_ERROR_STACK\\n    at makeRecord (/evidence/pino-minimal.cjs:13:35)\\n    at Object.<anonymous> (/evidence/pino-minimal.cjs:17:13)\\n    at Module._compile (node:internal/modules/cjs/loader:1812:14)\\n    at Object..js (node:internal/modules/cjs/loader:1943:10)\\n    at Module.load (node:internal/modules/cjs/loader:1533:32)\\n    at Module._load (node:internal/modules/cjs/loader:1335:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\\n    at node:internal/main/run_main_module:33:47\"},\"msg\":\"request failed\"}\n",
+      "options": {
+        "hideObject": false
+      },
+      "formatted": "ERROR: request failed\n    ordinary: {\n      \"marker\": \"HIDDEN_ORDINARY_PAYLOAD\"\n    }\n    err: {\n      \"type\": \"Error\",\n      \"message\": \"VISIBLE_ERROR_STACK\",\n      \"stack\":\n          Error: VISIBLE_ERROR_STACK\n              at makeRecord (/evidence/pino-minimal.cjs:13:35)\n              at Object.<anonymous> (/evidence/pino-minimal.cjs:17:13)\n              at Module._compile (node:internal/modules/cjs/loader:1812:14)\n              at Object..js (node:internal/modules/cjs/loader:1943:10)\n              at Module.load (node:internal/modules/cjs/loader:1533:32)\n              at Module._load (node:internal/modules/cjs/loader:1335:12)\n              at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n              at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n              at node:internal/main/run_main_module:33:47\n    }\n",
+      "stack": true,
+      "ordinary": true,
+      "pass": true
+    },
+    {
+      "name": "ordinary-only-control",
+      "input": "{\"level\":50,\"ordinary\":{\"marker\":\"HIDDEN_ORDINARY_PAYLOAD\"},\"msg\":\"request failed\"}\n",
+      "options": {
+        "hideObject": true
+      },
+      "formatted": "ERROR: request failed\n",
+      "stack": false,
+      "ordinary": false,
+      "pass": true
+    },
+    {
+      "name": "real-ndjson-cli",
+      "command": "node bin.js --hideObject --colorize=false",
+      "code": 0,
+      "stdout": "ERROR: request failed\n",
+      "stderr": "",
+      "pass": false
+    }
+  ]
+}

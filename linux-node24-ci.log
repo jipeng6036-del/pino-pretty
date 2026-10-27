@@ -1,0 +1,77 @@
+
+> pino-pretty@13.2.0 ci
+> eslint && borp --check-coverage && npm run test:types
+
+parsed config: --reporter @jsumners/line-reporter lib/**/*.test.js test/**/*.test.js
+passed: /ram/candidate/lib/colors.test.js (35.37 ms)
+passed: /ram/candidate/test/error-objects.test.js (191.3 ms)
+passed: /ram/candidate/test/crlf.test.js (50.74 ms)
+passed: /ram/candidate/test/cli.test.js (1,674 ms)
+passed: /ram/candidate/test/cli-rc.test.js (605 ms)
+passed: /ram/candidate/test/boolean-options.test.js (51.34 ms)
+passed: /ram/candidate/test/basic.test.js (319.9 ms)
+passed: /ram/candidate/lib/utils/strip-unsafe-control-chars.test.js (27.47 ms)
+passed: /ram/candidate/lib/utils/split-property-key.test.js (31.01 ms)
+passed: /ram/candidate/lib/utils/prettify-time.test.js (34.3 ms)
+passed: /ram/candidate/lib/utils/prettify-object.test.js (53.53 ms)
+passed: /ram/candidate/lib/utils/prettify-metadata.test.js (43.56 ms)
+passed: /ram/candidate/lib/utils/prettify-message.test.js (49.96 ms)
+passed: /ram/candidate/lib/utils/prettify-level.test.js (40.41 ms)
+passed: /ram/candidate/lib/utils/prettify-error.test.js (30.04 ms)
+passed: /ram/candidate/lib/utils/prettify-error-log.test.js (40.14 ms)
+passed: /ram/candidate/lib/utils/noop.test.js (31.22 ms)
+passed: /ram/candidate/lib/utils/join-lines-with-indentation.test.js (30 ms)
+passed: /ram/candidate/lib/utils/is-valid-date.test.js (31.29 ms)
+passed: /ram/candidate/lib/utils/is-object.test.js (27.98 ms)
+passed: /ram/candidate/lib/utils/interpret-conditionals.test.js (37.47 ms)
+passed: /ram/candidate/lib/utils/index.test.js (37 ms)
+passed: /ram/candidate/lib/utils/handle-custom-levels-opts.test.js (30.19 ms)
+passed: /ram/candidate/lib/utils/handle-custom-levels-names-opts.test.js (30.94 ms)
+passed: /ram/candidate/lib/utils/get-property-value.test.js (34.25 ms)
+passed: /ram/candidate/lib/utils/format-time.test.js (42.18 ms)
+passed: /ram/candidate/lib/utils/filter-log.test.js (50.52 ms)
+passed: /ram/candidate/lib/utils/delete-log-property.test.js (44.3 ms)
+passed: /ram/candidate/lib/utils/create-date.test.js (33.71 ms)
+passed: /ram/candidate/lib/utils/build-safe-sonic-boom.test.js (151.8 ms)
+
+
+Passed: 361
+Failed: 0
+Total: 361
+
+> pino-pretty@13.2.0 test:types
+> tstyche && attw --pack .
+
+[90m····[0m TSTyche 7.2.5[90m at /ram/candidate[0m
+
+[34muses[0m TypeScript 6.0.3[90m with ./test/types/tsconfig.json[0m
+
+[32mpass[0m [90m./test/types/[0mexports.tst.ts
+[32mpass[0m [90m./test/types/[0mpino-pretty.tst.ts
+
+Targets:    [32m1 passed[0m, 1 total
+Test files: [32m2 passed[0m, 2 total
+Tests:      [32m9 passed[0m, 9 total
+Assertions: [32m66 passed[0m, 66 total
+Duration:   0.7s
+
+pino-pretty v13.2.0
+
+Build tools:
+- @arethetypeswrong/cli@^0.18.1
+- typescript@^6.0.2
+
+ No problems found 🌟
+
+
+┌───────────────────┬───────────────┐
+│                   │ "pino-pretty" │
+├───────────────────┼───────────────┤
+│ node10            │ 🟢            │
+├───────────────────┼───────────────┤
+│ node16 (from CJS) │ 🟢 (CJS)      │
+├───────────────────┼───────────────┤
+│ node16 (from ESM) │ 🟢 (CJS)      │
+├───────────────────┼───────────────┤
+│ bundler           │ 🟢            │
+└───────────────────┴───────────────┘

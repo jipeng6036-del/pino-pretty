@@ -1,0 +1,37 @@
+
+> pino-pretty@13.2.0 test:types
+> tstyche && attw --pack .
+
+···· TSTyche 7.2.5 at F:/Github-PR/inspection/discovery-20261027-js-pino-pretty
+
+uses TypeScript 6.0.3 with ./test/types/tsconfig.json
+
+pass ./test/types/exports.tst.ts
+pass ./test/types/pino-pretty.tst.ts
+
+Targets:    1 passed, 1 total
+Test files: 2 passed, 2 total
+Tests:      9 passed, 9 total
+Assertions: 66 passed, 66 total
+Duration:   1s
+
+pino-pretty v13.2.0
+
+Build tools:
+- @arethetypeswrong/cli@^0.18.1
+- typescript@^6.0.2
+
+ No problems found 🌟
+
+
+[90m┌───────────────────[39m[90m┬───────────────┐[39m
+[90m│[39m[31m                   [39m[90m│[39m[31m "pino-pretty" [39m[90m│[39m
+[90m├───────────────────[39m[90m┼───────────────┤[39m
+[90m│[39m node10            [90m│[39m 🟢            [90m│[39m
+[90m├───────────────────[39m[90m┼───────────────┤[39m
+[90m│[39m node16 (from CJS) [90m│[39m 🟢 (CJS)      [90m│[39m
+[90m├───────────────────[39m[90m┼───────────────┤[39m
+[90m│[39m node16 (from ESM) [90m│[39m 🟢 (CJS)      [90m│[39m
+[90m├───────────────────[39m[90m┼───────────────┤[39m
+[90m│[39m bundler           [90m│[39m 🟢            [90m│[39m
+[90m└───────────────────[39m[90m┴───────────────┘[39m

@@ -1,0 +1,43 @@
+[
+  {
+    "name": "windows-packed-install",
+    "command": [
+      "E:/Nodejs/node.EXE",
+      "C:/Users/lyz/AppData/Roaming/npm/node_modules/npm/bin/npm-cli.js",
+      "i",
+      "--ignore-scripts",
+      "F:\\Github-PR\\ci-evidence\\discovery-20261027-js\\pino-pretty-13.2.0.tgz",
+      "pino@^10.0.0"
+    ],
+    "cwd": "F:\\Github-PR\\inspection\\discovery-20261027-js-pino-consumer",
+    "code": 0,
+    "startedAt": "2026-10-27T10:11:31.535342+00:00",
+    "finishedAt": "2026-10-27T10:11:36.574817+00:00"
+  },
+  {
+    "name": "windows-packed-runtime",
+    "command": [
+      "E:/Nodejs/node.EXE",
+      "F:\\Github-PR\\ci-evidence\\discovery-20261027-js\\packed-probe.cjs",
+      "F:\\Github-PR\\inspection\\discovery-20261027-js-pino-consumer",
+      "F:\\Github-PR\\ci-evidence\\discovery-20261027-js\\windows-packed-runtime"
+    ],
+    "cwd": "F:\\Github-PR\\inspection\\discovery-20261027-js-pino-consumer",
+    "code": 0,
+    "startedAt": "2026-10-27T10:11:36.575896+00:00",
+    "finishedAt": "2026-10-27T10:11:37.008358+00:00"
+  },
+  {
+    "name": "windows-types",
+    "command": [
+      "E:/Nodejs/node.EXE",
+      "C:/Users/lyz/AppData/Roaming/npm/node_modules/npm/bin/npm-cli.js",
+      "run",
+      "test:types"
+    ],
+    "cwd": "F:\\Github-PR\\inspection\\discovery-20261027-js-pino-pretty",
+    "code": 0,
+    "startedAt": "2026-10-27T10:11:37.009058+00:00",
+    "finishedAt": "2026-10-27T10:11:40.801561+00:00"
+  }
+]

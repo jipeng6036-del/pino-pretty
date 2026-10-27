@@ -1,0 +1,26 @@
+[
+  {
+    "sha": "e76f1fd855a4e14c54fd5d950d28e69ebb8a7f60",
+    "filename": "lib/utils/split-property-key.js",
+    "status": "modified",
+    "additions": 7,
+    "deletions": 5,
+    "changes": 12,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/4f632e4b8049c2c46da733fa63009322b9cbc619/lib%2Futils%2Fsplit-property-key.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/4f632e4b8049c2c46da733fa63009322b9cbc619/lib%2Futils%2Fsplit-property-key.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fsplit-property-key.js?ref=4f632e4b8049c2c46da733fa63009322b9cbc619",
+    "patch": "@@ -19,14 +19,14 @@ function splitPropertyKey (key) {\n   for (let i = 0; i < key.length; i++) {\n     const c = key.charAt(i)\n \n-    if (c === '\\\\') {\n-      backslash = true\n+    if (backslash) {\n+      segment += c === '.' || c === '\\\\' ? c : '\\\\' + c\n+      backslash = false\n       continue\n     }\n \n-    if (backslash) {\n-      backslash = false\n-      segment += c\n+    if (c === '\\\\') {\n+      backslash = true\n       continue\n     }\n \n@@ -40,6 +40,8 @@ function splitPropertyKey (key) {\n     segment += c\n   }\n \n+  if (backslash) segment += '\\\\'\n+\n   /* Push last entry to result */\n   if (segment.length) {\n     result.push(segment)"
+  },
+  {
+    "sha": "a81500e483b7ec4bfdc72fedff3968d2b7ff81a3",
+    "filename": "lib/utils/split-property-key.test.js",
+    "status": "modified",
+    "additions": 15,
+    "deletions": 0,
+    "changes": 15,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/4f632e4b8049c2c46da733fa63009322b9cbc619/lib%2Futils%2Fsplit-property-key.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/4f632e4b8049c2c46da733fa63009322b9cbc619/lib%2Futils%2Fsplit-property-key.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fsplit-property-key.test.js?ref=4f632e4b8049c2c46da733fa63009322b9cbc619",
+    "patch": "@@ -27,3 +27,18 @@ test('splitPropertyKey splits nested escaped key with special characters', t =>\n   const result = splitPropertyKey('logging\\\\.domain\\\\.corp/operation.!\\t@#$%^&*()_+=-<>.bar\\\\.2')\n   t.assert.deepStrictEqual(result, ['logging.domain.corp/operation', '!\\t@#$%^&*()_+=-<>', 'bar.2'])\n })\n+\n+test('splitPropertyKey preserves literal backslashes', t => {\n+  const result = splitPropertyKey(String.raw`file\\path.name`)\n+  t.assert.deepStrictEqual(result, [String.raw`file\\path`, 'name'])\n+})\n+\n+test('splitPropertyKey supports escaped backslashes', t => {\n+  const result = splitPropertyKey(String.raw`file\\\\path.name`)\n+  t.assert.deepStrictEqual(result, [String.raw`file\\path`, 'name'])\n+})\n+\n+test('splitPropertyKey preserves a trailing backslash', t => {\n+  const result = splitPropertyKey('file\\\\')\n+  t.assert.deepStrictEqual(result, ['file\\\\'])\n+})"
+  }
+]

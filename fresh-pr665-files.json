@@ -1,0 +1,38 @@
+[
+  {
+    "sha": "1dc3ecfb432196890cf7a33eef4d3836cf6c55d0",
+    "filename": "bin.js",
+    "status": "modified",
+    "additions": 6,
+    "deletions": 1,
+    "changes": 7,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/2b74ee8f32d51807a774aca055259e6b2582cdf6/bin.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/2b74ee8f32d51807a774aca055259e6b2582cdf6/bin.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/bin.js?ref=2b74ee8f32d51807a774aca055259e6b2582cdf6",
+    "patch": "@@ -42,8 +42,11 @@ if (cmd.h || cmd.help) {\n \n   let opts = minimist(process.argv, {\n     alias: {\n+      // defaults to true (sonic-boom options default)\n+      append: 'append',\n       colorize: 'c',\n       crlf: 'f',\n+      destination: 'd',\n       errorProps: 'e',\n       levelFirst: 'l',\n       minimumLevel: 'L',\n@@ -52,6 +55,7 @@ if (cmd.h || cmd.help) {\n       useOnlyCustomProps: 'U',\n       errorLikeObjectKeys: 'k',\n       messageKey: 'm',\n+      mkdir: 'r',\n       levelKey: CONSTANTS.LEVEL_KEY,\n       levelLabel: 'b',\n       messageFormat: 'o',\n@@ -60,7 +64,8 @@ if (cmd.h || cmd.help) {\n       ignore: 'i',\n       include: 'I',\n       hideObject: 'H',\n-      singleLine: 'S'\n+      singleLine: 'S',\n+      sync: 'sync'\n     },\n     default: {\n       messageKey: DEFAULT_VALUE,"
+  },
+  {
+    "sha": "437cf22623cf53afcfc37a077cc74c9d3acb08e9",
+    "filename": "help/help.txt",
+    "status": "modified",
+    "additions": 11,
+    "deletions": 1,
+    "changes": 12,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/2b74ee8f32d51807a774aca055259e6b2582cdf6/help%2Fhelp.txt",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/2b74ee8f32d51807a774aca055259e6b2582cdf6/help%2Fhelp.txt",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/help%2Fhelp.txt?ref=2b74ee8f32d51807a774aca055259e6b2582cdf6",
+    "patch": "@@ -5,11 +5,13 @@\n     version  Display version\n   \n   Options:\n+        --append                For file destination, append instead of overwrite (defaults to append; use `--no-append` to overwrite instead)\n     -c, --colorize              Force adding color sequences to the output\n-    -C, --config                specify a path to a json file containing the pino-pretty options\n+    -C, --config                Specify a path to a json file containing the pino-pretty options\n     -f, --crlf                  Append CRLF instead of LF to formatted lines\n     -X, --customColors          Override default colors using names from https://www.npmjs.com/package/colorette (`-X err:red,info:blue`)\n     -x, --customLevels          Override default levels (`-x err:99,info:1`)\n+    -d, --destination [path]    Write to a file instead of stdout\n     -k, --errorLikeObjectKeys   Define which keys contain error objects (`-k err,error`) (defaults to `err,error`)\n     -e, --errorProps            Comma separated list of properties on error objects to show (`*` for all properties) (defaults to ``)\n     -h, --help                  Output usage information\n@@ -22,7 +24,9 @@\n     -o, --messageFormat         Format output of message\n     -m, --messageKey [value]    Highlight the message under the specified key (defaults to \"msg\")\n     -L, --minimumLevel          Hide messages below the specified log level\n+    -r, --mkdir                 For file destination, create file directory (recursively) if it does not exist\n     -S, --singleLine            Print all non-error objects on a single line\n+        --sync                  Write messages synchronously\n     -a, --timestampKey [value]  Display the timestamp from the specified key (defaults to \"time\")\n     -t, --translateTime         Display epoch timestamps as UTC ISO format or according to an optional format string (default ISO 8601)\n     -U, --useOnlyCustomProps    Only use custom levels and colors (if provided); don't fallback to default levels and colors (-U false)\n@@ -32,6 +36,12 @@\n     - To prettify logs, simply pipe a log file through\n     $ cat log | pino-pretty\n \n+    - To ensure correct line order for mixed logs of pino objects and arbitrary log lines\n+    $ cat log | pino-pretty --sync\n+\n+    - To write to a file\n+    $ cat log | pino-pretty -d some/file/path/my.log --mkdir --no-append\n+\n     - To highlight a string at a key other than 'msg'\n     $ cat log | pino-pretty -m fooMessage\n "
+  },
+  {
+    "sha": "a5c6e215d1ff98cd356d09ac437fa7b74898d1ae",
+    "filename": "index.js",
+    "status": "modified",
+    "additions": 14,
+    "deletions": 10,
+    "changes": 24,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/2b74ee8f32d51807a774aca055259e6b2582cdf6/index.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/2b74ee8f32d51807a774aca055259e6b2582cdf6/index.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/index.js?ref=2b74ee8f32d51807a774aca055259e6b2582cdf6",
+    "patch": "@@ -70,6 +70,19 @@ const pretty = require('./lib/pretty')\n  * and colors will be used if they have been provided.\n  */\n \n+/**\n+ * @typedef {object} BuildStreamOpts\n+ * @property {object|number|string} [destination] A destination stream, file\n+ * descriptor, or target path to a file.\n+ * @property {boolean} [append]\n+ * @property {boolean} [mkdir]\n+ * @property {boolean} [sync=false]\n+ */\n+\n+/**\n+ * @typedef {PinoPrettyOptions & BuildStreamOpts} CombinedOptions\n+ */\n+\n /**\n  * The default options that will be used when prettifying log lines.\n  *\n@@ -159,20 +172,11 @@ function prettyFactory (options) {\n   return pretty.bind({ ...context, context })\n }\n \n-/**\n- * @typedef {PinoPrettyOptions} BuildStreamOpts\n- * @property {object|number|string} [destination] A destination stream, file\n- * descriptor, or target path to a file.\n- * @property {boolean} [append]\n- * @property {boolean} [mkdir]\n- * @property {boolean} [sync=false]\n- */\n-\n /**\n  * Constructs a {@link LogPrettifierFunc} and a stream to which the produced\n  * prettified log data will be written.\n  *\n- * @param {BuildStreamOpts} opts\n+ * @param {CombinedOptions} opts\n  * @returns {Transform | (Transform & OnUnknown)}\n  */\n function build (opts = {}) {"
+  }
+]

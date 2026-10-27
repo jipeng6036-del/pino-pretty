@@ -1,0 +1,702 @@
+{
+  "sha": "10aba398031e27455ece28398b13e92678f6c249",
+  "url": "https://api.github.com/repos/pinojs/pino-pretty/git/trees/10aba398031e27455ece28398b13e92678f6c249",
+  "tree": [
+    {
+      "path": ".borp.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51d63e01a555cb197eb2ac5b3970aa2f13b2c920",
+      "size": 95,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/51d63e01a555cb197eb2ac5b3970aa2f13b2c920"
+    },
+    {
+      "path": ".editorconfig",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3fec5c5be7c3f95a33d064191b8ee455c5e1e6a3",
+      "size": 193,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/3fec5c5be7c3f95a33d064191b8ee455c5e1e6a3"
+    },
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fa625387605762f0dc13f7d36a5f744997843be6",
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/trees/fa625387605762f0dc13f7d36a5f744997843be6"
+    },
+    {
+      "path": ".github/workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fb6d32976db7404753f5d3c57bba8ce3d857a335",
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/trees/fb6d32976db7404753f5d3c57bba8ce3d857a335"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3152c555378a88dd536f4a38fdd5f5a007427595",
+      "size": 2074,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/3152c555378a88dd536f4a38fdd5f5a007427595"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca8c8e0e6f549e0017a4ead3f508da27ce5c63af",
+      "size": 2311,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/ca8c8e0e6f549e0017a4ead3f508da27ce5c63af"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54fd861dfee638922d73eb87a6e19386e1c051f2",
+      "size": 1130,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/54fd861dfee638922d73eb87a6e19386e1c051f2"
+    },
+    {
+      "path": "Readme.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99d98bcac45c0882d18f9e4c3af877c0cb1794cb",
+      "size": 14826,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/99d98bcac45c0882d18f9e4c3af877c0cb1794cb"
+    },
+    {
+      "path": "SECURITY.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d081c31aa60570c79fd1b49d1aba50879f47c6d",
+      "size": 5101,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/6d081c31aa60570c79fd1b49d1aba50879f47c6d"
+    },
+    {
+      "path": "benchmark.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aaf7412eef43752accfeff7633f4363c50250b1a",
+      "size": 2984,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/aaf7412eef43752accfeff7633f4363c50250b1a"
+    },
+    {
+      "path": "bin.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a7a5f73c1bfb74a245b689c134acd7ba9bc7755",
+      "size": 2931,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/4a7a5f73c1bfb74a245b689c134acd7ba9bc7755"
+    },
+    {
+      "path": "demo.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2575c91ed45f11f0c1d4e7bdae16712a76e8609d",
+      "size": 14524,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/2575c91ed45f11f0c1d4e7bdae16712a76e8609d"
+    },
+    {
+      "path": "docs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fe5047692ca2145e2d8fe724252128284f10d7bb",
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/trees/fe5047692ca2145e2d8fe724252128284f10d7bb"
+    },
+    {
+      "path": "docs/help.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad7231f9b03e02ba31e26d4513d5c9fc96a1c0b3",
+      "size": 1240,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/ad7231f9b03e02ba31e26d4513d5c9fc96a1c0b3"
+    },
+    {
+      "path": "eslint.config.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e66d9015ae354092315b392ced5d27abf8655cdd",
+      "size": 70,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/e66d9015ae354092315b392ced5d27abf8655cdd"
+    },
+    {
+      "path": "help",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bc6f6a91b9320aee6388f9edecbb2b885087f3aa",
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/trees/bc6f6a91b9320aee6388f9edecbb2b885087f3aa"
+    },
+    {
+      "path": "help/help.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54d6ebb97b2933182d24a457cf7386fc67df2e1f",
+      "size": 3490,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/54d6ebb97b2933182d24a457cf7386fc67df2e1f"
+    },
+    {
+      "path": "index.d.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dde8cb2490f1a5871a4f8694c3102a81d28b6667",
+      "size": 7365,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/dde8cb2490f1a5871a4f8694c3102a81d28b6667"
+    },
+    {
+      "path": "index.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad01596c56c2de1fca58c4a82c81fb05ee6442bf",
+      "size": 8121,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/ad01596c56c2de1fca58c4a82c81fb05ee6442bf"
+    },
+    {
+      "path": "lib",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "70783a9568b6e00192bd1919735965c2b2b6fa2b",
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/trees/70783a9568b6e00192bd1919735965c2b2b6fa2b"
+    },
+    {
+      "path": "lib/colors.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "194a3dceb4964b323f31d053f6471c35ce089685",
+      "size": 5085,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/194a3dceb4964b323f31d053f6471c35ce089685"
+    },
+    {
+      "path": "lib/colors.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff41690fdb1592b21ac99a2d2f3143c4febd0111",
+      "size": 3924,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/ff41690fdb1592b21ac99a2d2f3143c4febd0111"
+    },
+    {
+      "path": "lib/constants.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4322166599a67c3658afa7abd5f3b58af29a7f5d",
+      "size": 866,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/4322166599a67c3658afa7abd5f3b58af29a7f5d"
+    },
+    {
+      "path": "lib/pretty.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2b6813e1b3d7596388f1ae5ad7eb914fcaea8a5",
+      "size": 4730,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/a2b6813e1b3d7596388f1ae5ad7eb914fcaea8a5"
+    },
+    {
+      "path": "lib/utils",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8a480e94a68d7608b7d3a5373990136ca3aeb14b",
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/trees/8a480e94a68d7608b7d3a5373990136ca3aeb14b"
+    },
+    {
+      "path": "lib/utils/build-safe-sonic-boom.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c3b6260fd1c7539e470c21c2b3e8de471f4323c",
+      "size": 1607,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/3c3b6260fd1c7539e470c21c2b3e8de471f4323c"
+    },
+    {
+      "path": "lib/utils/build-safe-sonic-boom.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4aeb0675f1ca5e9d1939a775e2ad23d30cfd7986",
+      "size": 2303,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/4aeb0675f1ca5e9d1939a775e2ad23d30cfd7986"
+    },
+    {
+      "path": "lib/utils/create-date.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc849916e5d9779a2c388f3a06f5e961c82aea2a",
+      "size": 651,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/dc849916e5d9779a2c388f3a06f5e961c82aea2a"
+    },
+    {
+      "path": "lib/utils/create-date.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d9df2b11c544ae67080a2067efeaf7ca160fd72",
+      "size": 664,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/2d9df2b11c544ae67080a2067efeaf7ca160fd72"
+    },
+    {
+      "path": "lib/utils/delete-log-property.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "502fcee40210aab2674d65765d383a49d21d1bbe",
+      "size": 966,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/502fcee40210aab2674d65765d383a49d21d1bbe"
+    },
+    {
+      "path": "lib/utils/delete-log-property.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8a4e3a7ab1e3a42bff841aa57bcfd4f1abf8449",
+      "size": 859,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/d8a4e3a7ab1e3a42bff841aa57bcfd4f1abf8449"
+    },
+    {
+      "path": "lib/utils/filter-log.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ca59dc70581e0365a9f9091f38af0ee204f79eb",
+      "size": 2558,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/4ca59dc70581e0365a9f9091f38af0ee204f79eb"
+    },
+    {
+      "path": "lib/utils/filter-log.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d79687cf51a74219552829ca68f304bb28b7d69c",
+      "size": 6460,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/d79687cf51a74219552829ca68f304bb28b7d69c"
+    },
+    {
+      "path": "lib/utils/format-time.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96d7e4d05796d27e364d6596c80e1b69c51b500a",
+      "size": 2057,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/96d7e4d05796d27e364d6596c80e1b69c51b500a"
+    },
+    {
+      "path": "lib/utils/format-time.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61ccc86a200630bdf9642e174a38cb793e500db2",
+      "size": 2489,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/61ccc86a200630bdf9642e174a38cb793e500db2"
+    },
+    {
+      "path": "lib/utils/get-level-label-data.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b27cabb6724bed9d3d8cf8992ef8cd0d832c42f",
+      "size": 1158,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/5b27cabb6724bed9d3d8cf8992ef8cd0d832c42f"
+    },
+    {
+      "path": "lib/utils/get-property-value.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8305a9f9b870c433f3719d779d82e6206b198c69",
+      "size": 841,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/8305a9f9b870c433f3719d779d82e6206b198c69"
+    },
+    {
+      "path": "lib/utils/get-property-value.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fcce7be0b3a053c653d325731c8a7719b6ebcf64",
+      "size": 1222,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/fcce7be0b3a053c653d325731c8a7719b6ebcf64"
+    },
+    {
+      "path": "lib/utils/handle-custom-levels-names-opts.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c0257e29f7cf2a769b3e756b6190aa96b50b701",
+      "size": 1065,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/0c0257e29f7cf2a769b3e756b6190aa96b50b701"
+    },
+    {
+      "path": "lib/utils/handle-custom-levels-names-opts.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ffbe4ba26de5102f8153d1550b77762bb177d6d",
+      "size": 1225,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/6ffbe4ba26de5102f8153d1550b77762bb177d6d"
+    },
+    {
+      "path": "lib/utils/handle-custom-levels-opts.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33931da1280d085fe5ef1d73f8747d87745163a2",
+      "size": 1120,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/33931da1280d085fe5ef1d73f8747d87745163a2"
+    },
+    {
+      "path": "lib/utils/handle-custom-levels-opts.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf0066f99ce8bf5d6cd2ffcaf4e8f7406d33e54c",
+      "size": 1237,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/cf0066f99ce8bf5d6cd2ffcaf4e8f7406d33e54c"
+    },
+    {
+      "path": "lib/utils/index.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c4799c55ef0b04dc031f02958b410017d5315c3",
+      "size": 4322,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/9c4799c55ef0b04dc031f02958b410017d5315c3"
+    },
+    {
+      "path": "lib/utils/index.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8db5d2ae96258e0b11cf68ff1d63097fde3cd09c",
+      "size": 1226,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/8db5d2ae96258e0b11cf68ff1d63097fde3cd09c"
+    },
+    {
+      "path": "lib/utils/interpret-conditionals.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6742a790bf326032945427c7b3ee931c453a719e",
+      "size": 1488,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/6742a790bf326032945427c7b3ee931c453a719e"
+    },
+    {
+      "path": "lib/utils/interpret-conditionals.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "965b76a28a69cb5a6a2827e650becf93b60d7f2f",
+      "size": 3688,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/965b76a28a69cb5a6a2827e650becf93b60d7f2f"
+    },
+    {
+      "path": "lib/utils/is-object.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8dd822ba7679d45a4f23759611c1d1b5e5fd0dca",
+      "size": 141,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/8dd822ba7679d45a4f23759611c1d1b5e5fd0dca"
+    },
+    {
+      "path": "lib/utils/is-object.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86ffb42f4e5789bd9adff611e3747e7db0ce289a",
+      "size": 265,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/86ffb42f4e5789bd9adff611e3747e7db0ce289a"
+    },
+    {
+      "path": "lib/utils/is-valid-date.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1fc821b82b607b7aa4b7ef48494ea4cc1f1bfd62",
+      "size": 337,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/1fc821b82b607b7aa4b7ef48494ea4cc1f1bfd62"
+    },
+    {
+      "path": "lib/utils/is-valid-date.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ed1a6f8a345f03a4e71f61410da03738499b216",
+      "size": 424,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/1ed1a6f8a345f03a4e71f61410da03738499b216"
+    },
+    {
+      "path": "lib/utils/join-lines-with-indentation.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7761ae61f40504e9aa8a9be721bb8ebfbfcef59b",
+      "size": 946,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/7761ae61f40504e9aa8a9be721bb8ebfbfcef59b"
+    },
+    {
+      "path": "lib/utils/join-lines-with-indentation.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dbfc02b36a2eb7addc0ca808004a19ef777c2cc5",
+      "size": 614,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/dbfc02b36a2eb7addc0ca808004a19ef777c2cc5"
+    },
+    {
+      "path": "lib/utils/noop.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a77986c332ad4ab6e0658900f2edd87e1b9b1059",
+      "size": 51,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/a77986c332ad4ab6e0658900f2edd87e1b9b1059"
+    },
+    {
+      "path": "lib/utils/noop.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbc1f88b105e0003a2d7f101206c60178f3ed15b",
+      "size": 245,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/bbc1f88b105e0003a2d7f101206c60178f3ed15b"
+    },
+    {
+      "path": "lib/utils/parse-factory-options.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e849ac06174803d2dbdcdf0ff5805d2c2795a48c",
+      "size": 6074,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/e849ac06174803d2dbdcdf0ff5805d2c2795a48c"
+    },
+    {
+      "path": "lib/utils/prettify-error-log.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc8683df14a2828cdce516693fc0e5d458c23f32",
+      "size": 2564,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/cc8683df14a2828cdce516693fc0e5d458c23f32"
+    },
+    {
+      "path": "lib/utils/prettify-error-log.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "380d1ee80c53354fa1ba9c0c9e16d4d5e8974c00",
+      "size": 3840,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/380d1ee80c53354fa1ba9c0c9e16d4d5e8974c00"
+    },
+    {
+      "path": "lib/utils/prettify-error.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dcddccb81134c8f0b144bdb40639fc2388e3bde1",
+      "size": 1874,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/dcddccb81134c8f0b144bdb40639fc2388e3bde1"
+    },
+    {
+      "path": "lib/utils/prettify-error.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2307de3b0571855a83576936b64fa95759fc668f",
+      "size": 972,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/2307de3b0571855a83576936b64fa95759fc668f"
+    },
+    {
+      "path": "lib/utils/prettify-level.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e4dce84b2d6857c374c5d81c0f75843a1863fd7",
+      "size": 1205,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/2e4dce84b2d6857c374c5d81c0f75843a1863fd7"
+    },
+    {
+      "path": "lib/utils/prettify-level.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02e1e263f1edd4fd058da0276a95eb948eb75fff",
+      "size": 1489,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/02e1e263f1edd4fd058da0276a95eb948eb75fff"
+    },
+    {
+      "path": "lib/utils/prettify-message.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a096218eace7f3516af3036a5c9b00636b473dd7",
+      "size": 2291,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/a096218eace7f3516af3036a5c9b00636b473dd7"
+    },
+    {
+      "path": "lib/utils/prettify-message.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dcb168bfe703f95892df9caa9c347575f5c61e74",
+      "size": 9168,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/dcb168bfe703f95892df9caa9c347575f5c61e74"
+    },
+    {
+      "path": "lib/utils/prettify-metadata.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65ebfe27afd93f37fc84a6bb447841f67f3482e2",
+      "size": 2163,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/65ebfe27afd93f37fc84a6bb447841f67f3482e2"
+    },
+    {
+      "path": "lib/utils/prettify-metadata.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73b5b8aac95d1c02f539fa317c303237c8f46901",
+      "size": 5385,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/73b5b8aac95d1c02f539fa317c303237c8f46901"
+    },
+    {
+      "path": "lib/utils/prettify-object.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3cf316292e43fd0b422a501d5910f5baacea66e",
+      "size": 3778,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/a3cf316292e43fd0b422a501d5910f5baacea66e"
+    },
+    {
+      "path": "lib/utils/prettify-object.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c77bac3bb010cab76524ae2567e7b9253e1baa33",
+      "size": 5611,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/c77bac3bb010cab76524ae2567e7b9253e1baa33"
+    },
+    {
+      "path": "lib/utils/prettify-time.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0091f3dc8953c7dad7feb27b63b69c4dcf756073",
+      "size": 1227,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/0091f3dc8953c7dad7feb27b63b69c4dcf756073"
+    },
+    {
+      "path": "lib/utils/prettify-time.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be1c9cd1038f9a7896af253046a2c4d78a676bd5",
+      "size": 5540,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/be1c9cd1038f9a7896af253046a2c4d78a676bd5"
+    },
+    {
+      "path": "lib/utils/split-property-key.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2cba034580e8c5934f5ad9d7bc99186e4615f3e1",
+      "size": 972,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/2cba034580e8c5934f5ad9d7bc99186e4615f3e1"
+    },
+    {
+      "path": "lib/utils/split-property-key.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4def1ef916be1da02fc17fab24c38028047fb5e5",
+      "size": 1138,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/4def1ef916be1da02fc17fab24c38028047fb5e5"
+    },
+    {
+      "path": "lib/utils/strip-unsafe-control-chars.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "745d67db5c811d7bc60504a33f81ce8085156986",
+      "size": 575,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/745d67db5c811d7bc60504a33f81ce8085156986"
+    },
+    {
+      "path": "lib/utils/strip-unsafe-control-chars.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e3ad4d87a39d69529e58d9970386dd85469d893",
+      "size": 335,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/3e3ad4d87a39d69529e58d9970386dd85469d893"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "626d865199086b3f603a348fb5d26c626d67874c",
+      "size": 1714,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/626d865199086b3f603a348fb5d26c626d67874c"
+    },
+    {
+      "path": "test",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1486300228436273937584e668aa0127376a9d04",
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/trees/1486300228436273937584e668aa0127376a9d04"
+    },
+    {
+      "path": "test/basic.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "513aea39c93ebeeb7f56ac0f9cc8ccac002ecbc4",
+      "size": 37877,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/513aea39c93ebeeb7f56ac0f9cc8ccac002ecbc4"
+    },
+    {
+      "path": "test/boolean-options.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b29c6d8c928b385e4282699dc5537a41717082b",
+      "size": 7621,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/1b29c6d8c928b385e4282699dc5537a41717082b"
+    },
+    {
+      "path": "test/cli-rc.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "481e4c906bba9ab269d215fa7ec61887a454dd2e",
+      "size": 11119,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/481e4c906bba9ab269d215fa7ec61887a454dd2e"
+    },
+    {
+      "path": "test/cli.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7055a9278d9996dc89d2e99ae13cb2e0f8e076ed",
+      "size": 14252,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/7055a9278d9996dc89d2e99ae13cb2e0f8e076ed"
+    },
+    {
+      "path": "test/crlf.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de00a35bfc6ce6090010fd25d1b2634d18f6cd42",
+      "size": 860,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/de00a35bfc6ce6090010fd25d1b2634d18f6cd42"
+    },
+    {
+      "path": "test/error-objects.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "060551bd427f447d01e14333a7248c3ab568596f",
+      "size": 15949,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/060551bd427f447d01e14333a7248c3ab568596f"
+    },
+    {
+      "path": "test/example",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d2979bc3f806af036a411a0243de3ac501cb9d52",
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/trees/d2979bc3f806af036a411a0243de3ac501cb9d52"
+    },
+    {
+      "path": "test/example/example.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6eed85d29993fd7a3680e904ac39c9e1d167b730",
+      "size": 634,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/6eed85d29993fd7a3680e904ac39c9e1d167b730"
+    },
+    {
+      "path": "test/helper.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd53a35e52b60b9b5d769506a5bed8b702d32d77",
+      "size": 557,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/bd53a35e52b60b9b5d769506a5bed8b702d32d77"
+    },
+    {
+      "path": "test/types",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c519dbcea0252b3f2adf415cc44b1dbeb0825aa1",
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/trees/c519dbcea0252b3f2adf415cc44b1dbeb0825aa1"
+    },
+    {
+      "path": "test/types/exports.tst.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "140735011a98da5737a64d9ea5c64ba9fdf20375",
+      "size": 663,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/140735011a98da5737a64d9ea5c64ba9fdf20375"
+    },
+    {
+      "path": "test/types/pino-pretty.tst.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f1e591f9f291a2fd9980fed838021c6bb2db290",
+      "size": 5722,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/8f1e591f9f291a2fd9980fed838021c6bb2db290"
+    },
+    {
+      "path": "test/types/tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1f0192b5fddbe93e2be055cb2b1dad14bc8c531",
+      "size": 162,
+      "url": "https://api.github.com/repos/pinojs/pino-pretty/git/blobs/f1f0192b5fddbe93e2be055cb2b1dad14bc8c531"
+    }
+  ],
+  "truncated": false
+}

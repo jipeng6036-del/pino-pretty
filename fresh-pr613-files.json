@@ -1,0 +1,38 @@
+[
+  {
+    "sha": "ef87bd93dafb548e58e2cddc2c90cd117d37be38",
+    "filename": "lib/utils/format-time.js",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 1,
+    "changes": 2,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/c95d230199f0b5ed1945701487d9d69a1a50f22d/lib%2Futils%2Fformat-time.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/c95d230199f0b5ed1945701487d9d69a1a50f22d/lib%2Futils%2Fformat-time.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fformat-time.js?ref=c95d230199f0b5ed1945701487d9d69a1a50f22d",
+    "patch": "@@ -7,7 +7,7 @@ const {\n   DATE_FORMAT_SIMPLE\n } = require('../constants')\n \n-const dateformat = require('dateformat')\n+const dateformat = require('@pinojs/dateformat')\n const createDate = require('./create-date')\n const isValidDate = require('./is-valid-date')\n "
+  },
+  {
+    "sha": "561dc62338585d31f49b557e6dbf4ad5a7e1b311",
+    "filename": "package.json",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 1,
+    "changes": 2,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/c95d230199f0b5ed1945701487d9d69a1a50f22d/package.json",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/c95d230199f0b5ed1945701487d9d69a1a50f22d/package.json",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/package.json?ref=c95d230199f0b5ed1945701487d9d69a1a50f22d",
+    "patch": "@@ -34,8 +34,8 @@\n     \"test\"\n   ],\n   \"dependencies\": {\n+    \"@pinojs/dateformat\": \"^1.0.0-rc.2\",\n     \"colorette\": \"^2.0.7\",\n-    \"dateformat\": \"^4.6.3\",\n     \"fast-copy\": \"^3.0.2\",\n     \"fast-safe-stringify\": \"^2.1.1\",\n     \"help-me\": \"^5.0.0\","
+  },
+  {
+    "sha": "06a74b6461afce785e62ebc35003f395fb8c5235",
+    "filename": "test/basic.test.js",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 1,
+    "changes": 2,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/c95d230199f0b5ed1945701487d9d69a1a50f22d/test%2Fbasic.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/c95d230199f0b5ed1945701487d9d69a1a50f22d/test%2Fbasic.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/test%2Fbasic.test.js?ref=c95d230199f0b5ed1945701487d9d69a1a50f22d",
+    "patch": "@@ -7,7 +7,7 @@ const os = require('node:os')\n const { describe, test, beforeEach, afterEach } = require('node:test')\n const match = require('@jsumners/assert-match')\n const pino = require('pino')\n-const dateformat = require('dateformat')\n+const dateformat = require('@pinojs/dateformat')\n const rimraf = require('rimraf')\n const { join } = require('node:path')\n const fs = require('node:fs')"
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "node": "v24.14.0",
+  "pino": "10.4.0",
+  "sourceSha256": "a91c41d47be5edfc3da04eb5a9a387387164c58b63140fa24c1f8e62cb450e79",
+  "cases": [
+    {
+      "name": "installed-factory",
+      "pass": true
+    },
+    {
+      "name": "installed-cli",
+      "code": 0,
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "name": "installed-worker-transport-configured-custom-error-key",
+      "pass": true
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "windows-packed-runtime-input.ndjson",
+      "bytes": 829,
+      "sha256": "618f1c3d884e18fd53afd828c8117c4f72a071861ba2a90a07f20b4873482b5f"
+    },
+    {
+      "file": "windows-packed-runtime-factory.log",
+      "bytes": 886,
+      "sha256": "50c556cacd90630f8b2501572139e6102003a9c5763e249d1fa57630e4fe9aff"
+    },
+    {
+      "file": "windows-packed-runtime-cli.log",
+      "bytes": 886,
+      "sha256": "50c556cacd90630f8b2501572139e6102003a9c5763e249d1fa57630e4fe9aff"
+    },
+    {
+      "file": "windows-packed-runtime-transport.log",
+      "bytes": 888,
+      "sha256": "f44f8e89f336063b445e16e7366dad9554f4e81dc36698f6d1fbe037c0594e6c"
+    }
+  ],
+  "passed": 3
+}

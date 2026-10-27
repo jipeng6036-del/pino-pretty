@@ -1,0 +1,395 @@
+{
+  "tree": "721f5bc8450ad1a7dd8a6f61ae67b1217bb3b5b1",
+  "files": [
+    {
+      "path": ".borp.yaml",
+      "bytes": 95,
+      "sha256": "15b8e4f5abf1126607356971075b4fe7c62a305aefdd22df7caf6a67c04f77a8"
+    },
+    {
+      "path": ".editorconfig",
+      "bytes": 193,
+      "sha256": "6273dc8406a1a8e0e3555e49f7a8f66cb82f5c279ae4c2d1fb3f121ebaf09498"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 2074,
+      "sha256": "2c9ef53905db3248870796f2c1c934dd498bed1f5734fcbe271ae5d40afa3ec7"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1130,
+      "sha256": "4a979e76cd5e6515e37baa8f71cb703cdfc92f13b83e84285cbe8ff87b277232"
+    },
+    {
+      "path": "Readme.md",
+      "bytes": 14826,
+      "sha256": "80168c5c5e1d3f02b2e9517b4bdeea22ebb8107935b6daee302380364f436b8b"
+    },
+    {
+      "path": "SECURITY.md",
+      "bytes": 5101,
+      "sha256": "9ffa8c843b6656fc57a6dc22f17d5dda458d049fb102138b6a11952bb8b97cb6"
+    },
+    {
+      "path": "benchmark.js",
+      "bytes": 2984,
+      "sha256": "757e410552ec403be91a039e182caf72bdd889b2883edec20d67cd87c2979f7b"
+    },
+    {
+      "path": "bin.js",
+      "bytes": 2931,
+      "sha256": "03e76c79d6d9274e11cba5e8551037e13a3b5d0543077b30da1d897f87f133d2"
+    },
+    {
+      "path": "demo.png",
+      "bytes": 14524,
+      "sha256": "3d650e40fc71d75e71e04e163f75cf7ceaf0a0eb38fe91f705fef35d4efbef68"
+    },
+    {
+      "path": "docs/help.md",
+      "bytes": 1240,
+      "sha256": "005311a2031887c59dd23b60fd2337aa857732c44af707d7c3157fe13ee570f3"
+    },
+    {
+      "path": "eslint.config.js",
+      "bytes": 70,
+      "sha256": "0302caf688c0312e7ef2ad7b55a20e7da2360684bb46ee3159215bbfb9884059"
+    },
+    {
+      "path": "help/help.txt",
+      "bytes": 3490,
+      "sha256": "95d0fc69581734684261a098048562ed33a52e420ab0efab0c54dec230a2c30e"
+    },
+    {
+      "path": "index.d.ts",
+      "bytes": 7365,
+      "sha256": "8db37658498d4d28a0c4be0286e6c15cb3a9970c995c371bd2bc8f77e6272cc9"
+    },
+    {
+      "path": "index.js",
+      "bytes": 8121,
+      "sha256": "bdec3eb56c2e8e05ef1a20b82764520a054f93f2c51f5ee16b0c8b0ca8813ef0"
+    },
+    {
+      "path": "lib/colors.js",
+      "bytes": 5085,
+      "sha256": "43aaf38527d10aa401acbbff4fec7e3555d3da6b0cc6393ab8fbd2adc286396b"
+    },
+    {
+      "path": "lib/colors.test.js",
+      "bytes": 3924,
+      "sha256": "0b163e1f2e4cf7e4b055bdb35679e9fd60d7235d94ffbde9530e9f571546ad63"
+    },
+    {
+      "path": "lib/constants.js",
+      "bytes": 866,
+      "sha256": "332d20048598fdeba8ad9cf8c9288f92454f83937f9f76960d7585b0508b3c02"
+    },
+    {
+      "path": "lib/pretty.js",
+      "bytes": 5023,
+      "sha256": "a91c41d47be5edfc3da04eb5a9a387387164c58b63140fa24c1f8e62cb450e79"
+    },
+    {
+      "path": "lib/utils/build-safe-sonic-boom.js",
+      "bytes": 1607,
+      "sha256": "3aa73d064abceff9a5b31772cb327a48ff2abec83041f3e8b7a898f9eb2fab8a"
+    },
+    {
+      "path": "lib/utils/build-safe-sonic-boom.test.js",
+      "bytes": 2303,
+      "sha256": "3bec0f005849ac0e810e6c343378d74a50379a0f361c0b75e312c8017ca9da5e"
+    },
+    {
+      "path": "lib/utils/create-date.js",
+      "bytes": 651,
+      "sha256": "9419020478429e12e06ccd99e4b58f6b9b91713d4779d566fc5e397d26d35a1e"
+    },
+    {
+      "path": "lib/utils/create-date.test.js",
+      "bytes": 664,
+      "sha256": "495bc47032f7d9a83dc227d357c810b878bd88207e8252cd3601b4d3833db367"
+    },
+    {
+      "path": "lib/utils/delete-log-property.js",
+      "bytes": 966,
+      "sha256": "1e4ce7295f449e9bc609c02da9a836422742e21a90f39f693c399e057aae3db5"
+    },
+    {
+      "path": "lib/utils/delete-log-property.test.js",
+      "bytes": 859,
+      "sha256": "f2017966b2fc8bb09762c97daa73db3b81b65b0e570ebaea2aa5ecd5126cd448"
+    },
+    {
+      "path": "lib/utils/filter-log.js",
+      "bytes": 2558,
+      "sha256": "83adfa4bfd0a3a2b62f99b77a6a86be525d904b72a76ec89e62dd5cbbb6b46bd"
+    },
+    {
+      "path": "lib/utils/filter-log.test.js",
+      "bytes": 6460,
+      "sha256": "821cc21be51c1148429c80a7f71d952dac0f3cb02c119ea555bb3b7e29c490f5"
+    },
+    {
+      "path": "lib/utils/format-time.js",
+      "bytes": 2057,
+      "sha256": "bd9f13dc2e246b3a12bb4c563d79050988217cea4d981a23b1063f69883bc645"
+    },
+    {
+      "path": "lib/utils/format-time.test.js",
+      "bytes": 2489,
+      "sha256": "22c4391b9ad57c8886c528aeb6c4fe51217771f5387151b7b049af496e46f01a"
+    },
+    {
+      "path": "lib/utils/get-level-label-data.js",
+      "bytes": 1158,
+      "sha256": "164e90589f1bbbf9acff802d170ddd66467e18430315285eb36b210dc0ff690c"
+    },
+    {
+      "path": "lib/utils/get-property-value.js",
+      "bytes": 841,
+      "sha256": "7064092dbf2ffbadd3fcf78e76fcc68bc7761f40231c43fb9ef42bdb78916169"
+    },
+    {
+      "path": "lib/utils/get-property-value.test.js",
+      "bytes": 1222,
+      "sha256": "d12119a5e2d5745ea04ee302e3947b36284e222ccce931403878fdeb5dd41e06"
+    },
+    {
+      "path": "lib/utils/handle-custom-levels-names-opts.js",
+      "bytes": 1065,
+      "sha256": "e9e3cbf27aa09d9ce52874ed84a02fe946fe8936e5e0d62db173a0bb7031c0d9"
+    },
+    {
+      "path": "lib/utils/handle-custom-levels-names-opts.test.js",
+      "bytes": 1225,
+      "sha256": "eb190cdc1c61acb5d0903af03e03587b915beb7df63a7259d27e4eab73036a62"
+    },
+    {
+      "path": "lib/utils/handle-custom-levels-opts.js",
+      "bytes": 1120,
+      "sha256": "fd7f5b82ac61025c65846a5065bdb311905a224db368bfd9a2fb19b5851bd305"
+    },
+    {
+      "path": "lib/utils/handle-custom-levels-opts.test.js",
+      "bytes": 1237,
+      "sha256": "895c0e3f80aa3ed21508ad54b443f89155abf4eaebdd856c7f2b388d51505a55"
+    },
+    {
+      "path": "lib/utils/index.js",
+      "bytes": 4322,
+      "sha256": "24ecbaf57ae3d43fd034389c072a4c4bff822ee3228eb56faf8a3d5b6b5a6a34"
+    },
+    {
+      "path": "lib/utils/index.test.js",
+      "bytes": 1226,
+      "sha256": "dfde0cf09f86f44bfd2f56c59bdefd856c4e7a510e2089a40c445fde6175aa69"
+    },
+    {
+      "path": "lib/utils/interpret-conditionals.js",
+      "bytes": 1488,
+      "sha256": "d874604b1dd2dc8d28bc898e137395f8bde97bd7b2c6c1dec8c347636b389eec"
+    },
+    {
+      "path": "lib/utils/interpret-conditionals.test.js",
+      "bytes": 3688,
+      "sha256": "b29287261e3216790ba97d6f2a0c7434d1eb08b003b7611a3eff16615e02972d"
+    },
+    {
+      "path": "lib/utils/is-object.js",
+      "bytes": 141,
+      "sha256": "4894131add46cbcd5f0bc409b05b409812e31a96f8a05ae857fa39493acc69fb"
+    },
+    {
+      "path": "lib/utils/is-object.test.js",
+      "bytes": 265,
+      "sha256": "a07e7300361607d0a2140a51802a2afa4507224f481385010720ec3084ccfae0"
+    },
+    {
+      "path": "lib/utils/is-valid-date.js",
+      "bytes": 337,
+      "sha256": "aeb02d3d8300d8ddfdf4fba5031dd0e441c10ac838233b4d4555795f301d36e6"
+    },
+    {
+      "path": "lib/utils/is-valid-date.test.js",
+      "bytes": 424,
+      "sha256": "e9523eb4ed560b56cda4ab6da6642d2283b37f231b735ca4e13dd075a6b73e8c"
+    },
+    {
+      "path": "lib/utils/join-lines-with-indentation.js",
+      "bytes": 946,
+      "sha256": "a309117b2df05a53cfd43d0b0f3af18d6886e093ade3c93b555286aeb3df43a4"
+    },
+    {
+      "path": "lib/utils/join-lines-with-indentation.test.js",
+      "bytes": 614,
+      "sha256": "6c20d0cd1093989b8b7b81727d158136d9b36b32501ba6a2f3acdcce147a44ed"
+    },
+    {
+      "path": "lib/utils/noop.js",
+      "bytes": 51,
+      "sha256": "5115f5eeeb18f89c6cd07c7edb889aab7620fc4ec0026fb9968902f55c352649"
+    },
+    {
+      "path": "lib/utils/noop.test.js",
+      "bytes": 245,
+      "sha256": "c7b1e922d92b7ba5a8f535ff5e55c3ea25a5f0af72cc1e51bd732cf91996ad29"
+    },
+    {
+      "path": "lib/utils/parse-factory-options.js",
+      "bytes": 6074,
+      "sha256": "a41cc72f186ea7e49838d0c0897135ceba116c0245edc90eae1a3ceeae6d092b"
+    },
+    {
+      "path": "lib/utils/prettify-error-log.js",
+      "bytes": 2564,
+      "sha256": "c8b979d7f6a6ef074eabc0095865af28192a4c9cec5d0bbb1198e709dce29b5b"
+    },
+    {
+      "path": "lib/utils/prettify-error-log.test.js",
+      "bytes": 3840,
+      "sha256": "306858027e9f86542f5c37fdcc33f0cd7496f9276e2bc1eab4668687a5157e4d"
+    },
+    {
+      "path": "lib/utils/prettify-error.js",
+      "bytes": 1874,
+      "sha256": "42af219595c0cd472d96f32fdde7c8f7882d91682fe21a39d58706cc464c49be"
+    },
+    {
+      "path": "lib/utils/prettify-error.test.js",
+      "bytes": 972,
+      "sha256": "4344fa573a879fbc6f4c2535eda2c3bcfb99f8873e70a0c946365e276d34ef3d"
+    },
+    {
+      "path": "lib/utils/prettify-level.js",
+      "bytes": 1205,
+      "sha256": "e3c7384a5c3460cdff3363cca19a3ad8304fe7c3a8a481593630ac81a42fcc70"
+    },
+    {
+      "path": "lib/utils/prettify-level.test.js",
+      "bytes": 1489,
+      "sha256": "e20358978176cca41d9c15c3afce109754178b62f898eb6b6d8303a69642af0b"
+    },
+    {
+      "path": "lib/utils/prettify-message.js",
+      "bytes": 2291,
+      "sha256": "ff840f057bdc40b38a36557ba1300e66a9c9887870a8c9ea3fbec76e59cce921"
+    },
+    {
+      "path": "lib/utils/prettify-message.test.js",
+      "bytes": 9168,
+      "sha256": "20d36396b745fd326c2cf37bd9824ef63c018e9c190aacc2dfd7646e30d63fca"
+    },
+    {
+      "path": "lib/utils/prettify-metadata.js",
+      "bytes": 2163,
+      "sha256": "56760d1f73da204f20ab8ee114a8695cfcc9d473801900dfd352aade4ac08788"
+    },
+    {
+      "path": "lib/utils/prettify-metadata.test.js",
+      "bytes": 5385,
+      "sha256": "cf014469bfe3e8d3c5ecf31a37e2c329292d3660de8a1d6ef547557a685e7d17"
+    },
+    {
+      "path": "lib/utils/prettify-object.js",
+      "bytes": 3778,
+      "sha256": "f44090e09efff4d20603545d664ce32896ae8f9a788d57617df152ca5cd436fd"
+    },
+    {
+      "path": "lib/utils/prettify-object.test.js",
+      "bytes": 5611,
+      "sha256": "ec05e0a30498f369c0bd07bd3f31513995050caf1e690e518d3b0c395546c901"
+    },
+    {
+      "path": "lib/utils/prettify-time.js",
+      "bytes": 1227,
+      "sha256": "a4623f1105afa4481b959a285423aab08f9cd2f7d652a71b0c2b54426805bac1"
+    },
+    {
+      "path": "lib/utils/prettify-time.test.js",
+      "bytes": 5540,
+      "sha256": "f95f7fc054c15bf4b363fee5729f5bd05801cb8c38b6d6be2560c7173c702f77"
+    },
+    {
+      "path": "lib/utils/split-property-key.js",
+      "bytes": 972,
+      "sha256": "67f7c3114b7f3dce3806e7f1778544c76b3b51c37627cb11b43afd2eb57d3a81"
+    },
+    {
+      "path": "lib/utils/split-property-key.test.js",
+      "bytes": 1138,
+      "sha256": "e780425b8fe5f7632b252681a4488c7fbb2587e0cd1e2021e8bd4f82a2469f9b"
+    },
+    {
+      "path": "lib/utils/strip-unsafe-control-chars.js",
+      "bytes": 575,
+      "sha256": "6b1dde9f5af4bece00a523f66b361c9954913a7285cc8df4f0994edc90baa298"
+    },
+    {
+      "path": "lib/utils/strip-unsafe-control-chars.test.js",
+      "bytes": 335,
+      "sha256": "92ccd6141ac502edf074695bdea4173cc0847a7655d5a22fa0feeb81c06c97f0"
+    },
+    {
+      "path": "package.json",
+      "bytes": 1714,
+      "sha256": "3c2bd5de8de60a1f699a0331705806c567367a448564f6e7c5fef1fc933b7e5f"
+    },
+    {
+      "path": "test/basic.test.js",
+      "bytes": 37877,
+      "sha256": "02ae3e86bbad0d8437c21f057c315909893ce57b29c6adae5006c0563106e2c2"
+    },
+    {
+      "path": "test/boolean-options.test.js",
+      "bytes": 7621,
+      "sha256": "af5d64251e51ca9b78b6f56ded5d74a3e21410e5dd12c85370fbd184fb5959c9"
+    },
+    {
+      "path": "test/cli-rc.test.js",
+      "bytes": 11119,
+      "sha256": "37b8608d655f46d3755a9eb898d2ab196cb93b4b751c8d8ec7a899af2342471b"
+    },
+    {
+      "path": "test/cli.test.js",
+      "bytes": 14252,
+      "sha256": "aaf53a714d89b2cfe970d0231d71c32b7032be3668168c19c65b8038b6e949ca"
+    },
+    {
+      "path": "test/crlf.test.js",
+      "bytes": 860,
+      "sha256": "e98194eae6ec7ac7beafdfa980714fa609be63bd511b3572c0a84ebde5f4a0c5"
+    },
+    {
+      "path": "test/error-objects.test.js",
+      "bytes": 20004,
+      "sha256": "096da35d4cafb61b278c847ccc3de89c0ecb23845a73cedf167bbe4d3ff9ec35"
+    },
+    {
+      "path": "test/example/example.js",
+      "bytes": 634,
+      "sha256": "9e15d6530b21930827b226246b483fb4dca3d512ee016cdc444cd625d0e30021"
+    },
+    {
+      "path": "test/helper.js",
+      "bytes": 557,
+      "sha256": "c8f1786b5a7fe65ac1bd772819151ac4b5819438bccf7d036cd1014cb2ad4ef0"
+    },
+    {
+      "path": "test/types/exports.tst.ts",
+      "bytes": 663,
+      "sha256": "e959ff402a3d384c73ae6107efdc8e679ca2db4f6689fcea48e053c19d6616ac"
+    },
+    {
+      "path": "test/types/pino-pretty.tst.ts",
+      "bytes": 5722,
+      "sha256": "0e9329b9dcebf7b5a8dd163607d3057dc544319c6d93035c0a756e4ff3286a52"
+    },
+    {
+      "path": "test/types/tsconfig.json",
+      "bytes": 162,
+      "sha256": "964de3f935b4d3d932b328e173bf9bcabe895ad6a6fdd27ae188e6b2610bb4b3"
+    }
+  ]
+}

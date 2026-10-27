@@ -1,0 +1,224 @@
+{
+  "repository": "pinojs/pino-pretty",
+  "issue": 211,
+  "base": "10aba398031e27455ece28398b13e92678f6c249",
+  "tree": "721f5bc8450ad1a7dd8a6f61ae67b1217bb3b5b1",
+  "sourceFiles": 79,
+  "sourceHead": "5f40fa987d0d7c1f1a2d754230c1b9d2747d2cd3",
+  "verifiedAt": "2026-10-27T10:14:50.954498+00:00",
+  "requiredChecks": [
+    {
+      "name": "linux-node20-install-ignore-scripts",
+      "command": [
+        "/ram/runtimes/node20/bin/node",
+        "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+        "i",
+        "--ignore-scripts"
+      ],
+      "cwd": "/ram/candidate",
+      "code": 0,
+      "signal": null,
+      "startedAt": "2026-10-27T10:03:40.681Z",
+      "finishedAt": "2026-10-27T10:03:42.116Z"
+    },
+    {
+      "name": "linux-node20-install-pino10",
+      "command": [
+        "/ram/runtimes/node20/bin/node",
+        "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+        "i",
+        "--no-save",
+        "pino@^10.0.0"
+      ],
+      "cwd": "/ram/candidate",
+      "code": 0,
+      "signal": null,
+      "startedAt": "2026-10-27T10:03:42.120Z",
+      "finishedAt": "2026-10-27T10:03:43.676Z"
+    },
+    {
+      "name": "linux-node20-ci",
+      "command": [
+        "/ram/runtimes/node20/bin/node",
+        "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "ci"
+      ],
+      "cwd": "/ram/candidate",
+      "code": 0,
+      "signal": null,
+      "startedAt": "2026-10-27T10:03:43.686Z",
+      "finishedAt": "2026-10-27T10:03:50.497Z"
+    },
+    {
+      "name": "linux-node22-install-ignore-scripts",
+      "command": [
+        "/ram/runtimes/node22/bin/node",
+        "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+        "i",
+        "--ignore-scripts"
+      ],
+      "cwd": "/ram/candidate",
+      "code": 0,
+      "signal": null,
+      "startedAt": "2026-10-27T10:03:50.510Z",
+      "finishedAt": "2026-10-27T10:03:51.931Z"
+    },
+    {
+      "name": "linux-node22-install-pino10",
+      "command": [
+        "/ram/runtimes/node22/bin/node",
+        "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+        "i",
+        "--no-save",
+        "pino@^10.0.0"
+      ],
+      "cwd": "/ram/candidate",
+      "code": 0,
+      "signal": null,
+      "startedAt": "2026-10-27T10:03:51.936Z",
+      "finishedAt": "2026-10-27T10:03:53.288Z"
+    },
+    {
+      "name": "linux-node22-ci",
+      "command": [
+        "/ram/runtimes/node22/bin/node",
+        "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "ci"
+      ],
+      "cwd": "/ram/candidate",
+      "code": 0,
+      "signal": null,
+      "startedAt": "2026-10-27T10:03:53.294Z",
+      "finishedAt": "2026-10-27T10:04:01.175Z"
+    },
+    {
+      "name": "linux-node24-install-ignore-scripts",
+      "command": [
+        "/usr/local/bin/node",
+        "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+        "i",
+        "--ignore-scripts"
+      ],
+      "cwd": "/ram/candidate",
+      "code": 0,
+      "signal": null,
+      "startedAt": "2026-10-27T10:04:01.187Z",
+      "finishedAt": "2026-10-27T10:04:02.592Z"
+    },
+    {
+      "name": "linux-node24-install-pino10",
+      "command": [
+        "/usr/local/bin/node",
+        "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+        "i",
+        "--no-save",
+        "pino@^10.0.0"
+      ],
+      "cwd": "/ram/candidate",
+      "code": 0,
+      "signal": null,
+      "startedAt": "2026-10-27T10:04:02.597Z",
+      "finishedAt": "2026-10-27T10:04:03.928Z"
+    },
+    {
+      "name": "linux-node24-ci",
+      "command": [
+        "/usr/local/bin/node",
+        "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "ci"
+      ],
+      "cwd": "/ram/candidate",
+      "code": 0,
+      "signal": null,
+      "startedAt": "2026-10-27T10:04:03.932Z",
+      "finishedAt": "2026-10-27T10:04:11.615Z"
+    }
+  ],
+  "runtimes": [
+    {
+      "node": "/ram/runtimes/node20/bin/node",
+      "version": "v20.20.2",
+      "sha256": "6295488653f0d93b0a157841746fef7e72cc4328cfb60c4bbe0ca2668a836ffd"
+    },
+    {
+      "node": "/ram/runtimes/node22/bin/node",
+      "version": "v22.23.4",
+      "sha256": "94efd062ed066c1a0b332e18249859c905e920eeada5df55d24c99b919629a90"
+    },
+    {
+      "node": "/usr/local/bin/node",
+      "version": "v24.14.0",
+      "sha256": "e237a2839d0cbdc9a9a2adda1a184afc0f5b20306ffbe923af5686550472d8a8"
+    }
+  ],
+  "fullLinuxResult": "Node20 reporter:388 PASS;Node22/24 reporters:361 PASS each, all0 FAIL;eslint clean; 9 type tests/66 assertions; ATTW pack clean.",
+  "minimalRedGreen": "Real Pino10.4 factory/default and custom errorKey, CLI: baseline 3 FAIL/2 PASS; candidate 5 PASS on Windows/Linux.",
+  "focusedRedGreen": "Windows same dependencies: baseline4 FAIL/5 PASS; candidate9 PASS.",
+  "packageProof": "Same tgz independently installed on Linux and Windows;78 shipped files match final source;factory/CLI/configured custom-error-key worker3 PASS each.",
+  "extraWindows": {
+    "fullCandidate": {
+      "command": [
+        "E:/Nodejs/node.EXE",
+        "C:/Users/lyz/AppData/Roaming/npm/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "ci"
+      ],
+      "code": 1,
+      "startedAt": "2026-10-27T10:03:23.942767+00:00",
+      "finishedAt": "2026-10-27T10:11:31.799315+00:00"
+    },
+    "fullBaseline": {
+      "command": [
+        "E:/Nodejs/node.EXE",
+        "C:/Users/lyz/AppData/Roaming/npm/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "ci"
+      ],
+      "code": 1,
+      "outerTerminationAfter180Seconds": true,
+      "startedAt": "2026-10-27T10:07:48.985279+00:00",
+      "finishedAt": "2026-10-27T10:10:52.171749+00:00"
+    },
+    "limitation": "Both full Windows npm run ci attempts remained in cli-rc.test.js after29 passed files and were terminated. Neither is a full Windows pass. Same first nodeID standalone passes on baseline and candidate; full-run cause is not established. Windows scoped regressions, real factory/CLI, installed worker, and types are green."
+  },
+  "optionalBenchmark": [
+    {
+      "name": "linux-base-benchmark-default",
+      "command": [
+        "/usr/local/bin/node",
+        "benchmark.js"
+      ],
+      "cwd": "/ram/base",
+      "code": 0,
+      "signal": null,
+      "startedAt": "2026-10-27T10:06:11.709Z",
+      "finishedAt": "2026-10-27T10:06:20.900Z"
+    },
+    {
+      "name": "linux-candidate-benchmark-default",
+      "command": [
+        "/usr/local/bin/node",
+        "benchmark.js"
+      ],
+      "cwd": "/ram/candidate",
+      "code": 0,
+      "signal": null,
+      "startedAt": "2026-10-27T10:06:20.903Z",
+      "finishedAt": "2026-10-27T10:06:30.356Z"
+    }
+  ],
+  "qualification": {
+    "openPRCount": 13,
+    "policy": "all",
+    "head": "10aba398031e27455ece28398b13e92678f6c249",
+    "issueUpdatedAt": "2026-04-01T10:25:04Z"
+  },
+  "supersededAttempts": [
+    "Windows first npm pino@^10 caret was consumed by cmd; repaired direct node npm-cli argv installed10.4.0, all counted proofs use10.4.0.",
+    "Linux pack metadata parser initially read npm warning as JSON; real pack succeeded; parsing repaired without changing tgz or repeating benchmark.",
+    "First installed worker probe used directory import, then an incomplete await-close report, then omitted worker-specific errorLikeObjectKeys. These harness attempts are retained; final explicit fault option produced3 PASS. Automatic errorKey propagation is separately covered by direct pinoPretty stream regression, not asserted for manual worker transports."
+  ]
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "sha": "092631679f3e0f30e0223f2271e146dd3d8edec8",
+    "filename": "lib/pretty.js",
+    "status": "modified",
+    "additions": 15,
+    "deletions": 1,
+    "changes": 16,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/0aff48e30f23cbaa103a0e5953315ece8f282db2/lib%2Fpretty.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/0aff48e30f23cbaa103a0e5953315ece8f282db2/lib%2Fpretty.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Fpretty.js?ref=0aff48e30f23cbaa103a0e5953315ece8f282db2",
+    "patch": "@@ -21,7 +21,21 @@ const {\n \n const jsonParser = input => {\n   try {\n-    return { value: sjs.parse(input, { protoAction: 'remove' }) }\n+    return {\n+      value: sjs.parse(input, (key, value, context) => {\n+        // pino serializes BigInt values as bare JSON integers. Preserve the\n+        // original token before JSON.parse rounds values beyond the safe range.\n+        if (\n+          typeof value === 'number' &&\n+          !Number.isSafeInteger(value) &&\n+          context &&\n+          /^-?\\d+$/.test(context.source)\n+        ) {\n+          return BigInt(context.source)\n+        }\n+        return value\n+      }, { protoAction: 'remove' })\n+    }\n   } catch (err) {\n     return { err }\n   }"
+  },
+  {
+    "sha": "9fd61ac9b14d2d034be6b6b2a3b6c9082ba268ae",
+    "filename": "lib/utils/create-date.js",
+    "status": "modified",
+    "additions": 3,
+    "deletions": 1,
+    "changes": 4,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/0aff48e30f23cbaa103a0e5953315ece8f282db2/lib%2Futils%2Fcreate-date.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/0aff48e30f23cbaa103a0e5953315ece8f282db2/lib%2Futils%2Fcreate-date.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fcreate-date.js?ref=0aff48e30f23cbaa103a0e5953315ece8f282db2",
+    "patch": "@@ -9,11 +9,13 @@ const isValidDate = require('./is-valid-date')\n  * or single string argument that is valid for the Date() constructor,\n  * or an epoch as a string.\n  *\n- * @param {string|number} epoch The representation of the Date.\n+ * @param {string|number|bigint} epoch The representation of the Date.\n  *\n  * @returns {Date} The constructed Date.\n  */\n function createDate (epoch) {\n+  if (typeof epoch === 'bigint') epoch = Number(epoch)\n+\n   // If epoch is already a valid argument, return the valid Date\n   let date = new Date(epoch)\n   if (isValidDate(date)) {"
+  },
+  {
+    "sha": "e35be1de7b90501a6e8245d32c8cfff410a27b29",
+    "filename": "lib/utils/create-date.test.js",
+    "status": "modified",
+    "additions": 2,
+    "deletions": 1,
+    "changes": 3,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/0aff48e30f23cbaa103a0e5953315ece8f282db2/lib%2Futils%2Fcreate-date.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/0aff48e30f23cbaa103a0e5953315ece8f282db2/lib%2Futils%2Fcreate-date.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fcreate-date.test.js?ref=0aff48e30f23cbaa103a0e5953315ece8f282db2",
+    "patch": "@@ -6,9 +6,10 @@ const createDate = require('./create-date')\n const wanted = 1624450038567\n \n test('accepts arguments the Date constructor would accept', t => {\n-  t.plan(2)\n+  t.plan(3)\n   t.assert.strictEqual(createDate(1624450038567).getTime(), wanted)\n   t.assert.strictEqual(createDate('2021-06-23T12:07:18.567Z').getTime(), wanted)\n+  t.assert.strictEqual(createDate(BigInt(wanted)).getTime(), wanted)\n })\n \n test('accepts epoch as a string', t => {"
+  },
+  {
+    "sha": "421b2f70408c3c78690f4c48d9dafb673af3d44e",
+    "filename": "lib/utils/prettify-error.test.js",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 1,
+    "changes": 2,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/0aff48e30f23cbaa103a0e5953315ece8f282db2/lib%2Futils%2Fprettify-error.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/0aff48e30f23cbaa103a0e5953315ece8f282db2/lib%2Futils%2Fprettify-error.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fprettify-error.test.js?ref=0aff48e30f23cbaa103a0e5953315ece8f282db2",
+    "patch": "@@ -1,7 +1,7 @@\n 'use strict'\n \n const { test } = require('node:test')\n-const stringifySafe = require('fast-safe-stringify')\n+const stringifySafe = require('safe-stable-stringify')\n const prettifyError = require('./prettify-error')\n \n test('prettifies error', t => {"
+  },
+  {
+    "sha": "d50b03434e3c7cd3842ff062f328a6d0666a3113",
+    "filename": "lib/utils/prettify-object.js",
+    "status": "modified",
+    "additions": 3,
+    "deletions": 1,
+    "changes": 4,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/0aff48e30f23cbaa103a0e5953315ece8f282db2/lib%2Futils%2Fprettify-object.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/0aff48e30f23cbaa103a0e5953315ece8f282db2/lib%2Futils%2Fprettify-object.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fprettify-object.js?ref=0aff48e30f23cbaa103a0e5953315ece8f282db2",
+    "patch": "@@ -6,7 +6,9 @@ const {\n   LOGGER_KEYS\n } = require('../constants')\n \n-const stringifySafe = require('fast-safe-stringify')\n+const stringifySafe = require('safe-stable-stringify').configure({\n+  deterministic: false\n+})\n const joinLinesWithIndentation = require('./join-lines-with-indentation')\n const prettifyError = require('./prettify-error')\n const stripUnsafeControlChars = require('./strip-unsafe-control-chars')"
+  },
+  {
+    "sha": "d85bece2b31f65f5ccf212908487323f99d30c93",
+    "filename": "lib/utils/prettify-object.test.js",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 1,
+    "changes": 2,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/0aff48e30f23cbaa103a0e5953315ece8f282db2/lib%2Futils%2Fprettify-object.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/0aff48e30f23cbaa103a0e5953315ece8f282db2/lib%2Futils%2Fprettify-object.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fprettify-object.test.js?ref=0aff48e30f23cbaa103a0e5953315ece8f282db2",
+    "patch": "@@ -1,7 +1,7 @@\n 'use strict'\n \n const { test } = require('node:test')\n-const stringifySafe = require('fast-safe-stringify')\n+const stringifySafe = require('safe-stable-stringify')\n const colors = require('../colors')\n const prettifyObject = require('./prettify-object')\n const {"
+  },
+  {
+    "sha": "2eb3a36ea29858b9b384abe71bd78f31c02409cf",
+    "filename": "package.json",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 1,
+    "changes": 2,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/0aff48e30f23cbaa103a0e5953315ece8f282db2/package.json",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/0aff48e30f23cbaa103a0e5953315ece8f282db2/package.json",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/package.json?ref=0aff48e30f23cbaa103a0e5953315ece8f282db2",
+    "patch": "@@ -34,13 +34,13 @@\n     \"colorette\": \"^2.0.7\",\n     \"dateformat\": \"^4.6.3\",\n     \"fast-copy\": \"^4.0.0\",\n-    \"fast-safe-stringify\": \"^2.1.1\",\n     \"help-me\": \"^5.0.0\",\n     \"joycon\": \"^3.1.1\",\n     \"minimist\": \"^1.2.6\",\n     \"on-exit-leak-free\": \"^2.1.2\",\n     \"pino-abstract-transport\": \"^3.0.0\",\n     \"pump\": \"^3.0.3\",\n+    \"safe-stable-stringify\": \"^2.5.0\",\n     \"secure-json-parse\": \"^4.1.0\",\n     \"sonic-boom\": \"^5.0.0\",\n     \"strip-json-comments\": \"^5.0.3\""
+  },
+  {
+    "sha": "39265332ca1c69ec81d7b807efb5b9b416e11711",
+    "filename": "test/bigint.test.js",
+    "status": "added",
+    "additions": 57,
+    "deletions": 0,
+    "changes": 57,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/0aff48e30f23cbaa103a0e5953315ece8f282db2/test%2Fbigint.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/0aff48e30f23cbaa103a0e5953315ece8f282db2/test%2Fbigint.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/test%2Fbigint.test.js?ref=0aff48e30f23cbaa103a0e5953315ece8f282db2",
+    "patch": "@@ -0,0 +1,57 @@\n+'use strict'\n+\n+const { test } = require('node:test')\n+const { prettyFactory } = require('../')\n+\n+const pretty = prettyFactory({\n+  colorize: false,\n+  translateTime: false\n+})\n+\n+test('preserves large integer tokens from JSON log lines', t => {\n+  const output = pretty('{\"level\":30,\"value\":1666666666666666700,\"msg\":\"large\"}')\n+\n+  t.assert.match(output, /value: 1666666666666666700\\n/)\n+  t.assert.doesNotMatch(output, /1666666666666666800/)\n+})\n+\n+test('preserves negative large integer tokens', t => {\n+  const output = pretty('{\"level\":30,\"value\":-9007199254740993,\"msg\":\"negative\"}')\n+\n+  t.assert.match(output, /value: -9007199254740993\\n/)\n+})\n+\n+test('keeps safe integers and decimal numbers as numbers', t => {\n+  const output = pretty('{\"level\":30,\"safe\":9007199254740991,\"decimal\":1.25,\"msg\":\"numbers\"}')\n+\n+  t.assert.match(output, /safe: 9007199254740991\\n/)\n+  t.assert.match(output, /decimal: 1.25\\n/)\n+})\n+\n+test('preserves large integers in nested objects and arrays', t => {\n+  const output = pretty('{\"level\":30,\"payload\":{\"value\":1666666666666666700,\"items\":[-9007199254740993]},\"msg\":\"nested\"}')\n+\n+  t.assert.match(output, /\"value\": 1666666666666666700/)\n+  t.assert.match(output, /-9007199254740993/)\n+})\n+\n+test('preserves large integers in single-line output', t => {\n+  const singleLine = prettyFactory({\n+    colorize: false,\n+    translateTime: false,\n+    singleLine: true\n+  })\n+  const output = singleLine('{\"level\":30,\"value\":1666666666666666700,\"msg\":\"single\"}')\n+\n+  t.assert.match(output, /\"value\":1666666666666666700/)\n+})\n+\n+test('serializes BigInt values supplied as objects', t => {\n+  const output = pretty({\n+    level: 30,\n+    value: BigInt('1666666666666666700'),\n+    msg: 'direct'\n+  })\n+\n+  t.assert.match(output, /value: 1666666666666666700\\n/)\n+})"
+  }
+]

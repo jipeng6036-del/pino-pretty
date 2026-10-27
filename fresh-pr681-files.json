@@ -1,0 +1,26 @@
+[
+  {
+    "sha": "1ed6cde545b7885902b15755a7ae0198bbc898bd",
+    "filename": "Readme.md",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 0,
+    "changes": 1,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/d2fd8e960ee7c5256b5b65eb3ea50711049e6681/Readme.md",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/d2fd8e960ee7c5256b5b65eb3ea50711049e6681/Readme.md",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/Readme.md?ref=d2fd8e960ee7c5256b5b65eb3ea50711049e6681",
+    "patch": "@@ -99,6 +99,7 @@ node app.js | pino-pretty\n - `--include` (`-I`): The opposite of `--ignore`. Include one or several keys.\n - `--hideObject` (`-H`): Hide objects from output (but not error object)\n - `--singleLine` (`-S`): Print each log message on a single line (errors will still be multi-line)\n+- `--sync`: Write to the destination synchronously (default: `false`). This can help preserve the order of non-Pino lines and prettified log lines.\n - `--config`: Specify a path to a config file containing the pino-pretty options.  pino-pretty will attempt to read from a `.pino-prettyrc` in your current directory (`process.cwd`) if not specified\n \n <a id=\"integration\"></a>"
+  },
+  {
+    "sha": "b8e64889e99c984a41ce57a60b3d1c4033a2cf9c",
+    "filename": "help/help.txt",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 0,
+    "changes": 1,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/d2fd8e960ee7c5256b5b65eb3ea50711049e6681/help%2Fhelp.txt",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/d2fd8e960ee7c5256b5b65eb3ea50711049e6681/help%2Fhelp.txt",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/help%2Fhelp.txt?ref=d2fd8e960ee7c5256b5b65eb3ea50711049e6681",
+    "patch": "@@ -23,6 +23,7 @@\n     -m, --messageKey [value]    Highlight the message under the specified key (defaults to \"msg\")\n     -L, --minimumLevel          Hide messages below the specified log level\n     -S, --singleLine            Print all non-error objects on a single line\n+    --sync                      Write to the destination synchronously (default: false)\n     -a, --timestampKey [value]  Display the timestamp from the specified key (defaults to \"time\")\n     -t, --translateTime         Display epoch timestamps as UTC ISO format or according to an optional format string (default ISO 8601)\n     -U, --useOnlyCustomProps    Only use custom levels and colors (if provided); don't fallback to default levels and colors (-U false)"
+  }
+]

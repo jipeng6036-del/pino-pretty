@@ -1,0 +1,284 @@
+[
+  {
+    "name": "linux-node20-runtime-pack",
+    "command": [
+      "npm",
+      "pack",
+      "node-linux-x64@20",
+      "--json"
+    ],
+    "cwd": "/ram/runtimes",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:23.702Z",
+    "finishedAt": "2026-10-27T10:03:30.843Z"
+  },
+  {
+    "name": "linux-node20-runtime-extract",
+    "command": [
+      "tar",
+      "-xf",
+      "/ram/runtimes/node-linux-x64-20.20.2.tgz",
+      "-C",
+      "/ram/runtimes/node20",
+      "--strip-components=1"
+    ],
+    "cwd": "/ram/runtimes",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:31.002Z",
+    "finishedAt": "2026-10-27T10:03:32.051Z"
+  },
+  {
+    "name": "linux-node22-runtime-pack",
+    "command": [
+      "npm",
+      "pack",
+      "node-linux-x64@22",
+      "--json"
+    ],
+    "cwd": "/ram/runtimes",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:32.054Z",
+    "finishedAt": "2026-10-27T10:03:39.224Z"
+  },
+  {
+    "name": "linux-node22-runtime-extract",
+    "command": [
+      "tar",
+      "-xf",
+      "/ram/runtimes/node-linux-x64-22.23.4.tgz",
+      "-C",
+      "/ram/runtimes/node22",
+      "--strip-components=1"
+    ],
+    "cwd": "/ram/runtimes",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:39.237Z",
+    "finishedAt": "2026-10-27T10:03:40.400Z"
+  },
+  {
+    "name": "linux-candidate-copy",
+    "command": [
+      "cp",
+      "-a",
+      "/ram/base",
+      "/ram/candidate"
+    ],
+    "cwd": "/ram",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:40.403Z",
+    "finishedAt": "2026-10-27T10:03:40.646Z"
+  },
+  {
+    "name": "linux-candidate-overlay",
+    "command": [
+      "tar",
+      "-xf",
+      "/evidence/pino-canonical-candidate.tar",
+      "-C",
+      "/ram/candidate"
+    ],
+    "cwd": "/ram",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:40.648Z",
+    "finishedAt": "2026-10-27T10:03:40.657Z"
+  },
+  {
+    "name": "linux-node20-version",
+    "command": [
+      "/ram/runtimes/node20/bin/node",
+      "--version"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:40.669Z",
+    "finishedAt": "2026-10-27T10:03:40.674Z"
+  },
+  {
+    "name": "linux-node20-install-ignore-scripts",
+    "command": [
+      "/ram/runtimes/node20/bin/node",
+      "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+      "i",
+      "--ignore-scripts"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:40.681Z",
+    "finishedAt": "2026-10-27T10:03:42.116Z"
+  },
+  {
+    "name": "linux-node20-install-pino10",
+    "command": [
+      "/ram/runtimes/node20/bin/node",
+      "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+      "i",
+      "--no-save",
+      "pino@^10.0.0"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:42.120Z",
+    "finishedAt": "2026-10-27T10:03:43.676Z"
+  },
+  {
+    "name": "linux-node20-ci",
+    "command": [
+      "/ram/runtimes/node20/bin/node",
+      "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+      "run",
+      "ci"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:43.686Z",
+    "finishedAt": "2026-10-27T10:03:50.497Z"
+  },
+  {
+    "name": "linux-node22-version",
+    "command": [
+      "/ram/runtimes/node22/bin/node",
+      "--version"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:50.501Z",
+    "finishedAt": "2026-10-27T10:03:50.506Z"
+  },
+  {
+    "name": "linux-node22-install-ignore-scripts",
+    "command": [
+      "/ram/runtimes/node22/bin/node",
+      "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+      "i",
+      "--ignore-scripts"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:50.510Z",
+    "finishedAt": "2026-10-27T10:03:51.931Z"
+  },
+  {
+    "name": "linux-node22-install-pino10",
+    "command": [
+      "/ram/runtimes/node22/bin/node",
+      "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+      "i",
+      "--no-save",
+      "pino@^10.0.0"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:51.936Z",
+    "finishedAt": "2026-10-27T10:03:53.288Z"
+  },
+  {
+    "name": "linux-node22-ci",
+    "command": [
+      "/ram/runtimes/node22/bin/node",
+      "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+      "run",
+      "ci"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:03:53.294Z",
+    "finishedAt": "2026-10-27T10:04:01.175Z"
+  },
+  {
+    "name": "linux-node24-version",
+    "command": [
+      "/usr/local/bin/node",
+      "--version"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:04:01.178Z",
+    "finishedAt": "2026-10-27T10:04:01.184Z"
+  },
+  {
+    "name": "linux-node24-install-ignore-scripts",
+    "command": [
+      "/usr/local/bin/node",
+      "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+      "i",
+      "--ignore-scripts"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:04:01.187Z",
+    "finishedAt": "2026-10-27T10:04:02.592Z"
+  },
+  {
+    "name": "linux-node24-install-pino10",
+    "command": [
+      "/usr/local/bin/node",
+      "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+      "i",
+      "--no-save",
+      "pino@^10.0.0"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:04:02.597Z",
+    "finishedAt": "2026-10-27T10:04:03.928Z"
+  },
+  {
+    "name": "linux-node24-ci",
+    "command": [
+      "/usr/local/bin/node",
+      "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+      "run",
+      "ci"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:04:03.932Z",
+    "finishedAt": "2026-10-27T10:04:11.615Z"
+  },
+  {
+    "name": "linux-baseline-minimal",
+    "command": [
+      "/usr/local/bin/node",
+      "/evidence/pino-minimal.cjs",
+      "/ram/base",
+      "/evidence/linux-minimal-baseline"
+    ],
+    "cwd": "/ram/base",
+    "code": 1,
+    "signal": null,
+    "startedAt": "2026-10-27T10:04:11.619Z",
+    "finishedAt": "2026-10-27T10:04:11.711Z"
+  },
+  {
+    "name": "linux-candidate-minimal",
+    "command": [
+      "/usr/local/bin/node",
+      "/evidence/pino-minimal.cjs",
+      "/ram/candidate",
+      "/evidence/linux-minimal-candidate"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:04:11.713Z",
+    "finishedAt": "2026-10-27T10:04:11.810Z"
+  }
+]

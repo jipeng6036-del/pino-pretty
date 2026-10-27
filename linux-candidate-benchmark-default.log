@@ -1,0 +1,14 @@
+basicLog*10000: 737.304ms
+objectLog*10000: 679.27ms
+coloredLog*10000: 574.91ms
+customPrettifiers*10000: 806.353ms
+logWithErrorObject*10000: 490.353ms
+logRemappedMsgErrKeys*10000: 455.33ms
+messageFormatString*10000: 892.499ms
+basicLog*10000: 702.132ms
+objectLog*10000: 644.22ms
+coloredLog*10000: 629.27ms
+customPrettifiers*10000: 730.034ms
+logWithErrorObject*10000: 550.836ms
+logRemappedMsgErrKeys*10000: 521.56ms
+messageFormatString*10000: 873.726ms

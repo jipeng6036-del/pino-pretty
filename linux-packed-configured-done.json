@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/usr/local/bin/node",
+    "/evidence/packed-probe.cjs",
+    "/ram/consumer",
+    "/evidence/linux-packed-configured"
+  ],
+  "code": 0,
+  "reportPresent": true,
+  "passed": 3,
+  "startedAt": "2026-10-27T10:10:34.386Z",
+  "finishedAt": "2026-10-27T10:10:34.724Z"
+}

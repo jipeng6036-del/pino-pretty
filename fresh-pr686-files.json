@@ -1,0 +1,122 @@
+[
+  {
+    "sha": "a2753ddf41b1d8c5548024b675ea378af11e3ddc",
+    "filename": "index.d.ts",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 0,
+    "changes": 1,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/bb7536a6684e990105afda6ca80ad823b9fd45cc/index.d.ts",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/bb7536a6684e990105afda6ca80ad823b9fd45cc/index.d.ts",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/index.d.ts?ref=bb7536a6684e990105afda6ca80ad823b9fd45cc",
+    "patch": "@@ -26,6 +26,7 @@ declare namespace PinoPretty {\n     ): string,\n     message: (input: string | number) => string,\n     greyMessage: (input: string | number) => string,\n+    json: (input: any) => string,\n   }\n \n   export function prettyFactory (options: PrettyOptions): (inputData: any) => string"
+  },
+  {
+    "sha": "47b4f172da6fd749a6099ee2ffc4ddb6887745f9",
+    "filename": "lib/colors.js",
+    "status": "modified",
+    "additions": 9,
+    "deletions": 3,
+    "changes": 12,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Fcolors.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Fcolors.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Fcolors.js?ref=bb7536a6684e990105afda6ca80ad823b9fd45cc",
+    "patch": "@@ -1,6 +1,7 @@\n 'use strict'\n \n const nocolor = input => input\n+const colorizeJson = require('./utils/colorize-json')\n const plain = {\n   default: nocolor,\n   60: nocolor,\n@@ -11,7 +12,8 @@ const plain = {\n   10: nocolor,\n   message: nocolor,\n   greyMessage: nocolor,\n-  property: nocolor\n+  property: nocolor,\n+  json: nocolor\n }\n \n const { createColors } = require('colorette')\n@@ -29,7 +31,8 @@ const colored = {\n   10: gray,\n   message: cyan,\n   greyMessage: gray,\n-  property: magenta\n+  property: magenta,\n+  json: input => colorizeJson(input, availableColors)\n }\n \n function resolveCustomColoredColorizer (customColors) {\n@@ -39,7 +42,7 @@ function resolveCustomColoredColorizer (customColors) {\n \n       return agg\n     },\n-    { default: white, message: cyan, greyMessage: gray, property: magenta }\n+    { default: white, message: cyan, greyMessage: gray, property: magenta, json: input => colorizeJson(input, availableColors) }\n   )\n }\n \n@@ -59,6 +62,7 @@ function plainColorizer (useOnlyCustomProps) {\n   customColoredColorizer.message = plain.message\n   customColoredColorizer.greyMessage = plain.greyMessage\n   customColoredColorizer.property = plain.property\n+  customColoredColorizer.json = plain.json\n   customColoredColorizer.colors = createColors({ useColor: false })\n   return customColoredColorizer\n }\n@@ -71,6 +75,7 @@ function coloredColorizer (useOnlyCustomProps) {\n   customColoredColorizer.message = colored.message\n   customColoredColorizer.property = colored.property\n   customColoredColorizer.greyMessage = colored.greyMessage\n+  customColoredColorizer.json = colored.json\n   customColoredColorizer.colors = availableColors\n   return customColoredColorizer\n }\n@@ -87,6 +92,7 @@ function customColoredColorizerFactory (customColors, useOnlyCustomProps) {\n   customColoredColorizer.message = customColoredColorizer.message || customColored.message\n   customColoredColorizer.property = customColoredColorizer.property || customColored.property\n   customColoredColorizer.greyMessage = customColoredColorizer.greyMessage || customColored.greyMessage\n+  customColoredColorizer.json = customColoredColorizer.json || customColored.json || (input => colorizeJson(input, availableColors))\n \n   return customColoredColorizer\n }"
+  },
+  {
+    "sha": "2a27bb4d52addb6f936e0c64b792a53d127a3bdf",
+    "filename": "lib/colors.test.js",
+    "status": "modified",
+    "additions": 6,
+    "deletions": 0,
+    "changes": 6,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Fcolors.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Fcolors.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Fcolors.test.js?ref=bb7536a6684e990105afda6ca80ad823b9fd45cc",
+    "patch": "@@ -37,6 +37,9 @@ const testDefaultColorizer = getColorizer => t => {\n \n   colorized = colorizer.greyMessage('foo')\n   t.assert.strictEqual(colorized, 'foo')\n+\n+  colorized = colorizer.json('{\"a\":1}')\n+  t.assert.strictEqual(colorized, '{\"a\":1}')\n }\n \n const testColoringColorizer = getColorizer => t => {\n@@ -73,6 +76,9 @@ const testColoringColorizer = getColorizer => t => {\n \n   colorized = colorizer.greyMessage('foo')\n   t.assert.strictEqual(colorized, '\\^[[90mfoo\\^[[39m')\n+\n+  colorized = colorizer.json('{\"a\":1}')\n+  t.assert.strictEqual(colorized, '\\^[[92m{\\^[[39m\\^[[91m\"a\"\\^[[39m\\^[[90m:\\^[[39m\\^[[33m1\\^[[39m\\^[[92m}\\^[[39m')\n }\n \n const testCustomColoringColorizer = getColorizer => t => {"
+  },
+  {
+    "sha": "e447e18ae1b5b64835d6256b627602544941d71c",
+    "filename": "lib/utils/colorize-json.js",
+    "status": "added",
+    "additions": 69,
+    "deletions": 0,
+    "changes": 69,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Futils%2Fcolorize-json.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Futils%2Fcolorize-json.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fcolorize-json.js?ref=bb7536a6684e990105afda6ca80ad823b9fd45cc",
+    "patch": "@@ -0,0 +1,69 @@\n+'use strict'\n+\n+module.exports = colorizeJson\n+\n+const defaultJsonColors = {\n+  BRACE: 'greenBright',\n+  BRACKET: 'blueBright',\n+  COLON: 'gray',\n+  COMMA: 'gray',\n+  STRING_KEY: 'redBright',\n+  STRING_LITERAL: 'greenBright',\n+  NUMBER_LITERAL: 'yellow',\n+  BOOLEAN_LITERAL: 'cyan',\n+  NULL_LITERAL: 'white'\n+}\n+\n+const TOKEN_TYPES = [\n+  { regex: /\\s+/y, type: 'WHITESPACE' },\n+  { regex: /[{}]/y, type: 'BRACE' },\n+  { regex: /[[\\]]/y, type: 'BRACKET' },\n+  { regex: /:/y, type: 'COLON' },\n+  { regex: /,/y, type: 'COMMA' },\n+  { regex: /-?\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?\\b/y, type: 'NUMBER_LITERAL' },\n+  { regex: /\"(?:\\\\.|[^\"\\\\])*\"(?=\\s*:)/y, type: 'STRING_KEY' },\n+  { regex: /\"(?:\\\\.|[^\"\\\\])*\"/y, type: 'STRING_LITERAL' },\n+  { regex: /(?:true|false)\\b/y, type: 'BOOLEAN_LITERAL' },\n+  { regex: /null\\b/y, type: 'NULL_LITERAL' }\n+]\n+\n+/**\n+ * Colorizes a JSON string using the provided Colorette colors instance.\n+ *\n+ * @param {string} input The JSON string to colorize.\n+ * @param {object} [colorizer] Colorette instance containing color functions.\n+ *\n+ * @returns {string} The colorized string.\n+ */\n+function colorizeJson (input, colorizer) {\n+  if (typeof input !== 'string' || input.length === 0) return ''\n+  if (!colorizer) return input\n+\n+  let result = ''\n+  let cursor = 0\n+  const len = input.length\n+\n+  while (cursor < len) {\n+    let matched = false\n+    for (let i = 0; i < TOKEN_TYPES.length; i++) {\n+      const { regex, type } = TOKEN_TYPES[i]\n+      regex.lastIndex = cursor\n+      const match = regex.exec(input)\n+      if (match !== null) {\n+        const val = match[0]\n+        const colorKey = defaultJsonColors[type]\n+        const colorFn = colorKey && colorizer[colorKey]\n+        result += colorFn ? colorFn(val) : val\n+        cursor += val.length\n+        matched = true\n+        break\n+      }\n+    }\n+    if (!matched) {\n+      result += input[cursor]\n+      cursor += 1\n+    }\n+  }\n+\n+  return result\n+}"
+  },
+  {
+    "sha": "06a0d0b68fa130d061501913e87f0410793153e5",
+    "filename": "lib/utils/colorize-json.test.js",
+    "status": "added",
+    "additions": 103,
+    "deletions": 0,
+    "changes": 103,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Futils%2Fcolorize-json.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Futils%2Fcolorize-json.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fcolorize-json.test.js?ref=bb7536a6684e990105afda6ca80ad823b9fd45cc",
+    "patch": "@@ -0,0 +1,103 @@\n+'use strict'\n+\n+/* eslint-disable no-control-regex */\n+\n+const { test } = require('node:test')\n+const { createColors } = require('colorette')\n+const colorizeJson = require('./colorize-json')\n+\n+const colors = createColors({ useColor: true })\n+const noColors = createColors({ useColor: false })\n+\n+test('returns empty string for non-string or empty input', t => {\n+  t.assert.strictEqual(colorizeJson('', colors), '')\n+  t.assert.strictEqual(colorizeJson(null, colors), '')\n+  t.assert.strictEqual(colorizeJson(undefined, colors), '')\n+  t.assert.strictEqual(colorizeJson(123, colors), '')\n+})\n+\n+test('returns input unchanged when colorizer is omitted', t => {\n+  const json = '{\"a\":1}'\n+  t.assert.strictEqual(colorizeJson(json), json)\n+})\n+\n+test('highlights all JSON token types with colors enabled', t => {\n+  const json = '{\"str\":\"hello\",\"num\":42,\"neg\":-3.14,\"exp\":1e5,\"bool\":true,\"nil\":null,\"arr\":[1,false]}'\n+  const colored = colorizeJson(json, colors)\n+\n+  // String keys are redBright\n+  t.assert.ok(colored.includes(colors.redBright('\"str\"')))\n+  t.assert.ok(colored.includes(colors.redBright('\"num\"')))\n+  // String values are greenBright\n+  t.assert.ok(colored.includes(colors.greenBright('\"hello\"')))\n+  // Numbers are yellow\n+  t.assert.ok(colored.includes(colors.yellow('42')))\n+  t.assert.ok(colored.includes(colors.yellow('-3.14')))\n+  t.assert.ok(colored.includes(colors.yellow('1e5')))\n+  // Booleans are cyan\n+  t.assert.ok(colored.includes(colors.cyan('true')))\n+  t.assert.ok(colored.includes(colors.cyan('false')))\n+  // Null is white\n+  t.assert.ok(colored.includes(colors.white('null')))\n+  // Braces are greenBright\n+  t.assert.ok(colored.includes(colors.greenBright('{')))\n+  t.assert.ok(colored.includes(colors.greenBright('}')))\n+  // Brackets are blueBright\n+  t.assert.ok(colored.includes(colors.blueBright('[')))\n+  t.assert.ok(colored.includes(colors.blueBright(']')))\n+  // Colons and commas are gray\n+  t.assert.ok(colored.includes(colors.gray(':')))\n+  t.assert.ok(colored.includes(colors.gray(',')))\n+\n+  // Stripped ANSI matches clean JSON\n+  t.assert.strictEqual(colored.replace(/\\^[\\[\\d+m/g, ''), json)\n+})\n+\n+test('produces zero ANSI escape codes with useColor: false', t => {\n+  const json = '{\"str\":\"hello\",\"num\":42,\"bool\":true,\"nil\":null,\"arr\":[1]}'\n+  const uncolored = colorizeJson(json, noColors)\n+  t.assert.strictEqual(/\\^[\\[\\d+m/.test(uncolored), false)\n+  t.assert.strictEqual(uncolored, json)\n+})\n+\n+test('preserves unrecognized characters without dropping remaining content', t => {\n+  const relaxed = '{\"key\": \"value\", UNRECOGNIZED_TOKEN, \"next\": 123}'\n+  const result = colorizeJson(relaxed, colors)\n+\n+  t.assert.ok(result.includes('UNRECOGNIZED_TOKEN'))\n+  t.assert.ok(result.includes(colors.redBright('\"next\"')))\n+  t.assert.ok(result.includes(colors.yellow('123')))\n+  t.assert.strictEqual(result.replace(/\\^[\\[\\d+m/g, ''), relaxed)\n+})\n+\n+test('handles escaped quotes and backslashes properly', t => {\n+  const json = '{\"quote\":\"hello \\\\\"world\\\\\"\",\"path\":\"C:\\\\\\\\Users\\\\\\\\test\"}'\n+  const colored = colorizeJson(json, colors)\n+\n+  t.assert.ok(colored.includes(colors.greenBright('\"hello \\\\\"world\\\\\"\"')))\n+  t.assert.ok(colored.includes(colors.greenBright('\"C:\\\\\\\\Users\\\\\\\\test\"')))\n+  t.assert.strictEqual(colored.replace(/\\^[\\[\\d+m/g, ''), json)\n+})\n+\n+test('respects token boundaries and does not mis-tokenize keywords or numbers', t => {\n+  const json = '{\"str\":\"true false null\",\"val\":-0,\"posExp\":1.2e+5,\"negExp\":-3e-4}'\n+  const colored = colorizeJson(json, colors)\n+\n+  // Words inside strings remain greenBright string literals\n+  t.assert.ok(colored.includes(colors.greenBright('\"true false null\"')))\n+  // -0 is yellow\n+  t.assert.ok(colored.includes(colors.yellow('-0')))\n+  // Exponents with + and - are yellow\n+  t.assert.ok(colored.includes(colors.yellow('1.2e+5')))\n+  t.assert.ok(colored.includes(colors.yellow('-3e-4')))\n+  t.assert.strictEqual(colored.replace(/\\^[\\[\\d+m/g, ''), json)\n+\n+  // Identifiers starting with true/false/null are not mis-tokenized as keywords\n+  const relaxed = '{trueStory: 123abc, nullify: falsehood}'\n+  const relaxedColored = colorizeJson(relaxed, colors)\n+  t.assert.ok(relaxedColored.includes('trueStory'))\n+  t.assert.ok(relaxedColored.includes('123abc'))\n+  t.assert.ok(relaxedColored.includes('nullify'))\n+  t.assert.ok(relaxedColored.includes('falsehood'))\n+  t.assert.strictEqual(relaxedColored.replace(/\\^[\\[\\d+m/g, ''), relaxed)\n+})"
+  },
+  {
+    "sha": "b301ccf81060cbbf0942c1d07ef560ff85d779e5",
+    "filename": "lib/utils/index.js",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 0,
+    "changes": 1,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Futils%2Findex.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Futils%2Findex.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Findex.js?ref=bb7536a6684e990105afda6ca80ad823b9fd45cc",
+    "patch": "@@ -2,6 +2,7 @@\n \n module.exports = {\n   buildSafeSonicBoom: require('./build-safe-sonic-boom.js'),\n+  colorizeJson: require('./colorize-json.js'),\n   createDate: require('./create-date.js'),\n   deleteLogProperty: require('./delete-log-property.js'),\n   filterLog: require('./filter-log.js'),"
+  },
+  {
+    "sha": "a8020db7b8a9f4fa8f39cebbed7c0b10630565f6",
+    "filename": "lib/utils/prettify-object.js",
+    "status": "modified",
+    "additions": 4,
+    "deletions": 1,
+    "changes": 5,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Futils%2Fprettify-object.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Futils%2Fprettify-object.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fprettify-object.js?ref=bb7536a6684e990105afda6ca80ad823b9fd45cc",
+    "patch": "@@ -74,7 +74,10 @@ function prettifyObject ({\n     // Stringify the entire object as a single JSON line\n     /* istanbul ignore else */\n     if (Object.keys(plain).length > 0) {\n-      result += objectColorizer.greyMessage(stringifySafe(plain))\n+      const colorizeJson = typeof objectColorizer.json === 'function'\n+        ? objectColorizer.json\n+        : objectColorizer.greyMessage\n+      result += colorizeJson(stringifySafe(plain))\n     }\n     result += eol\n     // Avoid printing the escape character on escaped backslashes."
+  },
+  {
+    "sha": "3b22a1a490e8eb4170ce2cee09c265280a3e8ea4",
+    "filename": "lib/utils/prettify-object.test.js",
+    "status": "modified",
+    "additions": 166,
+    "deletions": 0,
+    "changes": 166,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Futils%2Fprettify-object.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/bb7536a6684e990105afda6ca80ad823b9fd45cc/lib%2Futils%2Fprettify-object.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fprettify-object.test.js?ref=bb7536a6684e990105afda6ca80ad823b9fd45cc",
+    "patch": "@@ -1,5 +1,7 @@\n 'use strict'\n \n+/* eslint-disable no-control-regex */\n+\n const { test } = require('node:test')\n const stringifySafe = require('fast-safe-stringify')\n const colors = require('../colors')\n@@ -215,3 +217,167 @@ test('customColors gets applied', t => {\n   })\n   t.assert.strictEqual(str, `    ${colorizer.colors.green('foo')}: \"bar\"\\n`)\n })\n+\n+test('syntax highlights json in singleLine mode when objectColorizer is active', t => {\n+  const colorizer = colors(true)\n+  const str = prettifyObject({\n+    log: { foo: 'bar', num: 42, bool: true, nil: null },\n+    context: {\n+      ...context,\n+      singleLine: true,\n+      objectColorizer: colorizer,\n+      colorizer\n+    }\n+  })\n+  // Must NOT be wrapped in a single grey color\n+  t.assert.strictEqual(str.startsWith('\\^[[90m{'), false)\n+  // Must contain redBright string key\n+  t.assert.match(str, /\\^[\\[91m\"foo\"\\^[\\[39m/)\n+  // Must contain greenBright string value\n+  t.assert.match(str, /\\^[\\[92m\"bar\"\\^[\\[39m/)\n+  // Must contain yellow number literal\n+  t.assert.match(str, /\\^[\\[33m42\\^[\\[39m/)\n+  // Must contain cyan boolean literal\n+  t.assert.match(str, /\\^[\\[36mtrue\\^[\\[39m/)\n+  // Must contain white null literal\n+  t.assert.match(str, /\\^[\\[37mnull\\^[\\[39m/)\n+  // Stripping ANSI should yield valid single-line JSON\n+  t.assert.strictEqual(str.replace(/\\^[\\[\\d+m/g, ''), '{\"foo\":\"bar\",\"num\":42,\"bool\":true,\"nil\":null}\\n')\n+})\n+\n+test('syntax highlights nested objects and arrays in singleLine mode', t => {\n+  const colorizer = colors(true)\n+  const str = prettifyObject({\n+    log: { nested: { arr: [1, 'two', { three: true }] } },\n+    context: {\n+      ...context,\n+      singleLine: true,\n+      objectColorizer: colorizer,\n+      colorizer\n+    }\n+  })\n+  // Inner array brackets\n+  t.assert.match(str, /\\^[\\[94m\\[\\^[\\[39m/)\n+  // Inner number in array\n+  t.assert.match(str, /\\^[\\[33m1\\^[\\[39m/)\n+  // Inner string in array\n+  t.assert.match(str, /\\^[\\[92m\"two\"\\^[\\[39m/)\n+  // Inner nested key\n+  t.assert.match(str, /\\^[\\[91m\"three\"\\^[\\[39m/)\n+  // Inner boolean\n+  t.assert.match(str, /\\^[\\[36mtrue\\^[\\[39m/)\n+  // Stripped ANSI matches clean JSON\n+  t.assert.strictEqual(str.replace(/\\^[\\[\\d+m/g, ''), '{\"nested\":{\"arr\":[1,\"two\",{\"three\":true}]}}\\n')\n+})\n+\n+test('handles escaped quotes, backslashes, trailing backslashes, and Unicode in singleLine mode', t => {\n+  const colorizer = colors(true)\n+  const str = prettifyObject({\n+    log: {\n+      quote: 'hello \"world\"',\n+      trailing: 'test\\\\',\n+      both: 'a\\\\b \"c\" \\n d',\n+      unicode: '\u65e5\u672c\u8a9e \ud83d\ude80'\n+    },\n+    context: {\n+      ...context,\n+      singleLine: true,\n+      objectColorizer: colorizer,\n+      colorizer\n+    }\n+  })\n+  // Must remain valid and untruncated\n+  t.assert.match(str, /\"hello \\\\\"world\\\\\"\"/)\n+  t.assert.match(str, /\"test\\\\\"/)\n+  t.assert.match(str, /\"\u65e5\u672c\u8a9e \ud83d\ude80\"/)\n+  // Stripped ANSI matches clean single line\n+  const stripped = str.replace(/\\^[\\[\\d+m/g, '')\n+  t.assert.strictEqual(\n+    stripped,\n+    '{\"quote\":\"hello \\\\\"world\\\\\"\",\"trailing\":\"test\\\\\",\"both\":\"a\\\\b \\\\\"c\\\\\" \\\\n d\",\"unicode\":\"\u65e5\u672c\u8a9e \ud83d\ude80\"}\\n'\n+  )\n+})\n+\n+test('renders empty objects and arrays in singleLine mode without crashing', t => {\n+  const colorizer = colors(true)\n+  const str = prettifyObject({\n+    log: { emptyObj: {}, emptyArr: [] },\n+    context: {\n+      ...context,\n+      singleLine: true,\n+      objectColorizer: colorizer,\n+      colorizer\n+    }\n+  })\n+  t.assert.match(str, /\\^[\\[92m\\{\\^[\\[39m\\^[\\[92m\\}\\^[\\[39m/)\n+  t.assert.match(str, /\\^[\\[94m\\[\\^[\\[39m\\^[\\[94m\\]\\^[\\[39m/)\n+  t.assert.strictEqual(str.replace(/\\^[\\[\\d+m/g, ''), '{\"emptyObj\":{},\"emptyArr\":[]}\\n')\n+})\n+\n+test('handles circular references safely in singleLine mode', t => {\n+  const colorizer = colors(true)\n+  const circular = { a: 1 }\n+  circular.self = circular\n+  const str = prettifyObject({\n+    log: circular,\n+    context: {\n+      ...context,\n+      singleLine: true,\n+      objectColorizer: colorizer,\n+      colorizer\n+    }\n+  })\n+  t.assert.match(str, /\"\\[Circular\\]\"/)\n+  t.assert.strictEqual(str.replace(/\\^[\\[\\d+m/g, ''), '{\"a\":1,\"self\":{\"a\":1,\"self\":\"[Circular]\"}}\\n')\n+})\n+\n+test('produces zero ANSI escape codes when colorize is false in singleLine mode', t => {\n+  const plainColorizer = colors(false)\n+  const str = prettifyObject({\n+    log: { foo: 'bar', num: 42, bool: true, nil: null, nested: { a: [1] } },\n+    context: {\n+      ...context,\n+      singleLine: true,\n+      objectColorizer: plainColorizer,\n+      colorizer: plainColorizer\n+    }\n+  })\n+  // Zero ANSI escape codes\n+  t.assert.strictEqual(/\\^[\\[\\d+m/.test(str), false)\n+  t.assert.strictEqual(str, '{\"foo\":\"bar\",\"num\":42,\"bool\":true,\"nil\":null,\"nested\":{\"a\":[1]}}\\n')\n+})\n+\n+test('produces zero ANSI escape codes in object when colorizeObjects is false in singleLine mode', t => {\n+  const activeColorizer = colors(true)\n+  const objectColorizer = colors(false, [], false)\n+  const str = prettifyObject({\n+    log: { foo: 'bar', num: 42, bool: true, nil: null },\n+    context: {\n+      ...context,\n+      singleLine: true,\n+      objectColorizer,\n+      colorizer: activeColorizer\n+    }\n+  })\n+  // Zero ANSI escape codes in object payload\n+  t.assert.strictEqual(/\\^[\\[\\d+m/.test(str), false)\n+  t.assert.strictEqual(str, '{\"foo\":\"bar\",\"num\":42,\"bool\":true,\"nil\":null}\\n')\n+})\n+\n+test('preserves customPrettifiers in singleLine mode', t => {\n+  const colorizer = colors(true)\n+  const str = prettifyObject({\n+    log: { foo: 'hello', bar: 'world' },\n+    context: {\n+      ...context,\n+      singleLine: true,\n+      objectColorizer: colorizer,\n+      colorizer,\n+      customPrettifiers: {\n+        foo: val => val.toUpperCase()\n+      }\n+    }\n+  })\n+  t.assert.match(str, /\"HELLO\"/)\n+  t.assert.strictEqual(str.replace(/\\^[\\[\\d+m/g, ''), '{\"foo\":\"HELLO\",\"bar\":\"world\"}\\n')\n+})"
+  },
+  {
+    "sha": "81876506cb42186dc342f0c590fa180a9d961931",
+    "filename": "test/boolean-options.test.js",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 1,
+    "changes": 2,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/bb7536a6684e990105afda6ca80ad823b9fd45cc/test%2Fboolean-options.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/bb7536a6684e990105afda6ca80ad823b9fd45cc/test%2Fboolean-options.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/test%2Fboolean-options.test.js?ref=bb7536a6684e990105afda6ca80ad823b9fd45cc",
+    "patch": "@@ -154,7 +154,7 @@ describe('boolean options string conversion', () => {\n                 if (value === 'true') {\n                   t.assert.strictEqual(\n                     formatted,\n-                    `[${formattedEpoch}] \\^[[32mINFO\\^[[39m (${pid}): \\^[[36mfoo\\^[[39m \\^[[90m{\"foo\":\"bar\"}\\^[[39m\\n`\n+                    `[${formattedEpoch}] \\^[[32mINFO\\^[[39m (${pid}): \\^[[36mfoo\\^[[39m \\^[[92m{\\^[[39m\\^[[91m\"foo\"\\^[[39m\\^[[90m:\\^[[39m\\^[[92m\"bar\"\\^[[39m\\^[[92m}\\^[[39m\\n`\n                   )\n                 } else {\n                   t.assert.strictEqual("
+  },
+  {
+    "sha": "78565feef1b2d2001190e2df9a4350ea2059b47e",
+    "filename": "test/types/pino-pretty.tst.ts",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 0,
+    "changes": 1,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/bb7536a6684e990105afda6ca80ad823b9fd45cc/test%2Ftypes%2Fpino-pretty.tst.ts",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/bb7536a6684e990105afda6ca80ad823b9fd45cc/test%2Ftypes%2Fpino-pretty.tst.ts",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/test%2Ftypes%2Fpino-pretty.tst.ts?ref=bb7536a6684e990105afda6ca80ad823b9fd45cc",
+    "patch": "@@ -58,6 +58,7 @@ test('colorizerFactory', () => {\n   const input: string | number = ''\n   expect(colorizer.message(input)).type.toBe<string>()\n   expect(colorizer.greyMessage(input)).type.toBe<string>()\n+  expect(colorizer.json(input)).type.toBe<string>()\n \n   let level: string | number | undefined\n   expect(colorizer(level)).type.toBe<string>()"
+  }
+]

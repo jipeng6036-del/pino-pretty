@@ -1,0 +1,69 @@
+[
+  {
+    "name": "linux-base-benchmark-default",
+    "command": [
+      "/usr/local/bin/node",
+      "benchmark.js"
+    ],
+    "cwd": "/ram/base",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:06:11.709Z",
+    "finishedAt": "2026-10-27T10:06:20.900Z"
+  },
+  {
+    "name": "linux-candidate-benchmark-default",
+    "command": [
+      "/usr/local/bin/node",
+      "benchmark.js"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:06:20.903Z",
+    "finishedAt": "2026-10-27T10:06:30.356Z"
+  },
+  {
+    "name": "linux-candidate-pack",
+    "command": [
+      "npm",
+      "pack",
+      "--json",
+      "--ignore-scripts"
+    ],
+    "cwd": "/ram/candidate",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:06:30.360Z",
+    "finishedAt": "2026-10-27T10:06:31.110Z"
+  },
+  {
+    "name": "linux-packed-install",
+    "command": [
+      "npm",
+      "i",
+      "--ignore-scripts",
+      "/ram/candidate/pino-pretty-13.2.0.tgz",
+      "pino@^10.0.0"
+    ],
+    "cwd": "/ram/consumer",
+    "code": 0,
+    "signal": null,
+    "startedAt": "2026-10-27T10:07:48.804Z",
+    "finishedAt": "2026-10-27T10:07:56.590Z"
+  },
+  {
+    "name": "linux-packed-runtime",
+    "command": [
+      "/usr/local/bin/node",
+      "/evidence/packed-probe.cjs",
+      "/ram/consumer",
+      "/evidence/linux-packed-runtime"
+    ],
+    "cwd": "/ram/consumer",
+    "code": 1,
+    "signal": null,
+    "startedAt": "2026-10-27T10:07:56.602Z",
+    "finishedAt": "2026-10-27T10:07:56.721Z"
+  }
+]

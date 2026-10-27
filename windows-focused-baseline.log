@@ -1,0 +1,109 @@
+▶ hideObject error handling
+  ✖ hideObject preserves serialized errors under err (5.7469ms)
+  ✖ hideObject preserves serialized errors under fault (0.6044ms)
+  ✖ hideObject preserves custom error prettifiers without running hidden prettifiers (0.6243ms)
+  ✔ hideObject respects error filtering {"ignore":"err"} (0.1762ms)
+  ✔ hideObject respects error filtering {"include":"level,msg"} (0.2193ms)
+  ✔ hideObject respects error filtering {"errorLikeObjectKeys":[]} (0.1402ms)
+  ✔ hideObject leaves single-line output unchanged when no error is rendered (0.2315ms)
+  ✔ hideObject retains explicit legacy error properties and nested prettifiers (0.4775ms)
+  ✖ hideObject uses the custom errorKey supplied by Pino config (1.8809ms)
+✖ hideObject error handling (10.7311ms)
+ℹ tests 9
+ℹ suites 1
+ℹ pass 5
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 665.4262
+
+✖ failing tests:
+
+test at test\error-objects.test.js:457:5
+✖ hideObject preserves serialized errors under err (5.7469ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    t.assert.ok(formatted.includes(`${errorKey}: {`))
+  
+      at TestContext.<anonymous> (F:\Github-PR\inspection\discovery-20261027-js-pino-pretty\test\error-objects.test.js:470:16)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at node:internal/test_runner/test:1531:71
+      at node:internal/per_context/primordials:466:82
+      at new Promise (<anonymous>)
+      at new SafePromise (node:internal/per_context/primordials:435:3)
+      at node:internal/per_context/primordials:466:9
+      at Array.map (<anonymous>) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test\error-objects.test.js:457:5
+✖ hideObject preserves serialized errors under fault (0.6044ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    t.assert.ok(formatted.includes(`${errorKey}: {`))
+  
+      at TestContext.<anonymous> (F:\Github-PR\inspection\discovery-20261027-js-pino-pretty\test\error-objects.test.js:470:16)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Promise.all (index 0)
+      at async Suite.run (node:internal/test_runner/test:1533:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test\error-objects.test.js:476:3
+✖ hideObject preserves custom error prettifiers without running hidden prettifiers (0.6243ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'ERROR: request failed\n'
+  - 'ERROR: request failed\n    err: visible failure for request-1\n'
+  
+      at assert.<computed> [as strictEqual] (node:internal/test_runner/test:315:18)
+      at TestContext.<anonymous> (F:\Github-PR\inspection\discovery-20261027-js-pino-pretty\test\error-objects.test.js:494:14)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'ERROR: request failed\n',
+    expected: 'ERROR: request failed\n    err: visible failure for request-1\n',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test\error-objects.test.js:522:3
+✖ hideObject uses the custom errorKey supplied by Pino config (1.8809ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    t.assert.ok(formatted.includes('fault: {'))
+  
+      at TestContext.<anonymous> (F:\Github-PR\inspection\discovery-20261027-js-pino-pretty\test\error-objects.test.js:533:14)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

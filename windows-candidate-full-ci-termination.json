@@ -1,0 +1,6 @@
+{
+  "ProcessId": 11400,
+  "ParentProcessId": 35828,
+  "CreationDate": "2026-10-27T03:03:23.945049-07:00",
+  "CommandLine": "E:/Nodejs/node.EXE C:/Users/lyz/AppData/Roaming/npm/node_modules/npm/bin/npm-cli.js run ci"
+}

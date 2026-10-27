@@ -1,0 +1,162 @@
+[
+  {
+    "number": 552,
+    "title": "feat!: change customPrettifiers to a Map",
+    "head": "250d0d91b362fd0630252cd0105c869a61b8a448",
+    "paths": [
+      "Readme.md",
+      "index.d.ts",
+      "index.js",
+      "lib/utils/index.js",
+      "test/basic.test.js",
+      "test/types/pino-pretty.test-d.ts"
+    ]
+  },
+  {
+    "number": 611,
+    "title": "Feature/colorize message",
+    "head": "99b1566c9961a25e586f7e9ae57fdc8438203d6e",
+    "paths": [
+      "Readme.md",
+      "bin.js",
+      "index.d.ts",
+      "index.js",
+      "lib/colors.js",
+      "lib/utils/parse-factory-options.js",
+      "lib/utils/prettify-message.js",
+      "lib/utils/prettify-message.test.js",
+      "test/cli.test.js",
+      "test/types/pino-pretty.test-d.ts"
+    ]
+  },
+  {
+    "number": 613,
+    "title": "switch to @pinojs/dateformat",
+    "head": "c95d230199f0b5ed1945701487d9d69a1a50f22d",
+    "paths": [
+      "lib/utils/format-time.js",
+      "package.json",
+      "test/basic.test.js"
+    ]
+  },
+  {
+    "number": 614,
+    "title": "fix: modify to run with @pinojs/dateformat",
+    "head": "881e2f23878e0b93d639d516c026233e11b08e58",
+    "paths": [
+      "lib/utils/format-time.js",
+      "package.json",
+      "test/basic.test.js"
+    ]
+  },
+  {
+    "number": 663,
+    "title": "feat: add sortKeys option for sorting object keys in output",
+    "head": "a9e33f6871a8e8d30bcb0690921138a63b78f274",
+    "paths": [
+      "index.js",
+      "lib/utils/parse-factory-options.js",
+      "lib/utils/prettify-object.js",
+      "test/basic.test.js"
+    ]
+  },
+  {
+    "number": 665,
+    "title": "feat(cli): expose sonic-boom options",
+    "head": "2b74ee8f32d51807a774aca055259e6b2582cdf6",
+    "paths": [
+      "bin.js",
+      "help/help.txt",
+      "index.js"
+    ]
+  },
+  {
+    "number": 672,
+    "title": "feat: support CLI options via environment variables",
+    "head": "f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3",
+    "paths": [
+      "Readme.md",
+      "bin.js",
+      "help/help.txt",
+      "test/cli-env.test.js"
+    ]
+  },
+  {
+    "number": 676,
+    "title": "fix: substitute conditional messageFormat values literally",
+    "head": "f033c3802940087fbc4b8823ef419a2f0694e77f",
+    "paths": [
+      "lib/utils/interpret-conditionals.js",
+      "lib/utils/interpret-conditionals.test.js"
+    ]
+  },
+  {
+    "number": 678,
+    "title": "fix: support nested timestampKey and messageKey paths",
+    "head": "8810ec7aa9c8d9141f975df2a247d7c23afe6584",
+    "paths": [
+      "Readme.md",
+      "lib/pretty.js",
+      "lib/utils/get-log-property-value.js",
+      "lib/utils/get-log-property-value.test.js",
+      "lib/utils/get-property-value.js",
+      "lib/utils/get-property-value.test.js",
+      "lib/utils/index.js",
+      "lib/utils/prettify-message.js",
+      "lib/utils/prettify-message.test.js",
+      "lib/utils/prettify-time.js",
+      "lib/utils/prettify-time.test.js",
+      "test/basic.test.js"
+    ]
+  },
+  {
+    "number": 679,
+    "title": "fix: preserve large integer precision in pretty output",
+    "head": "0aff48e30f23cbaa103a0e5953315ece8f282db2",
+    "paths": [
+      "lib/pretty.js",
+      "lib/utils/create-date.js",
+      "lib/utils/create-date.test.js",
+      "lib/utils/prettify-error.test.js",
+      "lib/utils/prettify-object.js",
+      "lib/utils/prettify-object.test.js",
+      "package.json",
+      "test/bigint.test.js"
+    ]
+  },
+  {
+    "number": 681,
+    "title": "docs: document sync CLI option",
+    "head": "d2fd8e960ee7c5256b5b65eb3ea50711049e6681",
+    "paths": [
+      "Readme.md",
+      "help/help.txt"
+    ]
+  },
+  {
+    "number": 685,
+    "title": "Fix/preserve literal backslashes",
+    "head": "4f632e4b8049c2c46da733fa63009322b9cbc619",
+    "paths": [
+      "lib/utils/split-property-key.js",
+      "lib/utils/split-property-key.test.js"
+    ]
+  },
+  {
+    "number": 686,
+    "title": "feat: colorize JSON output in single-line mode (#229)",
+    "head": "bb7536a6684e990105afda6ca80ad823b9fd45cc",
+    "paths": [
+      "index.d.ts",
+      "lib/colors.js",
+      "lib/colors.test.js",
+      "lib/utils/colorize-json.js",
+      "lib/utils/colorize-json.test.js",
+      "lib/utils/index.js",
+      "lib/utils/prettify-object.js",
+      "lib/utils/prettify-object.test.js",
+      "test/boolean-options.test.js",
+      "test/types/pino-pretty.tst.ts"
+    ]
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "command": "npm i --ignore-scripts",
+    "code": 0,
+    "seconds": 1355.2
+  },
+  {
+    "command": "npm i --no-save pino@^10.0.0",
+    "code": 0,
+    "seconds": 7.65
+  }
+]

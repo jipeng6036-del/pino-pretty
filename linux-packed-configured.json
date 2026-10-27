@@ -1,0 +1,44 @@
+{
+  "node": "v24.14.0",
+  "pino": "10.4.0",
+  "sourceSha256": "a91c41d47be5edfc3da04eb5a9a387387164c58b63140fa24c1f8e62cb450e79",
+  "cases": [
+    {
+      "name": "installed-factory",
+      "pass": true
+    },
+    {
+      "name": "installed-cli",
+      "code": 0,
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "name": "installed-worker-transport-configured-custom-error-key",
+      "pass": true
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "linux-packed-configured-input.ndjson",
+      "bytes": 747,
+      "sha256": "52dfc7d377643302e8252d8a97c60b5b8775fcdc12c5097379f88f8eb08abdee"
+    },
+    {
+      "file": "linux-packed-configured-factory.log",
+      "bytes": 812,
+      "sha256": "af9cf265a8c23871e72235290e57ca3d09870bb9d510fdbe18f96a32dcab5010"
+    },
+    {
+      "file": "linux-packed-configured-cli.log",
+      "bytes": 812,
+      "sha256": "af9cf265a8c23871e72235290e57ca3d09870bb9d510fdbe18f96a32dcab5010"
+    },
+    {
+      "file": "linux-packed-configured-transport.log",
+      "bytes": 814,
+      "sha256": "1d2c042065c1d3f4440ff75cc654fe85ebdd8a45e01966c59f3d66789c2eedea"
+    }
+  ],
+  "passed": 3
+}

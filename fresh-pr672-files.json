@@ -1,0 +1,50 @@
+[
+  {
+    "sha": "e9c4686042b9d0dbe45e07d84646783518a680f9",
+    "filename": "Readme.md",
+    "status": "modified",
+    "additions": 13,
+    "deletions": 0,
+    "changes": 13,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3/Readme.md",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3/Readme.md",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/Readme.md?ref=f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3",
+    "patch": "@@ -101,6 +101,19 @@ node app.js | pino-pretty\n - `--singleLine` (`-S`): Print each log message on a single line (errors will still be multi-line)\n - `--config`: Specify a path to a config file containing the pino-pretty options.  pino-pretty will attempt to read from a `.pino-prettyrc` in your current directory (`process.cwd`) if not specified\n \n+<a id=\"clienv\"></a>\n+### CLI Environment Variables\n+\n+The same options can be set via environment variables using `SCREAMING_SNAKE_CASE`\n+names that match the long option names. Boolean options accept values such as\n+`true` / `false` (not only `1` / `0`):\n+\n+```sh\n+node app.js | SINGLE_LINE=true COLORIZE=true pino-pretty\n+```\n+\n+CLI arguments override config files, which override environment variables.\n+\n <a id=\"integration\"></a>\n ## Programmatic Integration\n "
+  },
+  {
+    "sha": "32bb0f16d50f8fdb3f93480feb6745c01e697cd8",
+    "filename": "bin.js",
+    "status": "modified",
+    "additions": 40,
+    "deletions": 3,
+    "changes": 43,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3/bin.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3/bin.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/bin.js?ref=f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3",
+    "patch": "@@ -33,6 +33,32 @@ const joycon = new JoyCon({\n   stopDir: path.dirname(process.cwd())\n })\n \n+// Map SCREAMING_SNAKE env vars to camelCase CLI option names.\n+// Example: SINGLE_LINE=true COLORIZE=true pino-pretty\n+const ENV_OPTION_MAP = {\n+  COLORIZE: 'colorize',\n+  COLORIZE_OBJECTS: 'colorizeObjects',\n+  CONFIG: 'config',\n+  CRLF: 'crlf',\n+  CUSTOM_COLORS: 'customColors',\n+  CUSTOM_LEVELS: 'customLevels',\n+  ERROR_LIKE_OBJECT_KEYS: 'errorLikeObjectKeys',\n+  ERROR_PROPS: 'errorProps',\n+  HIDE_OBJECT: 'hideObject',\n+  IGNORE: 'ignore',\n+  INCLUDE: 'include',\n+  LEVEL_FIRST: 'levelFirst',\n+  LEVEL_KEY: 'levelKey',\n+  LEVEL_LABEL: 'levelLabel',\n+  MESSAGE_FORMAT: 'messageFormat',\n+  MESSAGE_KEY: 'messageKey',\n+  MINIMUM_LEVEL: 'minimumLevel',\n+  SINGLE_LINE: 'singleLine',\n+  TIMESTAMP_KEY: 'timestampKey',\n+  TRANSLATE_TIME: 'translateTime',\n+  USE_ONLY_CUSTOM_PROPS: 'useOnlyCustomProps'\n+}\n+\n const cmd = minimist(process.argv.slice(2))\n \n if (cmd.h || cmd.help) {\n@@ -72,9 +98,10 @@ if (cmd.h || cmd.help) {\n \n   // Remove default values\n   opts = filter(opts, value => value !== DEFAULT_VALUE)\n-  const config = loadConfig(opts.config)\n-  // Override config with cli options\n-  opts = Object.assign({}, config, opts)\n+  const envOpts = loadEnvOptions()\n+  const config = loadConfig(opts.config || envOpts.config)\n+  // Precedence: CLI > config file > environment variables\n+  opts = Object.assign({}, envOpts, config, opts)\n   // set defaults\n   opts.errorLikeObjectKeys = opts.errorLikeObjectKeys || 'err,error'\n   opts.errorProps = opts.errorProps || ''\n@@ -88,6 +115,16 @@ if (cmd.h || cmd.help) {\n     process.once('SIGINT', function noOp () {})\n   }\n \n+  function loadEnvOptions () {\n+    const result = {}\n+    for (const [envName, optionName] of Object.entries(ENV_OPTION_MAP)) {\n+      if (Object.prototype.hasOwnProperty.call(process.env, envName)) {\n+        result[optionName] = process.env[envName]\n+      }\n+    }\n+    return result\n+  }\n+\n   function loadConfig (configPath) {\n     const files = configPath ? [path.resolve(configPath)] : undefined\n     const result = joycon.loadSync(files)"
+  },
+  {
+    "sha": "195998e677395a7137cd49dd447904725ac96158",
+    "filename": "help/help.txt",
+    "status": "modified",
+    "additions": 3,
+    "deletions": 0,
+    "changes": 3,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3/help%2Fhelp.txt",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3/help%2Fhelp.txt",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/help%2Fhelp.txt?ref=f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3",
+    "patch": "@@ -65,4 +65,7 @@\n     - Loads options from a config file\n     $ cat log | pino-pretty --config=/path/to/config.json\n \n+    - Set options via environment variables (SCREAMING_SNAKE_CASE of the long option name)\n+    $ cat log | SINGLE_LINE=true COLORIZE=true pino-pretty\n+\n   "
+  },
+  {
+    "sha": "209426e9545e60de485fdff05e4d12355c746b2d",
+    "filename": "test/cli-env.test.js",
+    "status": "added",
+    "additions": 80,
+    "deletions": 0,
+    "changes": 80,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3/test%2Fcli-env.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3/test%2Fcli-env.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/test%2Fcli-env.test.js?ref=f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3",
+    "patch": "@@ -0,0 +1,80 @@\n+'use strict'\n+\n+process.env.TZ = 'UTC'\n+\n+const path = require('node:path')\n+const { spawn } = require('node:child_process')\n+const { describe, test } = require('node:test')\n+const { once } = require('./helper')\n+\n+const bin = require.resolve(path.join(__dirname, '..', 'bin.js'))\n+const logLine = '{\"level\":30,\"time\":1522431328992,\"msg\":\"hello world\",\"pid\":42,\"hostname\":\"foo\"}\\n'\n+const baseEnv = { TERM: 'dumb', TZ: 'UTC' }\n+const formattedEpoch = '17:35:28.992'\n+\n+describe('cli environment variables', () => {\n+  test('SINGLE_LINE=true enables single-line object output', async (t) => {\n+    t.plan(1)\n+    const logLineWithExtra = JSON.stringify(Object.assign(JSON.parse(logLine), {\n+      extra: {\n+        foo: 'bar',\n+        number: 42\n+      }\n+    })) + '\\n'\n+\n+    const child = spawn(process.argv[0], [bin], {\n+      env: { ...baseEnv, SINGLE_LINE: 'true' }\n+    })\n+    child.on('error', t.assert.fail)\n+    const endPromise = once(child.stdout, 'data', (data) => {\n+      t.assert.strictEqual(data.toString(), `[${formattedEpoch}] INFO (42): hello world {\"extra\":{\"foo\":\"bar\",\"number\":42}}\\n`)\n+    })\n+    child.stdin.end(logLineWithExtra)\n+    await endPromise\n+    t.after(() => child.kill())\n+  })\n+\n+  test('LEVEL_FIRST=true flips epoch and level', async (t) => {\n+    t.plan(1)\n+    const child = spawn(process.argv[0], [bin], {\n+      env: { ...baseEnv, LEVEL_FIRST: 'true' }\n+    })\n+    child.on('error', t.assert.fail)\n+    const endPromise = once(child.stdout, 'data', (data) => {\n+      t.assert.strictEqual(data.toString(), `INFO [${formattedEpoch}] (42): hello world\\n`)\n+    })\n+    child.stdin.end(logLine)\n+    await endPromise\n+    t.after(() => child.kill())\n+  })\n+\n+  test('CLI -i overrides IGNORE environment variable', async (t) => {\n+    t.plan(1)\n+    const child = spawn(process.argv[0], [bin, '-i', 'time'], {\n+      env: { ...baseEnv, IGNORE: 'pid,hostname' }\n+    })\n+    child.on('error', t.assert.fail)\n+    const endPromise = once(child.stdout, 'data', (data) => {\n+      // CLI ignore=time wins over env ignore=pid,hostname, so pid/hostname remain.\n+      t.assert.strictEqual(data.toString(), 'INFO (42 on foo): hello world\\n')\n+    })\n+    child.stdin.end(logLine)\n+    await endPromise\n+    t.after(() => child.kill())\n+  })\n+\n+  test('COLORIZE=true is accepted as a boolean env value', async (t) => {\n+    t.plan(1)\n+    const child = spawn(process.argv[0], [bin], {\n+      env: { ...baseEnv, COLORIZE: 'true', TERM: 'xterm-256color' }\n+    })\n+    child.on('error', t.assert.fail)\n+    const endPromise = once(child.stdout, 'data', (data) => {\n+      const output = data.toString()\n+      t.assert.ok(output.includes('\\^[['), 'expected ANSI color sequences in output')\n+    })\n+    child.stdin.end(logLine)\n+    await endPromise\n+    t.after(() => child.kill())\n+  })\n+})"
+  }
+]

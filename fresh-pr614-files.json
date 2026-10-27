@@ -1,0 +1,38 @@
+[
+  {
+    "sha": "5b2a17866dc8b9da9ca1314c8612b0083888b5a3",
+    "filename": "lib/utils/format-time.js",
+    "status": "modified",
+    "additions": 63,
+    "deletions": 10,
+    "changes": 73,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/881e2f23878e0b93d639d516c026233e11b08e58/lib%2Futils%2Fformat-time.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/881e2f23878e0b93d639d516c026233e11b08e58/lib%2Futils%2Fformat-time.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fformat-time.js?ref=881e2f23878e0b93d639d516c026233e11b08e58",
+    "patch": "@@ -7,10 +7,61 @@ const {\n   DATE_FORMAT_SIMPLE\n } = require('../constants')\n \n-const dateformat = require('@pinojs/dateformat')\n+const { dateformat, DateFormatter } = require('@pinojs/dateformat')\n const createDate = require('./create-date')\n const isValidDate = require('./is-valid-date')\n \n+const simpleDateFormatter = new DateFormatter(DATE_FORMAT_SIMPLE)\n+const standardDateFormatter = new DateFormatter(DATE_FORMAT)\n+\n+/**\n+ * Checks if the given format string is a UTC format.\n+ *\n+ * @param {string} mask The format string to check.\n+ * @returns {mask is `UTC:${string}`} `true` if the format string is a UTC format, otherwise `false`.\n+ */\n+function isUTC (mask) {\n+  return (\n+    (mask.charCodeAt(0) | 0x20 === 0x75) && // 'u'\n+    (mask.charCodeAt(1) | 0x20 === 0x74) && // 't'\n+    (mask.charCodeAt(2) | 0x20 === 0x63) // 'c'\n+  )\n+}\n+\n+/**\n+ * Checks if the given format string is a SYS format.\n+ *\n+ * @param {string} mask The format string to check.\n+ * @returns {mask is `SYS:${string}`} `true` if the format string is a SYS format, otherwise `false`.\n+ */\n+function isSYS (mask) {\n+  return (\n+    (mask.charCodeAt(0) | 0x20 === 0x73) && // 's'\n+    (mask.charCodeAt(1) | 0x20 === 0x79) && // 'y'\n+    (mask.charCodeAt(2) | 0x20 === 0x73) // 's'\n+  )\n+}\n+\n+/**\n+ * Checks if the given format string is SYS:STANDARD.\n+ *\n+ * @param {`SYS:${string}`} mask The format string to check.\n+ * @returns {mask is 'SYS:STANDARD'} `true` if the format string is SYS:STANDARD, otherwise `false`.\n+ */\n+function isSysStandard (mask) {\n+  return (\n+    mask.length === 12 &&\n+    (mask.charCodeAt(4) | 0x20 === 0x73) && // 's'\n+    (mask.charCodeAt(5) | 0x20 === 0x74) && // 't'\n+    (mask.charCodeAt(6) | 0x20 === 0x61) && // 'a'\n+    (mask.charCodeAt(7) | 0x20 === 0x6e) && // 'n'\n+    (mask.charCodeAt(8) | 0x20 === 0x64) && // 'd'\n+    (mask.charCodeAt(9) | 0x20 === 0x61) && // 'a'\n+    (mask.charCodeAt(10) | 0x20 === 0x72) && // 'r'\n+    (mask.charCodeAt(11) | 0x20 === 0x64) // 'd\n+  )\n+}\n+\n /**\n  * Converts a given `epoch` to a desired display format.\n  *\n@@ -46,21 +97,23 @@ function formatTime (epoch, translateTime = false) {\n   }\n \n   if (translateTime === true) {\n-    return dateformat(instant, DATE_FORMAT_SIMPLE)\n+    return simpleDateFormatter.format(instant)\n   }\n \n-  const upperFormat = translateTime.toUpperCase()\n-  if (upperFormat === 'SYS:STANDARD') {\n-    return dateformat(instant, DATE_FORMAT)\n+  if (translateTime[3] !== ':') {\n+    return dateformat(instant, translateTime)\n   }\n \n-  const prefix = upperFormat.substr(0, 4)\n-  if (prefix === 'SYS:' || prefix === 'UTC:') {\n-    if (prefix === 'UTC:') {\n-      return dateformat(instant, translateTime)\n+  if (isSYS(translateTime)) {\n+    if (isSysStandard(translateTime)) {\n+      return standardDateFormatter.format(instant)\n     }\n     return dateformat(instant, translateTime.slice(4))\n   }\n \n-  return dateformat(instant, `UTC:${translateTime}`)\n+  if (isUTC(translateTime)) {\n+    return dateformat(instant, translateTime, true)\n+  }\n+\n+  return dateformat(instant, translateTime)\n }"
+  },
+  {
+    "sha": "561dc62338585d31f49b557e6dbf4ad5a7e1b311",
+    "filename": "package.json",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 1,
+    "changes": 2,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/881e2f23878e0b93d639d516c026233e11b08e58/package.json",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/881e2f23878e0b93d639d516c026233e11b08e58/package.json",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/package.json?ref=881e2f23878e0b93d639d516c026233e11b08e58",
+    "patch": "@@ -34,7 +34,7 @@\n     \"test\"\n   ],\n   \"dependencies\": {\n-    \"@pinojs/dateformat\": \"^1.0.0-rc.1\",\n+    \"@pinojs/dateformat\": \"^1.0.0-rc.2\",\n     \"colorette\": \"^2.0.7\",\n     \"fast-copy\": \"^3.0.2\",\n     \"fast-safe-stringify\": \"^2.1.1\","
+  },
+  {
+    "sha": "aaf573a4e8f60abfcc4eca78bbedf2069bc6334b",
+    "filename": "test/basic.test.js",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 1,
+    "changes": 2,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/881e2f23878e0b93d639d516c026233e11b08e58/test%2Fbasic.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/881e2f23878e0b93d639d516c026233e11b08e58/test%2Fbasic.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/test%2Fbasic.test.js?ref=881e2f23878e0b93d639d516c026233e11b08e58",
+    "patch": "@@ -7,7 +7,7 @@ const os = require('node:os')\n const { describe, test, beforeEach, afterEach } = require('node:test')\n const match = require('@jsumners/assert-match')\n const pino = require('pino')\n-const dateformat = require('@pinojs/dateformat')\n+const { dateformat } = require('@pinojs/dateformat')\n const rimraf = require('rimraf')\n const { join } = require('node:path')\n const fs = require('node:fs')"
+  }
+]

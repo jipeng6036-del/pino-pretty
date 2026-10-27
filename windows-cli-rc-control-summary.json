@@ -1,0 +1,36 @@
+[
+  {
+    "kind": "baseline",
+    "command": [
+      "E:/Nodejs/node.EXE",
+      "--test",
+      "--test-timeout=30000",
+      "--test-name-pattern=loads and applies default config file: pino-pretty.config.js",
+      "test/cli-rc.test.js"
+    ],
+    "cwd": "F:\\Github-PR\\inspection\\discovery-20261027-js-pino-pretty-baseline",
+    "code": 0,
+    "terminatedAfter45Seconds": false,
+    "sourceSha256": "2d946610a9ff25f7ee38f9b798d0399ed8508629d2e167c509cdcd542e9496a9",
+    "testSha256": "37b8608d655f46d3755a9eb898d2ab196cb93b4b751c8d8ec7a899af2342471b",
+    "startedAt": "2026-10-27T10:06:53.691012+00:00",
+    "finishedAt": "2026-10-27T10:06:54.095097+00:00"
+  },
+  {
+    "kind": "candidate",
+    "command": [
+      "E:/Nodejs/node.EXE",
+      "--test",
+      "--test-timeout=30000",
+      "--test-name-pattern=loads and applies default config file: pino-pretty.config.js",
+      "test/cli-rc.test.js"
+    ],
+    "cwd": "F:\\Github-PR\\inspection\\discovery-20261027-js-pino-pretty",
+    "code": 0,
+    "terminatedAfter45Seconds": false,
+    "sourceSha256": "a91c41d47be5edfc3da04eb5a9a387387164c58b63140fa24c1f8e62cb450e79",
+    "testSha256": "37b8608d655f46d3755a9eb898d2ab196cb93b4b751c8d8ec7a899af2342471b",
+    "startedAt": "2026-10-27T10:06:54.095577+00:00",
+    "finishedAt": "2026-10-27T10:06:54.490224+00:00"
+  }
+]

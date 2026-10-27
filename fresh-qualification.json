@@ -1,0 +1,584 @@
+{
+  "data": {
+    "repository": {
+      "nameWithOwner": "pinojs/pino-pretty",
+      "isArchived": false,
+      "stargazerCount": 1709,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "10aba398031e27455ece28398b13e92678f6c249"
+        }
+      },
+      "issue": {
+        "number": 211,
+        "title": "hideObject isn't displaying errors",
+        "body": "When running pino-pretty with --hideObject, certain error log usages won't display the stack.\r\n\r\nfailing example:\r\n\r\n` logger.error({ err, msg: 'test fail' });`\r\n\r\n`[2021-07-27 20:36:01.671 +0000] ERROR (18750 on GB-UXS-TEST): unhandledRejection`\r\n\r\nThis just displays the error message (test fail in this case)\r\n\r\nworking example:\r\n\r\n`logger.error(err ? err : {}, 'test fail 2');`\r\n```\r\n[2021-07-27 20:36:01.671 +0000] ERROR (18750 on GB-UXS-TEST): unhandledRejection\r\n    Error: Resource not yet loaded!\r\n        at SomeResource (/Users/Wrig83592/projects/test/src/index.ts:20:25)\r\n        at Object.<anonymous> (/Users/Wrig83592/projects/test/src/index.ts:51:20)\r\n        at Module._compile (internal/modules/cjs/loader.js:1063:30)\r\n        at Module._compile (/Users/Wrig83592/projects/test/node_modules/source-map-support/source-map-support.js:547:25)\r\n        at Module.m._compile (/private/var/folders/tw/w31mt8qj14q3lyq1bqpf85bc0000gp/T/ts-node-dev-hook-10219982870510425.js:69:33)\r\n        at Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\r\n        at require.extensions..jsx.require.extensions..js (/private/var/folders/tw/w31mt8qj14q3lyq1bqpf85bc0000gp/T/ts-node-dev-hook-10219982870510425.js:114:20)\r\n        at require.extensions.<computed> (/private/var/folders/tw/w31mt8qj14q3lyq1bqpf85bc0000gp/T/ts-node-dev-hook-10219982870510425.js:71:20)\r\n        at Object.nodeDevHook [as .ts] (/Users/Wrig83592/projects/test/node_modules/ts-node-dev/lib/hook.js:63:13)\r\n        at Module.load (internal/modules/cjs/loader.js:928:32)\r\n```\r\n\r\nThis will display the message and stack.",
+        "state": "OPEN",
+        "createdAt": "2021-07-27T20:34:10Z",
+        "updatedAt": "2026-04-01T10:25:04Z",
+        "assignees": {
+          "nodes": []
+        },
+        "comments": {
+          "pageInfo": {
+            "hasNextPage": false
+          },
+          "nodes": [
+            {
+              "body": "It seems correct, that's what hideObject does. Why do you think it's a bug?",
+              "author": {
+                "login": "mcollina"
+              },
+              "createdAt": "2021-07-27T20:39:05Z",
+              "updatedAt": "2021-07-27T20:39:05Z"
+            },
+            {
+              "body": "From the docs \r\n\r\n'--hideObject (-H): Hide objects from output (but not error object)'",
+              "author": {
+                "login": "RichardWright"
+              },
+              "createdAt": "2021-07-27T20:49:01Z",
+              "updatedAt": "2021-07-27T20:49:01Z"
+            },
+            {
+              "body": "I also should clarify the difference between `logger.error(err, msg) `and `logger.error({ err, msg })`\r\n\r\nBeyond the obvious aspects. Don't they both log an error?",
+              "author": {
+                "login": "RichardWright"
+              },
+              "createdAt": "2021-07-27T20:50:12Z",
+              "updatedAt": "2021-07-27T20:50:12Z"
+            },
+            {
+              "body": "I've updated this with example stack traces",
+              "author": {
+                "login": "RichardWright"
+              },
+              "createdAt": "2021-07-27T20:56:42Z",
+              "updatedAt": "2021-07-27T20:56:42Z"
+            },
+            {
+              "body": "Please provide a minimal reproduction script.",
+              "author": {
+                "login": "jsumners"
+              },
+              "createdAt": "2021-07-27T21:20:59Z",
+              "updatedAt": "2021-07-27T21:20:59Z"
+            },
+            {
+              "body": "script here:\r\n\r\n```js\r\nimport pino from 'pino';\r\n\r\nconst logger = pino();\r\n\r\nfunction SomeResource() {\r\n  return Promise.reject(new Error('Resource not yet loaded!'));\r\n}\r\n\r\nprocess.on('unhandledRejection', (err) => {\r\n  logger.error({ err, msg: 'test fail1' });\r\n  logger.error(err ? err : {}, 'test fail2');\r\n});\r\n\r\nSomeResource();\r\n```",
+              "author": {
+                "login": "RichardWright"
+              },
+              "createdAt": "2021-07-28T17:15:12Z",
+              "updatedAt": "2021-07-28T17:17:42Z"
+            },
+            {
+              "body": "command to run it    \r\n\r\n`node pino-compare | pino-pretty --hideObject --t`",
+              "author": {
+                "login": "RichardWright"
+              },
+              "createdAt": "2021-07-29T08:42:38Z",
+              "updatedAt": "2021-07-29T08:42:38Z"
+            },
+            {
+              "body": "I noticed as well,\r\n\r\ni found that the problem is here\r\nhttps://github.com/pinojs/pino-pretty/blob/68f22d4548297dcb83b7d675dd56c5f2cd5df7ac/index.js#L189-L199\r\n\r\nit can be resolved with following code\r\n\r\n```js\r\nif (log.err && log.err.type === 'Error' && log.err.stack) { \r\n```\r\n\r\ntried to fix it in a fork but lot of test were failing unfortunately",
+              "author": {
+                "login": "nielswijers"
+              },
+              "createdAt": "2022-08-03T21:23:43Z",
+              "updatedAt": "2022-08-03T21:23:43Z"
+            },
+            {
+              "body": "experiencing this same issue",
+              "author": {
+                "login": "arvindell"
+              },
+              "createdAt": "2026-04-01T03:14:09Z",
+              "updatedAt": "2026-04-01T10:25:04Z"
+            }
+          ]
+        },
+        "timelineItems": {
+          "pageInfo": {
+            "hasNextPage": false
+          },
+          "nodes": [
+            {
+              "__typename": "IssueComment"
+            },
+            {
+              "__typename": "IssueComment"
+            },
+            {
+              "__typename": "IssueComment"
+            },
+            {
+              "__typename": "IssueComment"
+            },
+            {
+              "__typename": "IssueComment"
+            },
+            {
+              "__typename": "IssueComment"
+            },
+            {
+              "__typename": "IssueComment"
+            },
+            {
+              "__typename": "IssueComment"
+            },
+            {
+              "__typename": "SubscribedEvent"
+            },
+            {
+              "__typename": "IssueComment"
+            }
+          ]
+        }
+      },
+      "prs": {
+        "totalCount": 13,
+        "pageInfo": {
+          "hasNextPage": false
+        },
+        "nodes": [
+          {
+            "number": 552,
+            "title": "feat!: change customPrettifiers to a Map",
+            "body": "In [1], LevelPrettifierExtras and PrettifierExtras were merged to solve\r\na typing issue [2]. This was suboptimal as the additional extra\r\nattributes that only the 'level' prettifier had were exposed to other\r\nprettifiers too.\r\n\r\nTo allow the additional attributes while keeping 'level' prettifier's\r\ntype separate, this patch uses an intersection Map type\r\nCustomPrettifiers instead.\r\n\r\nThis is a breaking change.\r\n\r\n[1] https://github.com/pinojs/pino-pretty/pull/551\r\n[2] https://github.com/pinojs/pino-pretty/issues/550\r\n\r\n---\r\n\r\nThis PR stacks on #551 to avoid conflicts down the line, so only the 2nd commit is actually relevant. (I'm not sure how to do cross-fork stacked PRs in GitHub...)\r\n\r\nI guess the first commit in this PR will automatically disappear once #551 is (fast-forward?) merged. To review before that, we can use the link to the 2nd commit: [38cdaf27e1e2a1f33203aa249637e6e6d3086b78](https://github.com/pinojs/pino-pretty/pull/552/commits/38cdaf27e1e2a1f33203aa249637e6e6d3086b78)",
+            "headRefOid": "250d0d91b362fd0630252cd0105c869a61b8a448",
+            "updatedAt": "2025-04-16T12:14:31Z",
+            "author": {
+              "login": "Frederick888"
+            },
+            "files": {
+              "pageInfo": {
+                "hasNextPage": false
+              },
+              "nodes": [
+                {
+                  "path": "Readme.md"
+                },
+                {
+                  "path": "index.d.ts"
+                },
+                {
+                  "path": "index.js"
+                },
+                {
+                  "path": "lib/utils/index.js"
+                },
+                {
+                  "path": "test/basic.test.js"
+                },
+                {
+                  "path": "test/types/pino-pretty.test-d.ts"
+                }
+              ]
+            }
+          },
+          {
+            "number": 611,
+            "title": "Feature/colorize message",
+            "body": "Hi!\r\nThis PR introduces support for colorful messages in the terminal. It doesn't affect object output, but it can help improve readability when logging to the console.\r\n\r\nIt also addresses and closes issues #430 and #524.\r\n\r\nExample:\r\n<img width=\"464\" height=\"110\" alt=\"image\" src=\"https://github.com/user-attachments/assets/f88bb776-2241-4995-9730-0d98d7d3f312\" />",
+            "headRefOid": "99b1566c9961a25e586f7e9ae57fdc8438203d6e",
+            "updatedAt": "2025-10-25T13:45:50Z",
+            "author": {
+              "login": "ademarsj"
+            },
+            "files": {
+              "pageInfo": {
+                "hasNextPage": false
+              },
+              "nodes": [
+                {
+                  "path": "Readme.md"
+                },
+                {
+                  "path": "bin.js"
+                },
+                {
+                  "path": "index.d.ts"
+                },
+                {
+                  "path": "index.js"
+                },
+                {
+                  "path": "lib/colors.js"
+                },
+                {
+                  "path": "lib/utils/parse-factory-options.js"
+                },
+                {
+                  "path": "lib/utils/prettify-message.js"
+                },
+                {
+                  "path": "lib/utils/prettify-message.test.js"
+                },
+                {
+                  "path": "test/cli.test.js"
+                },
+                {
+                  "path": "test/types/pino-pretty.test-d.ts"
+                }
+              ]
+            }
+          },
+          {
+            "number": 613,
+            "title": "switch to @pinojs/dateformat",
+            "body": "As titled.",
+            "headRefOid": "c95d230199f0b5ed1945701487d9d69a1a50f22d",
+            "updatedAt": "2025-08-08T10:38:50Z",
+            "author": {
+              "login": "jsumners"
+            },
+            "files": {
+              "pageInfo": {
+                "hasNextPage": false
+              },
+              "nodes": [
+                {
+                  "path": "lib/utils/format-time.js"
+                },
+                {
+                  "path": "package.json"
+                },
+                {
+                  "path": "test/basic.test.js"
+                }
+              ]
+            }
+          },
+          {
+            "number": 614,
+            "title": "fix: modify to run with @pinojs/dateformat",
+            "body": "@jsumners \r\nI am not maintainer here, so I could not push into your branch. ",
+            "headRefOid": "881e2f23878e0b93d639d516c026233e11b08e58",
+            "updatedAt": "2025-10-13T23:21:00Z",
+            "author": {
+              "login": "Uzlopak"
+            },
+            "files": {
+              "pageInfo": {
+                "hasNextPage": false
+              },
+              "nodes": [
+                {
+                  "path": "lib/utils/format-time.js"
+                },
+                {
+                  "path": "package.json"
+                },
+                {
+                  "path": "test/basic.test.js"
+                }
+              ]
+            }
+          },
+          {
+            "number": 663,
+            "title": "feat: add sortKeys option for sorting object keys in output",
+            "body": "## Summary\n\nAdds a `sortKeys` option that controls the order of object keys in prettified log output.\n\nCloses #107\n\n## Usage\n\n```js\n// Ascending (alphabetical) order\nconst pretty = prettyFactory({ sortKeys: true })\n\n// Descending order\nconst pretty = prettyFactory({ sortKeys: 'desc' })\n\n// Custom comparator\nconst pretty = prettyFactory({\n  sortKeys: (a, b) => a.length - b.length\n})\n```\n\nCLI:\n```bash\ncat logs | pino-pretty --sortKeys\ncat logs | pino-pretty --sortKeys desc\n```\n\n## Changes\n\n- `index.js` \u2014 add `sortKeys` to default options and JSDoc\n- `lib/utils/parse-factory-options.js` \u2014 pass `sortKeys` through to context\n- `lib/utils/prettify-object.js` \u2014 sort `Object.entries()` before iteration when `sortKeys` is set\n- `README.md` \u2014 document the new option\n- `test/basic.test.js` \u2014 3 new tests covering `true`, `'desc'`, and custom comparator\n\n## Tests\n\n```\nnode --test test/basic.test.js\n\n# tests 76\n# pass 76\n# fail 0\n```",
+            "headRefOid": "a9e33f6871a8e8d30bcb0690921138a63b78f274",
+            "updatedAt": "2026-07-16T13:45:56Z",
+            "author": {
+              "login": "antonisetkowicz"
+            },
+            "files": {
+              "pageInfo": {
+                "hasNextPage": false
+              },
+              "nodes": [
+                {
+                  "path": "index.js"
+                },
+                {
+                  "path": "lib/utils/parse-factory-options.js"
+                },
+                {
+                  "path": "lib/utils/prettify-object.js"
+                },
+                {
+                  "path": "test/basic.test.js"
+                }
+              ]
+            }
+          },
+          {
+            "number": 665,
+            "title": "feat(cli): expose sonic-boom options",
+            "body": "Resolves #664",
+            "headRefOid": "2b74ee8f32d51807a774aca055259e6b2582cdf6",
+            "updatedAt": "2026-06-25T15:49:51Z",
+            "author": {
+              "login": "oleasteo"
+            },
+            "files": {
+              "pageInfo": {
+                "hasNextPage": false
+              },
+              "nodes": [
+                {
+                  "path": "bin.js"
+                },
+                {
+                  "path": "help/help.txt"
+                },
+                {
+                  "path": "index.js"
+                }
+              ]
+            }
+          },
+          {
+            "number": 672,
+            "title": "feat: support CLI options via environment variables",
+            "body": "## Summary\n- Allow setting the same CLI options through SCREAMING_SNAKE_CASE environment variables (for example `SINGLE_LINE=true COLORIZE=true`)\n- CLI flags still win over config files, which still win over env vars\n- Document the behavior in the README and help text\n\nFixes #554\n\n## Test plan\n- [x] `npm test`\n- [x] `npm run lint`\n- [ ] Manual check: `echo '{\"level\":30,\"time\":1,\"msg\":\"hi\",\"pid\":1,\"hostname\":\"x\",\"extra\":{\"a\":1}}' | SINGLE_LINE=true pino-pretty`",
+            "headRefOid": "f1a8e718c8b2e4e7b1e31e8d9128fce81892cef3",
+            "updatedAt": "2026-07-26T18:38:03Z",
+            "author": {
+              "login": "Hashim1999164"
+            },
+            "files": {
+              "pageInfo": {
+                "hasNextPage": false
+              },
+              "nodes": [
+                {
+                  "path": "Readme.md"
+                },
+                {
+                  "path": "bin.js"
+                },
+                {
+                  "path": "help/help.txt"
+                },
+                {
+                  "path": "test/cli-env.test.js"
+                }
+              ]
+            }
+          },
+          {
+            "number": 676,
+            "title": "fix: substitute conditional messageFormat values literally",
+            "body": "### The problem\n\nWhen a value is inserted into a `{if key}...{end}` block, `interpretConditionals` uses a string replacement:\n\n```js\nreturn value.replace(new RegExp('{' + key + '}', 'g'), propertyValue)\n```\n\nThat line interpolates untrusted input into both halves of `String.prototype.replace`, which causes two distinct bugs.\n\n**1. `$` sequences in the logged value are interpreted as replacement patterns.**\n\n```js\nconst { prettyFactory } = require('pino-pretty')\n\nconst conditional = prettyFactory({ colorize: false, messageFormat: '{if msg}{msg}{end}' })\nconst plain = prettyFactory({ colorize: false, messageFormat: '{msg}' })\n\nconst log = (msg) => JSON.stringify({ level: 30, time: 1, msg })\n```\n\n| `msg` | `{if msg}{msg}{end}` | `{msg}` (expected) |\n|---|---|---|\n| `100$$` | `100$` | `100$$` |\n| ``a $` b`` | `a b` | ``a $` b`` |\n| `a $& b` | `a a $& b b` | `a $& b` |\n\n`$$` collapses to a single `$`, ``$` `` and `$'` are replaced by the text around the match, and `$&` re-inserts the `{msg}` placeholder \u2014 which `prettifyMessage` then expands a second time, duplicating the value. Values like these turn up in practice in prices, shell snippets, and query strings.\n\n**2. The key is compiled as a regular expression.**\n\nThe `.` that delimits a nested key matches any character, so an unrelated placeholder can be substituted with the wrong value:\n\n```js\n// log = { data1: { data2: 'bar' } }\ninterpretConditionals('{if data1.data2}{data1.data2} {data1Xdata2}{end}', log)\n// actual:   'bar bar'\n// expected: 'bar {data1Xdata2}'\n```\n\nAnd a key containing other special characters throws while formatting a log line:\n\n```js\n// log = { 'we(ird': 'value' }\ninterpretConditionals('{if we(ird}{we(ird}{end}', log)\n// SyntaxError: Invalid regular expression: /{we(ird}/g: Unterminated group\n```\n\n### The fix\n\nMatch the placeholder and insert the value literally, via a string search and a function replacer. This is what the non-conditional path in `prettifyMessage` already does \u2014 it replaces through a function, which is why `{msg}` handles all of the cases above correctly today. The two paths now agree.\n\nThe `propertyValue && value.includes(key)` guard is unchanged, so which blocks are kept or dropped is not affected.\n\n### Verification\n\nFour tests added to `lib/utils/interpret-conditionals.test.js`, each failing before the change: `$` sequences preserved, every `$` replacement pattern round-tripped, a key with regex metacharacters no longer throwing, and the nested-key delimiter matched literally.\n\n- `npm test` \u2014 367 passed, 0 failed (363 before, plus the 4 new)\n- `npm run ci` \u2014 `eslint` clean, `borp --check-coverage` passing, `tstyche` + `attw --pack` clean\n",
+            "headRefOid": "f033c3802940087fbc4b8823ef419a2f0694e77f",
+            "updatedAt": "2026-08-30T17:21:03Z",
+            "author": {
+              "login": "Jaybhade"
+            },
+            "files": {
+              "pageInfo": {
+                "hasNextPage": false
+              },
+              "nodes": [
+                {
+                  "path": "lib/utils/interpret-conditionals.js"
+                },
+                {
+                  "path": "lib/utils/interpret-conditionals.test.js"
+                }
+              ]
+            }
+          },
+          {
+            "number": 678,
+            "title": "fix: support nested timestampKey and messageKey paths",
+            "body": "## Summary\n\nFixes #438.\n\n`levelKey` already supports nested and escaped property paths. `timestampKey` and `messageKey` still used top-level access, so timestamps and messages under Pino `nestedKey` objects (for example, `nested_key.time`) were ignored.\n\nThis PR gives `timestampKey` and `messageKey` the same path rules, removes rendered nested values from the remaining object dump, and preserves the existing behavior of top-level keys.\n\n## Root cause and fix\n\n- Resolve nested timestamp/message paths with the existing split/get helpers.\n- Delete already-rendered nested paths from the object dump and prune empty parents.\n- Return `undefined` instead of throwing when an intermediate path value is `null` or `undefined`.\n- Preserve legacy `key in log` behavior only for a single top-level segment; nested paths remain own-property-only.\n- Document nested and escaped `--timestampKey` / `--messageKey` paths.\n\nThe last two points close compatibility gaps found during follow-up self-review:\n\n- `{ meta: null }` with `timestampKey: 'meta.time'` and `{ payload: null }` with `messageKey: 'payload.text'` previously threw a `TypeError` on the PR branch.\n- `Object.create({ time: 123, msg: 'inherited' })` had stopped rendering the inherited top-level values even though the current release renders `[123] INFO: inherited`.\n\n## Verification\n\n- [x] Target unit/integration tests: 129/129\n- [x] All tests except the Windows `cli-rc.test.js` subprocess case: 365/365\n- [x] Coverage gate on those 365 tests: 100%\n- [x] `npm run lint`\n- [x] `npm run test:types`: 66/66 assertions; ATTW package checks green\n- [x] Manual regression matrix: nested time/message, escaped paths, missing paths, `time: 0`, `null` parents, inherited top-level keys, and no duplicate nested values in the object dump\n\nThe full `npm run ci` command still hangs in the existing `cli-rc.test.js` child-process case on this Windows host. That test is unrelated to the touched paths; it was excluded explicitly above rather than reported as passing. GitHub has not scheduled CI checks for this fork PR.\n\n## Notes\n\n- No force-pushes were used. Compatibility fixes and the LF normalization are separate follow-up commits.\n- The final PR diff contains no whole-file line-ending churn.",
+            "headRefOid": "8810ec7aa9c8d9141f975df2a247d7c23afe6584",
+            "updatedAt": "2026-08-31T06:50:29Z",
+            "author": {
+              "login": "kilisamemarisaaa"
+            },
+            "files": {
+              "pageInfo": {
+                "hasNextPage": false
+              },
+              "nodes": [
+                {
+                  "path": "Readme.md"
+                },
+                {
+                  "path": "lib/pretty.js"
+                },
+                {
+                  "path": "lib/utils/get-log-property-value.js"
+                },
+                {
+                  "path": "lib/utils/get-log-property-value.test.js"
+                },
+                {
+                  "path": "lib/utils/get-property-value.js"
+                },
+                {
+                  "path": "lib/utils/get-property-value.test.js"
+                },
+                {
+                  "path": "lib/utils/index.js"
+                },
+                {
+                  "path": "lib/utils/prettify-message.js"
+                },
+                {
+                  "path": "lib/utils/prettify-message.test.js"
+                },
+                {
+                  "path": "lib/utils/prettify-time.js"
+                },
+                {
+                  "path": "lib/utils/prettify-time.test.js"
+                },
+                {
+                  "path": "test/basic.test.js"
+                }
+              ]
+            }
+          },
+          {
+            "number": 679,
+            "title": "fix: preserve large integer precision in pretty output",
+            "body": "Fixes #633\n\n## Summary\n\n- Preserve the exact decimal token for integers outside the safe JavaScript `Number` range.\n- Keep BigInt values serializable in object, nested, array, and single-line output paths.\n- Add BigInt epoch handling and regression tests for the reported case and numeric boundaries.\n\n## Root cause\n\nPino serializes `BigInt` values as bare JSON integers. `JSON.parse` converts those tokens to `Number` before `pino-pretty` formats them, so values above `Number.MAX_SAFE_INTEGER` are rounded (for example, `1666666666666666700` becomes `1666666666666666800`).\n\nThe reviver uses `context.source` to recover the original integer token and stores it as `BigInt`. `safe-stable-stringify` is used for the object formatter because the existing `fast-safe-stringify` path cannot serialize BigInt values. Its non-deterministic configuration preserves the formatter's existing insertion-order output and circular-reference handling.\n\nA bare unsafe integer has the same JSON representation whether it originated as a BigInt or an unsafe JavaScript Number, so the parser preserves the exact token for both cases.\n\n## Verification\n\n- `npm test`\n- `npx eslint lib test --ignore-pattern 'test/.tmp_*'`\n- `npm run test:types`\n- `git diff --check`",
+            "headRefOid": "0aff48e30f23cbaa103a0e5953315ece8f282db2",
+            "updatedAt": "2026-08-31T12:26:48Z",
+            "author": {
+              "login": "kilisamemarisaaa"
+            },
+            "files": {
+              "pageInfo": {
+                "hasNextPage": false
+              },
+              "nodes": [
+                {
+                  "path": "lib/pretty.js"
+                },
+                {
+                  "path": "lib/utils/create-date.js"
+                },
+                {
+                  "path": "lib/utils/create-date.test.js"
+                },
+                {
+                  "path": "lib/utils/prettify-error.test.js"
+                },
+                {
+                  "path": "lib/utils/prettify-object.js"
+                },
+                {
+                  "path": "lib/utils/prettify-object.test.js"
+                },
+                {
+                  "path": "package.json"
+                },
+                {
+                  "path": "test/bigint.test.js"
+                }
+              ]
+            }
+          },
+          {
+            "number": 681,
+            "title": "docs: document sync CLI option",
+            "body": "## Summary\n\n- document the existing `--sync` option in the CLI help output\n- describe its default and use case for preserving ordering between non-Pino and prettified log lines in the README\n\nCloses #664\n\n## Testing\n\n- `npm run lint`\n- verified `node bin.js --help` matches `help/help.txt`\n- `npm test` was attempted, but the existing Windows CLI child-process test did not exit in this environment",
+            "headRefOid": "d2fd8e960ee7c5256b5b65eb3ea50711049e6681",
+            "updatedAt": "2026-09-04T17:42:01Z",
+            "author": {
+              "login": "kilisamemarisaaa"
+            },
+            "files": {
+              "pageInfo": {
+                "hasNextPage": false
+              },
+              "nodes": [
+                {
+                  "path": "Readme.md"
+                },
+                {
+                  "path": "help/help.txt"
+                }
+              ]
+            }
+          },
+          {
+            "number": 685,
+            "title": "Fix/preserve literal backslashes",
+            "body": "\nPreserve literal backslashes in property paths used by ignore and include. Add regression tests for literal, escaped, and trailing backslashes.\nTests: 8 passed",
+            "headRefOid": "4f632e4b8049c2c46da733fa63009322b9cbc619",
+            "updatedAt": "2026-10-13T23:00:20Z",
+            "author": {
+              "login": "mhatipog"
+            },
+            "files": {
+              "pageInfo": {
+                "hasNextPage": false
+              },
+              "nodes": [
+                {
+                  "path": "lib/utils/split-property-key.js"
+                },
+                {
+                  "path": "lib/utils/split-property-key.test.js"
+                }
+              ]
+            }
+          },
+          {
+            "number": 686,
+            "title": "feat: colorize JSON output in single-line mode (#229)",
+            "body": "Fixes #229.\n\n### Summary\n\nIn `singleLine` mode, syntax-highlight serialized JSON object payloads by token type instead of wrapping the entire payload in a single grey color.\n\n### Key changes\n\n- Add an internal JSON tokenizer/highlighter that uses pino-pretty's active Colorette color functions and preserves unrecognized characters verbatim.\n- Apply token highlighting in single-line object rendering while retaining a fallback for custom colorizers that do not implement `.json()`.\n- Add unit, integration, regression, and type tests for token colors, escaping, nested values, no-color modes, and compatibility.\n\n### Compatibility\n\n- `colorize: false` and `colorizeObjects: false` remain ANSI-free.\n- Explicit colorization continues to work in piped/non-TTY output.\n- Multi-line object formatting remains unchanged.\n- No new runtime dependency or lockfile change.\n\n### Verification\n\n- `npm test`: 394 passed, 0 failed\n- `npm run lint`: passed\n- `npm run test:types`: passed\n- `npm run ci`: passed\n- `git diff --check`: passed\n",
+            "headRefOid": "bb7536a6684e990105afda6ca80ad823b9fd45cc",
+            "updatedAt": "2026-10-16T16:30:28Z",
+            "author": {
+              "login": "Satjeet2005"
+            },
+            "files": {
+              "pageInfo": {
+                "hasNextPage": false
+              },
+              "nodes": [
+                {
+                  "path": "index.d.ts"
+                },
+                {
+                  "path": "lib/colors.js"
+                },
+                {
+                  "path": "lib/colors.test.js"
+                },
+                {
+                  "path": "lib/utils/colorize-json.js"
+                },
+                {
+                  "path": "lib/utils/colorize-json.test.js"
+                },
+                {
+                  "path": "lib/utils/index.js"
+                },
+                {
+                  "path": "lib/utils/prettify-object.js"
+                },
+                {
+                  "path": "lib/utils/prettify-object.test.js"
+                },
+                {
+                  "path": "test/boolean-options.test.js"
+                },
+                {
+                  "path": "test/types/pino-pretty.tst.ts"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "org": {
+      "a": null,
+      "b": null,
+      "ai": null
+    }
+  },
+  "verifiedAt": "2026-10-27T10:04:41.892516+00:00"
+}

@@ -1,0 +1,17 @@
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'borp@1.0.0',
+npm warn EBADENGINE   required: { node: '>=22.6.0' },
+npm warn EBADENGINE   current: { node: 'v20.20.2', npm: '11.9.0' }
+npm warn EBADENGINE }
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'tstyche@7.2.5',
+npm warn EBADENGINE   required: { node: '>=22' },
+npm warn EBADENGINE   current: { node: 'v20.20.2', npm: '11.9.0' }
+npm warn EBADENGINE }
+
+up to date, audited 441 packages in 2s
+
+180 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities

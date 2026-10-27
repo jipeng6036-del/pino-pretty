@@ -1,0 +1,74 @@
+[
+  {
+    "sha": "d2174235e7300a340626158379436d3d7c83d196",
+    "filename": "Readme.md",
+    "status": "modified",
+    "additions": 9,
+    "deletions": 0,
+    "changes": 9,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/250d0d91b362fd0630252cd0105c869a61b8a448/Readme.md",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/250d0d91b362fd0630252cd0105c869a61b8a448/Readme.md",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/Readme.md?ref=250d0d91b362fd0630252cd0105c869a61b8a448",
+    "patch": "@@ -310,6 +310,15 @@ const prettifyQuery = value => {\n }\n ```\n \n+```ts\n+// In TypeScript you have to use a Map\n+{\n+  customPrettifiers: new Map([\n+    ['query', prettifyQuery]\n+  ])\n+}\n+```\n+\n All prettifiers use this function signature:\n \n ```js"
+  },
+  {
+    "sha": "c488e396b55239ed1591c509857fceb48ed889f3",
+    "filename": "index.d.ts",
+    "status": "modified",
+    "additions": 8,
+    "deletions": 10,
+    "changes": 18,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/250d0d91b362fd0630252cd0105c869a61b8a448/index.d.ts",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/250d0d91b362fd0630252cd0105c869a61b8a448/index.d.ts",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/index.d.ts?ref=250d0d91b362fd0630252cd0105c869a61b8a448",
+    "patch": "@@ -165,28 +165,25 @@ declare namespace PinoPretty {\n     mkdir?: boolean;\n     /**\n      * Provides the ability to add a custom prettify function for specific log properties.\n-     * `customPrettifiers` is an object, where keys are log properties that will be prettified\n+     * `customPrettifiers` is a Map, where keys are log properties that will be prettified\n      * and value is the prettify function itself.\n      * For example, if a log line contains a query property, you can specify a prettifier for it:\n-     * @default {}\n+     * @default new Map()\n      *\n      * @example\n      * ```typescript\n      * {\n-     *   customPrettifiers: {\n-     *     query: prettifyQuery\n-     *   }\n+     *   customPrettifiers: new Map([\n+     *     ['query', prettifyQuery]\n+     *   ])\n      * }\n      * //...\n      * const prettifyQuery = value => {\n      *  // do some prettify magic\n      * }\n      * ```\n      */\n-    customPrettifiers?: Record<string, Prettifier> &\n-      {\n-        level?: Prettifier<LevelPrettifierExtras>\n-      };\n+    customPrettifiers?: CustomPrettifiers;\n     /**\n      * Change the level names and values to an user custom preset.\n      *\n@@ -218,6 +215,7 @@ declare namespace PinoPretty {\n \n   function build(options: PrettyOptions): PrettyStream;\n \n+  type CustomPrettifiers = Map<'level', Prettifier<LevelPrettifierExtras>> & Map<string, Prettifier>\n   type Prettifier<T = object> = (inputData: string | object, key: string, log: object, extras: PrettifierExtras<T>) => string;\n   type PrettifierExtras<T = object> = {colors: Colorette.Colorette} & T;\n   type LevelPrettifierExtras = {label: string, labelColorized: string}\n@@ -228,7 +226,7 @@ declare namespace PinoPretty {\n   type Build = typeof build;\n   type isColorSupported = typeof Colorette.isColorSupported;\n \n-  export { build, PinoPretty, PrettyOptions, PrettyStream, colorizerFactory, prettyFactory, isColorSupported };\n+  export { build, PinoPretty, PrettyOptions, CustomPrettifiers, PrettyStream, colorizerFactory, prettyFactory, isColorSupported };\n }\n \n export = PinoPretty;"
+  },
+  {
+    "sha": "a8aaadc3232edd2a3c198145f17b468e4628db0a",
+    "filename": "index.js",
+    "status": "modified",
+    "additions": 3,
+    "deletions": 0,
+    "changes": 3,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/250d0d91b362fd0630252cd0105c869a61b8a448/index.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/250d0d91b362fd0630252cd0105c869a61b8a448/index.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/index.js?ref=250d0d91b362fd0630252cd0105c869a61b8a448",
+    "patch": "@@ -110,6 +110,9 @@ const defaultOptions = {\n  * @returns {LogPrettifierFunc}\n  */\n function prettyFactory (options) {\n+  if (options.customPrettifiers instanceof Map) {\n+    options.customPrettifiers = Object.fromEntries(options.customPrettifiers)\n+  }\n   const context = parseFactoryOptions(Object.assign({}, defaultOptions, options))\n   return pretty.bind({ ...context, context })\n }"
+  },
+  {
+    "sha": "259ccd92773465e3fe93c9f14a114a5080fd84af",
+    "filename": "lib/utils/index.js",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 1,
+    "changes": 2,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/250d0d91b362fd0630252cd0105c869a61b8a448/lib%2Futils%2Findex.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/250d0d91b362fd0630252cd0105c869a61b8a448/lib%2Futils%2Findex.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Findex.js?ref=250d0d91b362fd0630252cd0105c869a61b8a448",
+    "patch": "@@ -52,7 +52,7 @@ module.exports = {\n  * + `name`\n  * + `caller`\n  *\n- * @typedef {Object.<string, CustomPrettifierFunc>} CustomPrettifiers\n+ * @typedef {Object.<string, CustomPrettifierFunc>|Map<string, CustomPrettifierFunc>} CustomPrettifiers\n  */\n \n /**"
+  },
+  {
+    "sha": "c5f61bb9ec71fddc05f0a51559bc0db4c65eb524",
+    "filename": "test/basic.test.js",
+    "status": "modified",
+    "additions": 21,
+    "deletions": 0,
+    "changes": 21,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/250d0d91b362fd0630252cd0105c869a61b8a448/test%2Fbasic.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/250d0d91b362fd0630252cd0105c869a61b8a448/test%2Fbasic.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/test%2Fbasic.test.js?ref=250d0d91b362fd0630252cd0105c869a61b8a448",
+    "patch": "@@ -22,6 +22,8 @@ process.removeAllListeners('warning')\n function prettyFactory (opts) {\n   if (!opts) {\n     opts = { colorize: false }\n+  } else if (opts instanceof Map && !opts.has('colorize')) {\n+    opts.set('colorize', false)\n   } else if (!Object.prototype.hasOwnProperty.call(opts, 'colorize')) {\n     opts.colorize = false\n   }\n@@ -257,6 +259,25 @@ test('basic prettifier tests', (t) => {\n     log.info({ msg: 'foo' })\n   })\n \n+  t.test('can use a Map customPrettifier', (t) => {\n+    t.plan(1)\n+    const customPrettifiers = new Map([\n+      ['level', () => 'LEVEL: bar']\n+    ])\n+    const pretty = prettyFactory({ customPrettifiers })\n+    const log = pino({}, new Writable({\n+      write (chunk, enc, cb) {\n+        const formatted = pretty(chunk.toString())\n+        t.equal(\n+          formatted,\n+          `[${formattedEpoch}] LEVEL: bar (${pid}): foo\\n`\n+        )\n+        cb()\n+      }\n+    }))\n+    log.info({ msg: 'foo' })\n+  })\n+\n   t.test('can use a customPrettifier on different-level-key output', (t) => {\n     t.plan(1)\n     const customPrettifiers = {"
+  },
+  {
+    "sha": "b724b046562cc42333d1df27016bf5be357cb57f",
+    "filename": "test/types/pino-pretty.test-d.ts",
+    "status": "modified",
+    "additions": 15,
+    "deletions": 8,
+    "changes": 23,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/250d0d91b362fd0630252cd0105c869a61b8a448/test%2Ftypes%2Fpino-pretty.test-d.ts",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/250d0d91b362fd0630252cd0105c869a61b8a448/test%2Ftypes%2Fpino-pretty.test-d.ts",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/test%2Ftypes%2Fpino-pretty.test-d.ts?ref=250d0d91b362fd0630252cd0105c869a61b8a448",
+    "patch": "@@ -4,6 +4,7 @@ import pretty from \"../../\";\n import PinoPretty, {\n   PinoPretty as PinoPrettyNamed,\n   PrettyOptions,\n+  CustomPrettifiers,\n   colorizerFactory,\n   prettyFactory\n } from \"../../\";\n@@ -13,6 +14,19 @@ import PinoPrettyCjsImport = require(\"../../\");\n import PrettyStream = PinoPretty.PrettyStream;\n const PinoPrettyCjs = require(\"../../\");\n \n+const customPrettifiers: CustomPrettifiers = new Map();\n+customPrettifiers.set(\"key\", (value) => {\n+  return value.toString().toUpperCase();\n+});\n+customPrettifiers.set(\n+  \"level\",\n+  (level, levelKey, log, { label, labelColorized, colors }) => {\n+    return level.toString();\n+  }\n+);\n+customPrettifiers.set(\"foo\", (value, key, log, { colors }) => {\n+  return value.toString();\n+});\n const options: PinoPretty.PrettyOptions = {\n   colorize: true,\n   crlf: false,\n@@ -29,14 +43,7 @@ const options: PinoPretty.PrettyOptions = {\n   minimumLevel: \"trace\",\n   translateTime: \"UTC:h:MM:ss TT Z\",\n   singleLine: false,\n-  customPrettifiers: {\n-    key: (value) => {\n-      return value.toString().toUpperCase();\n-    },\n-    level: (level, label, colorized) => {\n-      return level.toString();\n-    }\n-  },\n+  customPrettifiers,\n   customLevels: 'verbose:5',\n   customColors: 'default:white,verbose:gray',\n   sync: false,"
+  }
+]

@@ -1,0 +1,19 @@
+▶ hideObject error handling
+  ✔ hideObject preserves serialized errors under err (3.2679ms)
+  ✔ hideObject preserves serialized errors under fault (0.5148ms)
+  ✔ hideObject preserves custom error prettifiers without running hidden prettifiers (0.7347ms)
+  ✔ hideObject respects error filtering {"ignore":"err"} (0.1927ms)
+  ✔ hideObject respects error filtering {"include":"level,msg"} (0.2033ms)
+  ✔ hideObject respects error filtering {"errorLikeObjectKeys":[]} (0.12ms)
+  ✔ hideObject leaves single-line output unchanged when no error is rendered (0.2791ms)
+  ✔ hideObject retains explicit legacy error properties and nested prettifiers (0.3199ms)
+  ✔ hideObject uses the custom errorKey supplied by Pino config (1.5315ms)
+✔ hideObject error handling (7.7855ms)
+ℹ tests 9
+ℹ suites 1
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 230.3798

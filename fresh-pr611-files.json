@@ -1,0 +1,122 @@
+[
+  {
+    "sha": "2a8684949f8bee3a833d3218d3bb0afbb88dcb62",
+    "filename": "Readme.md",
+    "status": "modified",
+    "additions": 2,
+    "deletions": 0,
+    "changes": 2,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/99b1566c9961a25e586f7e9ae57fdc8438203d6e/Readme.md",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/99b1566c9961a25e586f7e9ae57fdc8438203d6e/Readme.md",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/Readme.md?ref=99b1566c9961a25e586f7e9ae57fdc8438203d6e",
+    "patch": "@@ -77,6 +77,7 @@ node app.js | pino-pretty\n - `--minimumLevel` (`-L`): Hide messages below the specified log level. Accepts a number, `trace`, `debug`, `info`, `warn`, `error`, or `fatal`. If any more filtering is required, consider using [`jq`](https://stedolan.github.io/jq/).\n - `--customLevels` (`-x`): Override default levels with custom levels, e.g. `-x err:99,info:1`\n - `--customColors` (`-X`): Override default colors with custom colors, e.g. `-X err:red,info:blue`\n+- `--colorizeMessage` (`-z`): Applies the level label color to the entire message output\n - `--useOnlyCustomProps` (`-U`): Only use custom levels and colors (if provided) (default: true); else fallback to default levels and colors, e.g. `-U false`\n - `--messageFormat` (`-o`): Format output of message, e.g. `{levelLabel} - {pid} - url:{req.url}` will output message: `INFO - 1123 - url:localhost:3000/test`\n   Default: `false`\n@@ -267,6 +268,7 @@ The options accepted have keys corresponding to the options described in [CLI Ar\n   singleLine: false, // --singleLine\n   customColors: 'err:red,info:blue', // --customColors\n   customLevels: 'err:99,info:1', // --customLevels (not required with pino >=8.21.0)\n+  colorizeMessage: false, // --colorizeMessage\n   levelLabel: 'levelLabel', // --levelLabel\n   minimumLevel: 'info', // --minimumLevel\n   useOnlyCustomProps: true, // --useOnlyCustomProps"
+  },
+  {
+    "sha": "247f3d9b4d8c9cd8a2d25a622bc15785bc835d7d",
+    "filename": "bin.js",
+    "status": "modified",
+    "additions": 2,
+    "deletions": 1,
+    "changes": 3,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/99b1566c9961a25e586f7e9ae57fdc8438203d6e/bin.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/99b1566c9961a25e586f7e9ae57fdc8438203d6e/bin.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/bin.js?ref=99b1566c9961a25e586f7e9ae57fdc8438203d6e",
+    "patch": "@@ -60,7 +60,8 @@ if (cmd.h || cmd.help) {\n       ignore: 'i',\n       include: 'I',\n       hideObject: 'H',\n-      singleLine: 'S'\n+      singleLine: 'S',\n+      colorizeMessage: 'z'\n     },\n     default: {\n       messageKey: DEFAULT_VALUE,"
+  },
+  {
+    "sha": "a62bfc84b77b44586f1fe018407904a2ad0e7329",
+    "filename": "index.d.ts",
+    "status": "modified",
+    "additions": 6,
+    "deletions": 0,
+    "changes": 6,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/99b1566c9961a25e586f7e9ae57fdc8438203d6e/index.d.ts",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/99b1566c9961a25e586f7e9ae57fdc8438203d6e/index.d.ts",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/index.d.ts?ref=99b1566c9961a25e586f7e9ae57fdc8438203d6e",
+    "patch": "@@ -214,6 +214,12 @@ declare namespace PinoPretty {\n      * @default true\n      */\n     useOnlyCustomProps?: boolean;\n+    /**\n+     * Print the message same color of the level.\n+     *\n+     * @default false\n+     */\n+    colorizeMessage?: boolean;\n   }\n \n   function build(options: PrettyOptions): PrettyStream;"
+  },
+  {
+    "sha": "698390beb6b2bc185424c8f40a4c5c0fae3d727d",
+    "filename": "index.js",
+    "status": "modified",
+    "additions": 4,
+    "deletions": 1,
+    "changes": 5,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/99b1566c9961a25e586f7e9ae57fdc8438203d6e/index.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/99b1566c9961a25e586f7e9ae57fdc8438203d6e/index.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/index.js?ref=99b1566c9961a25e586f7e9ae57fdc8438203d6e",
+    "patch": "@@ -70,6 +70,8 @@ const pretty = require('./lib/pretty')\n  * it must be a format string.\n  * @property {boolean} [useOnlyCustomProps=true] When true, only custom levels\n  * and colors will be used if they have been provided.\n+ * @property {boolean} [colorizeMessage=false] When true, the message will\n+ * get the same color of the level\n  */\n \n /**\n@@ -99,7 +101,8 @@ const defaultOptions = {\n   singleLine: false,\n   timestampKey: TIMESTAMP_KEY,\n   translateTime: true,\n-  useOnlyCustomProps: true\n+  useOnlyCustomProps: true,\n+  colorizeMessage: false\n }\n \n /**"
+  },
+  {
+    "sha": "60e987f48cab186574d00549a13cb5b92f0a1f45",
+    "filename": "lib/colors.js",
+    "status": "modified",
+    "additions": 3,
+    "deletions": 0,
+    "changes": 3,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/99b1566c9961a25e586f7e9ae57fdc8438203d6e/lib%2Fcolors.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/99b1566c9961a25e586f7e9ae57fdc8438203d6e/lib%2Fcolors.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Fcolors.js?ref=99b1566c9961a25e586f7e9ae57fdc8438203d6e",
+    "patch": "@@ -59,6 +59,7 @@ function plainColorizer (useOnlyCustomProps) {\n   customColoredColorizer.message = plain.message\n   customColoredColorizer.greyMessage = plain.greyMessage\n   customColoredColorizer.property = plain.property\n+  customColoredColorizer.levelColors = plain\n   customColoredColorizer.colors = createColors({ useColor: false })\n   return customColoredColorizer\n }\n@@ -71,6 +72,7 @@ function coloredColorizer (useOnlyCustomProps) {\n   customColoredColorizer.message = colored.message\n   customColoredColorizer.property = colored.property\n   customColoredColorizer.greyMessage = colored.greyMessage\n+  customColoredColorizer.levelColors = colored\n   customColoredColorizer.colors = availableColors\n   return customColoredColorizer\n }\n@@ -86,6 +88,7 @@ function customColoredColorizerFactory (customColors, useOnlyCustomProps) {\n   customColoredColorizer.colors = availableColors\n   customColoredColorizer.message = customColoredColorizer.message || customColored.message\n   customColoredColorizer.greyMessage = customColoredColorizer.greyMessage || customColored.greyMessage\n+  customColoredColorizer.levelColors = customColored || colored\n \n   return customColoredColorizer\n }"
+  },
+  {
+    "sha": "040945a0ea28973d8ba847ce10cf8988f40b59f7",
+    "filename": "lib/utils/parse-factory-options.js",
+    "status": "modified",
+    "additions": 4,
+    "deletions": 2,
+    "changes": 6,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/99b1566c9961a25e586f7e9ae57fdc8438203d6e/lib%2Futils%2Fparse-factory-options.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/99b1566c9961a25e586f7e9ae57fdc8438203d6e/lib%2Futils%2Fparse-factory-options.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fparse-factory-options.js?ref=99b1566c9961a25e586f7e9ae57fdc8438203d6e",
+    "patch": "@@ -78,7 +78,8 @@ function parseFactoryOptions (options) {\n     minimumLevel,\n     singleLine,\n     timestampKey,\n-    translateTime\n+    translateTime,\n+    colorizeMessage\n   } = options\n   const errorProps = options.errorProps.split(',')\n   const useOnlyCustomProps = typeof options.useOnlyCustomProps === 'boolean'\n@@ -168,6 +169,7 @@ function parseFactoryOptions (options) {\n     singleLine,\n     timestampKey,\n     translateTime,\n-    useOnlyCustomProps\n+    useOnlyCustomProps,\n+    colorizeMessage\n   }\n }"
+  },
+  {
+    "sha": "d43b809288b33d04bdb29b4448891cd17c627eac",
+    "filename": "lib/utils/prettify-message.js",
+    "status": "modified",
+    "additions": 18,
+    "deletions": 1,
+    "changes": 19,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/99b1566c9961a25e586f7e9ae57fdc8438203d6e/lib%2Futils%2Fprettify-message.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/99b1566c9961a25e586f7e9ae57fdc8438203d6e/lib%2Futils%2Fprettify-message.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fprettify-message.js?ref=99b1566c9961a25e586f7e9ae57fdc8438203d6e",
+    "patch": "@@ -33,8 +33,10 @@ function prettifyMessage ({ log, context }) {\n     levelLabel,\n     messageFormat,\n     messageKey,\n-    useOnlyCustomProps\n+    useOnlyCustomProps,\n+    colorizeMessage\n   } = context\n+\n   if (messageFormat && typeof messageFormat === 'string') {\n     const parsedMessageFormat = interpretConditionals(messageFormat, log)\n \n@@ -51,13 +53,28 @@ function prettifyMessage ({ log, context }) {\n         // Parse nested key access, e.g. `{keyA.subKeyB}`.\n         return getPropertyValue(log, p1) || ''\n       })\n+\n+    if (colorizeMessage) {\n+      return colorizer.levelColors[getPropertyValue(log, levelKey)](message)\n+    }\n+\n     return colorizer.message(message)\n   }\n   if (messageFormat && typeof messageFormat === 'function') {\n     const msg = messageFormat(log, messageKey, levelLabel, { colors: colorizer.colors })\n+\n+    if (colorizeMessage) {\n+      return colorizer.levelColors[getPropertyValue(log, levelKey)](msg)\n+    }\n+\n     return colorizer.message(msg)\n   }\n   if (messageKey in log === false) return undefined\n   if (typeof log[messageKey] !== 'string' && typeof log[messageKey] !== 'number' && typeof log[messageKey] !== 'boolean') return undefined\n+\n+  if (colorizeMessage) {\n+    return colorizer.levelColors[getPropertyValue(log, levelKey)](log[messageKey])\n+  }\n+\n   return colorizer.message(log[messageKey])\n }"
+  },
+  {
+    "sha": "2de3572f6c73875132cd82dd510ad4a6efaa14cc",
+    "filename": "lib/utils/prettify-message.test.js",
+    "status": "modified",
+    "additions": 28,
+    "deletions": 0,
+    "changes": 28,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/99b1566c9961a25e586f7e9ae57fdc8438203d6e/lib%2Futils%2Fprettify-message.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/99b1566c9961a25e586f7e9ae57fdc8438203d6e/lib%2Futils%2Fprettify-message.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Fprettify-message.test.js?ref=99b1566c9961a25e586f7e9ae57fdc8438203d6e",
+    "patch": "@@ -87,6 +87,34 @@ test('returns message formatted by `messageFormat` option - levelLabel & useOnly\n   t.assert.strictEqual(str, '[30] INFO appModule - foo')\n })\n \n+test('returns a default(cyan) colored message when `colorizeMessage` is false', t => {\n+  const colorizer = getColorizer(true)\n+\n+  const str = prettifyMessage({\n+    log: { msg: 'foo', level: 40 },\n+    context: {\n+      ...context,\n+      colorizer,\n+      colorizeMessage: false\n+    }\n+  })\n+  t.assert.strictEqual(str, '\\x1B[36mfoo\\x1B[39m')\n+})\n+\n+test('returns a colored(yellow warning) message when `colorizeMessage` is true', t => {\n+  const colorizer = getColorizer(true)\n+\n+  const str = prettifyMessage({\n+    log: { msg: 'foo', level: 40 },\n+    context: {\n+      ...context,\n+      colorizer,\n+      colorizeMessage: true\n+    }\n+  })\n+  t.assert.strictEqual(str, '\\x1B[33mfoo\\x1B[39m')\n+})\n+\n test('returns message formatted by `messageFormat` option - levelLabel & useOnlyCustomProps true', t => {\n   const str = prettifyMessage({\n     log: { msg: 'foo', context: 'appModule', level: 30 },"
+  },
+  {
+    "sha": "2d6cb3c3e7576cd7d690df531068485936351f83",
+    "filename": "test/cli.test.js",
+    "status": "modified",
+    "additions": 14,
+    "deletions": 0,
+    "changes": 14,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/99b1566c9961a25e586f7e9ae57fdc8438203d6e/test%2Fcli.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/99b1566c9961a25e586f7e9ae57fdc8438203d6e/test%2Fcli.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/test%2Fcli.test.js?ref=99b1566c9961a25e586f7e9ae57fdc8438203d6e",
+    "patch": "@@ -162,6 +162,20 @@ describe('cli', () => {\n     })\n   }\n \n+  for (const optionName of ['--colorizeMessage', '-z']) {\n+    test(`colorize messages via ${optionName}`, async (t) => {\n+      t.plan(1)\n+      const child = spawn(process.argv[0], [bin, optionName], { env })\n+      child.on('error', t.assert.fail)\n+      const endPromise = once(child.stdout, 'data', (data) => {\n+        t.assert.strictEqual(data.toString(), `[${formattedEpoch}] INFO (42): hello world\\n`)\n+      })\n+      child.stdin.write(logLine)\n+      await endPromise\n+      t.after(() => child.kill())\n+    })\n+  }\n+\n   for (const optionName of ['--useOnlyCustomProps', '-U']) {\n     test(`customize levels via ${optionName} false and customColors`, async (t) => {\n       t.plan(1)"
+  },
+  {
+    "sha": "cfb602bc571bc7cf34fdfb11ddb45ea36e7914c5",
+    "filename": "test/types/pino-pretty.test-d.ts",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 0,
+    "changes": 1,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/99b1566c9961a25e586f7e9ae57fdc8438203d6e/test%2Ftypes%2Fpino-pretty.test-d.ts",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/99b1566c9961a25e586f7e9ae57fdc8438203d6e/test%2Ftypes%2Fpino-pretty.test-d.ts",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/test%2Ftypes%2Fpino-pretty.test-d.ts?ref=99b1566c9961a25e586f7e9ae57fdc8438203d6e",
+    "patch": "@@ -47,6 +47,7 @@ const options: PinoPretty.PrettyOptions = {\n   append: true,\n   mkdir: true,\n   useOnlyCustomProps: false,\n+  colorizeMessage: false,\n };\n \n expectType<PrettyStream>(pretty()); // #326"
+  }
+]

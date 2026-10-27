@@ -1,0 +1,405 @@
+{
+  "id": "pino-pretty@13.2.0",
+  "name": "pino-pretty",
+  "version": "13.2.0",
+  "size": 70760,
+  "unpackedSize": 278657,
+  "shasum": "70bb88a562e09aec7dc8e893a94423c17bcb553d",
+  "integrity": "sha512-KoQCZleCWsvHMYjrqgkJWdstKyJEe4UAlrV0uCKHPuOM0FZSWmplVHsZxhO+MJx7/EctADmZMIE1IjVT3BPNwQ==",
+  "filename": "pino-pretty-13.2.0.tgz",
+  "files": [
+    {
+      "path": ".borp.yaml",
+      "size": 95,
+      "mode": 420
+    },
+    {
+      "path": ".editorconfig",
+      "size": 193,
+      "mode": 420
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "size": 2074,
+      "mode": 420
+    },
+    {
+      "path": "LICENSE",
+      "size": 1130,
+      "mode": 420
+    },
+    {
+      "path": "Readme.md",
+      "size": 14826,
+      "mode": 420
+    },
+    {
+      "path": "SECURITY.md",
+      "size": 5101,
+      "mode": 420
+    },
+    {
+      "path": "benchmark.js",
+      "size": 2984,
+      "mode": 420
+    },
+    {
+      "path": "bin.js",
+      "size": 2931,
+      "mode": 493
+    },
+    {
+      "path": "demo.png",
+      "size": 14524,
+      "mode": 420
+    },
+    {
+      "path": "docs/help.md",
+      "size": 1240,
+      "mode": 420
+    },
+    {
+      "path": "eslint.config.js",
+      "size": 70,
+      "mode": 420
+    },
+    {
+      "path": "help/help.txt",
+      "size": 3490,
+      "mode": 420
+    },
+    {
+      "path": "index.d.ts",
+      "size": 7365,
+      "mode": 420
+    },
+    {
+      "path": "index.js",
+      "size": 8121,
+      "mode": 420
+    },
+    {
+      "path": "lib/colors.js",
+      "size": 5085,
+      "mode": 420
+    },
+    {
+      "path": "lib/colors.test.js",
+      "size": 3924,
+      "mode": 420
+    },
+    {
+      "path": "lib/constants.js",
+      "size": 866,
+      "mode": 420
+    },
+    {
+      "path": "lib/pretty.js",
+      "size": 5023,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/build-safe-sonic-boom.js",
+      "size": 1607,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/build-safe-sonic-boom.test.js",
+      "size": 2303,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/create-date.js",
+      "size": 651,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/create-date.test.js",
+      "size": 664,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/delete-log-property.js",
+      "size": 966,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/delete-log-property.test.js",
+      "size": 859,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/filter-log.js",
+      "size": 2558,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/filter-log.test.js",
+      "size": 6460,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/format-time.js",
+      "size": 2057,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/format-time.test.js",
+      "size": 2489,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/get-level-label-data.js",
+      "size": 1158,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/get-property-value.js",
+      "size": 841,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/get-property-value.test.js",
+      "size": 1222,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/handle-custom-levels-names-opts.js",
+      "size": 1065,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/handle-custom-levels-names-opts.test.js",
+      "size": 1225,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/handle-custom-levels-opts.js",
+      "size": 1120,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/handle-custom-levels-opts.test.js",
+      "size": 1237,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/index.js",
+      "size": 4322,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/index.test.js",
+      "size": 1226,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/interpret-conditionals.js",
+      "size": 1488,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/interpret-conditionals.test.js",
+      "size": 3688,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/is-object.js",
+      "size": 141,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/is-object.test.js",
+      "size": 265,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/is-valid-date.js",
+      "size": 337,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/is-valid-date.test.js",
+      "size": 424,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/join-lines-with-indentation.js",
+      "size": 946,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/join-lines-with-indentation.test.js",
+      "size": 614,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/noop.js",
+      "size": 51,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/noop.test.js",
+      "size": 245,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/parse-factory-options.js",
+      "size": 6074,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-error-log.js",
+      "size": 2564,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-error-log.test.js",
+      "size": 3840,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-error.js",
+      "size": 1874,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-error.test.js",
+      "size": 972,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-level.js",
+      "size": 1205,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-level.test.js",
+      "size": 1489,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-message.js",
+      "size": 2291,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-message.test.js",
+      "size": 9168,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-metadata.js",
+      "size": 2163,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-metadata.test.js",
+      "size": 5385,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-object.js",
+      "size": 3778,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-object.test.js",
+      "size": 5611,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-time.js",
+      "size": 1227,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/prettify-time.test.js",
+      "size": 5540,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/split-property-key.js",
+      "size": 972,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/split-property-key.test.js",
+      "size": 1138,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/strip-unsafe-control-chars.js",
+      "size": 575,
+      "mode": 420
+    },
+    {
+      "path": "lib/utils/strip-unsafe-control-chars.test.js",
+      "size": 335,
+      "mode": 420
+    },
+    {
+      "path": "package.json",
+      "size": 1714,
+      "mode": 420
+    },
+    {
+      "path": "test/basic.test.js",
+      "size": 37877,
+      "mode": 420
+    },
+    {
+      "path": "test/boolean-options.test.js",
+      "size": 7621,
+      "mode": 420
+    },
+    {
+      "path": "test/cli-rc.test.js",
+      "size": 11119,
+      "mode": 420
+    },
+    {
+      "path": "test/cli.test.js",
+      "size": 14252,
+      "mode": 420
+    },
+    {
+      "path": "test/crlf.test.js",
+      "size": 860,
+      "mode": 420
+    },
+    {
+      "path": "test/error-objects.test.js",
+      "size": 20004,
+      "mode": 420
+    },
+    {
+      "path": "test/example/example.js",
+      "size": 634,
+      "mode": 420
+    },
+    {
+      "path": "test/helper.js",
+      "size": 557,
+      "mode": 420
+    },
+    {
+      "path": "test/types/exports.tst.ts",
+      "size": 663,
+      "mode": 420
+    },
+    {
+      "path": "test/types/pino-pretty.tst.ts",
+      "size": 5722,
+      "mode": 420
+    },
+    {
+      "path": "test/types/tsconfig.json",
+      "size": 162,
+      "mode": 420
+    }
+  ],
+  "entryCount": 78,
+  "bundled": [],
+  "sha256": "18e5de7d710407a5bd0a4e54c9e9d9694270c53f4947b69a5002c165c4eec7df"
+}

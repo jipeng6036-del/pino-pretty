@@ -1,0 +1,18 @@
+[
+  {
+    "kind": "baseline",
+    "command": "node --test --test-name-pattern=hideObject test/error-objects.test.js",
+    "code": 1,
+    "sourceSha256": "2d946610a9ff25f7ee38f9b798d0399ed8508629d2e167c509cdcd542e9496a9",
+    "testSha256": "096da35d4cafb61b278c847ccc3de89c0ecb23845a73cedf167bbe4d3ff9ec35",
+    "seconds": 0.79
+  },
+  {
+    "kind": "candidate",
+    "command": "node --test --test-name-pattern=hideObject test/error-objects.test.js",
+    "code": 0,
+    "sourceSha256": "a91c41d47be5edfc3da04eb5a9a387387164c58b63140fa24c1f8e62cb450e79",
+    "testSha256": "096da35d4cafb61b278c847ccc3de89c0ecb23845a73cedf167bbe4d3ff9ec35",
+    "seconds": 0.33
+  }
+]

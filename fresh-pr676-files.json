@@ -1,0 +1,26 @@
+[
+  {
+    "sha": "21d0250c165d85fdb08a8abc65253205b2d351c9",
+    "filename": "lib/utils/interpret-conditionals.js",
+    "status": "modified",
+    "additions": 5,
+    "deletions": 1,
+    "changes": 6,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/f033c3802940087fbc4b8823ef419a2f0694e77f/lib%2Futils%2Finterpret-conditionals.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/f033c3802940087fbc4b8823ef419a2f0694e77f/lib%2Futils%2Finterpret-conditionals.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Finterpret-conditionals.js?ref=f033c3802940087fbc4b8823ef419a2f0694e77f",
+    "patch": "@@ -33,7 +33,11 @@ function interpretConditionals (messageFormat, log) {\n   function replacer (_, key, value) {\n     const propertyValue = getPropertyValue(log, key)\n     if (propertyValue && value.includes(key)) {\n-      return value.replace(new RegExp('{' + key + '}', 'g'), propertyValue)\n+      /* The key is matched, and the value inserted, literally: a key may contain\n+         characters that are special in a regular expression (e.g. the `.` used to\n+         delimit nested keys), and a logged value may contain `$` sequences that\n+         would otherwise be interpreted as replacement patterns. */\n+      return value.replaceAll(`{${key}}`, () => propertyValue)\n     } else {\n       return ''\n     }"
+  },
+  {
+    "sha": "560d502d8218f6f3885be015c385eb9279264cec",
+    "filename": "lib/utils/interpret-conditionals.test.js",
+    "status": "modified",
+    "additions": 25,
+    "deletions": 0,
+    "changes": 25,
+    "blob_url": "https://github.com/pinojs/pino-pretty/blob/f033c3802940087fbc4b8823ef419a2f0694e77f/lib%2Futils%2Finterpret-conditionals.test.js",
+    "raw_url": "https://github.com/pinojs/pino-pretty/raw/f033c3802940087fbc4b8823ef419a2f0694e77f/lib%2Futils%2Finterpret-conditionals.test.js",
+    "contents_url": "https://api.github.com/repos/pinojs/pino-pretty/contents/lib%2Futils%2Finterpret-conditionals.test.js?ref=f033c3802940087fbc4b8823ef419a2f0694e77f",
+    "patch": "@@ -82,3 +82,28 @@ test('interpretConditionals removes empty lines from removed conditionals', t =>\n   const log = fastCopy(logData)\n   t.assert.strictEqual(interpretConditionals('{msg}\\n{if foo}{foo}{end}\\n{level}', log), '{msg}\\n{level}')\n })\n+\n+test('interpretConditionals does not interpret `$` sequences in the property value', t => {\n+  const log = { msg: 'a $& b' }\n+  t.assert.strictEqual(interpretConditionals('{if msg}{msg}{end}', log), 'a $& b')\n+})\n+\n+test('interpretConditionals preserves every `$` replacement pattern in the property value', t => {\n+  for (const msg of ['$$', '$&', '$`', \"$'\", '$1', '$<name>', '100$$']) {\n+    const log = { msg }\n+    t.assert.strictEqual(interpretConditionals('{if msg}{msg}{end}', log), msg)\n+  }\n+})\n+\n+test('interpretConditionals does not treat the property key as a regular expression', t => {\n+  const log = { 'we(ird': 'value' }\n+  t.assert.strictEqual(interpretConditionals('{if we(ird}{we(ird}{end}', log), 'value')\n+})\n+\n+test('interpretConditionals matches the delimiter in a nested key literally', t => {\n+  const log = { data1: { data2: 'bar' } }\n+  t.assert.strictEqual(\n+    interpretConditionals('{if data1.data2}{data1.data2} {data1Xdata2}{end}', log),\n+    'bar {data1Xdata2}'\n+  )\n+})"
+  }
+]
